@@ -1,0 +1,666 @@
+diff -ru kdebase-trinity-3.5.13-orig/ksysguard/ksysguardd/Linux/acpi.c kdebase-trinity-3.5.13/ksysguard/ksysguardd/Linux/acpi.c
+--- kdebase-trinity-3.5.13-orig/ksysguard/ksysguardd/Linux/acpi.c	2011-08-15 19:07:52.000000000 -0400
++++ kdebase-trinity-3.5.13/ksysguard/ksysguardd/Linux/acpi.c	2014-05-09 01:50:29.000000000 -0400
+@@ -1,8 +1,9 @@
+ /*
+     KSysGuard, the KDE System Guard
+-    
+-    Copyright (c) 2003 Stephan Uhlmann <su@su2.info> 
++
++    Copyright (c) 2003 Stephan Uhlmann <su@su2.info>
+     Copyright (c) 2005 Sirtaj Singh Kang <taj@kde.org> -- Battery fixes and Thermal
++    Copyright (c) 2014 John Weiss <jpwcandide@sourceforge.net> -- sysfs ACPI support
+ 
+     This program is free software; you can redistribute it and/or
+     modify it under the terms of version 2 of the GNU General Public
+@@ -43,6 +44,25 @@
+ 
+ static int AcpiThermalZones = -1;
+ static int AcpiFans = -1;
++
++static int BatteryUsesProcAcpi = 0;
++static int ThermalZoneUsesProcAcpi = 0;
++static int FanUsesProcAcpi = 0;
++
++
++/*
++  ##### [jpw] Prototypes for internal utility fns. #####
++*/
++void sysfs_initAcpiBattery(struct SensorModul*, DIR*);
++void procfs_initAcpiBattery(struct SensorModul*, DIR*);
++void sysfs_initAcpiThermal(struct SensorModul*, DIR*);
++void procfs_initAcpiThermal(struct SensorModul*, DIR*);
++void sysfs_initAcpiFan(struct SensorModul*, DIR*);
++void procfs_initAcpiFan(struct SensorModul*, DIR*);
++int procfs_updateAcpiBattery(void);
++int sysfs_updateAcpiBattery(void);
++
++
+ /*
+ ================================ public part =================================
+ */
+@@ -72,32 +92,103 @@
+ 
+ /************ ACPI Battery **********/
+ 
+-void initAcpiBattery( struct SensorModul* sm )
++#define PROC_BAT_DIR "/proc/acpi/battery"
++#define PROC_BAT_INFO_FMT "/proc/acpi/battery/%s/info"
++#define PROC_BAT_STATE_FMT "/proc/acpi/battery/%s/state"
++
++#define SYS_BAT_DIR "/sys/class/power_supply"
++#define SYS_BAT_CAPACITY_FMT "/sys/class/power_supply/%s/capacity"
++#define SYS_BAT_RATE_FMT "/sys/class/power_supply/%s/power_now"
++
++#define ACPI_BAT_FILL_FMT "acpi/battery/%d/batterycharge"
++#define ACPI_BAT_USAGE_FMT "acpi/battery/%d/batteryusage"
++
++
++void sysfs_initAcpiBattery( struct SensorModul* sm, DIR *d )
++{
++  struct dirent *de;
++  char s[ ACPIFILENAMELENGTHMAX ];
++
++  AcpiBatteryNum = 0;
++  while ( ( de = readdir( d ) ) ) {
++    /*
++    fprintf(stderr, "DBG:  \t\t(sysfs)BattInit:  fname='%s'\n", de->d_name);
++    */
++
++    /* [jpw] There may be multiple subdirectories in
++     * '/sys/class/power_supply', such as '/sys/class/power_supply/AC'.  We're
++     * only interested in the ones with the filename beginning with 'BAT'.
++     */
++    if ( ( strlen( de->d_name ) > 2 ) &&
++         ( strncmp( de->d_name, "BAT", 3 ) == 0 ) ) {
++      /*
++      fprintf(stderr, "DBG:  (sysfs)BattInit:  adding as #%d\n",
++              AcpiBatteryNum);
++       */
++
++      strncpy( AcpiBatteryNames[ AcpiBatteryNum ], de->d_name, 8 );
++      snprintf( s, sizeof( s ), ACPI_BAT_FILL_FMT, AcpiBatteryNum );
++      registerMonitor( s, "integer", printAcpiBatFill,
++                       printAcpiBatFillInfo, sm );
++      snprintf( s, sizeof( s ), ACPI_BAT_USAGE_FMT, AcpiBatteryNum );
++      registerMonitor( s, "integer", printAcpiBatUsage,
++                       printAcpiBatUsageInfo, sm);
++      AcpiBatteryCharge[ AcpiBatteryNum ] = 0;
++      AcpiBatteryNum++;
++    }
++  }
++}
++
++void procfs_initAcpiBattery( struct SensorModul* sm, DIR *d )
+ {
+-  DIR *d;
+   struct dirent *de;
+   char s[ ACPIFILENAMELENGTHMAX ];
+ 
+-  if ( ( d = opendir( "/proc/acpi/battery" ) ) == NULL ) {
++  AcpiBatteryNum = 0;
++  while ( ( de = readdir( d ) ) ) {
++    if ( ( strcmp( de->d_name, "." ) != 0 ) && ( strcmp( de->d_name, ".." ) != 0 ) ) {
++      strncpy( AcpiBatteryNames[ AcpiBatteryNum ], de->d_name, 8 );
++      snprintf( s, sizeof( s ), ACPI_BAT_FILL_FMT, AcpiBatteryNum );
++      registerMonitor( s, "integer", printAcpiBatFill, printAcpiBatFillInfo, sm );
++      snprintf( s, sizeof( s ), ACPI_BAT_USAGE_FMT, AcpiBatteryNum );
++      registerMonitor( s, "integer", printAcpiBatUsage, printAcpiBatUsageInfo, sm);
++      AcpiBatteryCharge[ AcpiBatteryNum ] = 0;
++      AcpiBatteryNum++;
++    }
++  }
++}
++
++void initAcpiBattery( struct SensorModul* sm )
++{
++  DIR *d;
++
++  /* fprintf(stderr, "DBG:  Battery Info..."); */
++
++  /* [jpw]  Since this is 2014, we'll look in "/sys" first, then in "/proc"
++   * (for compatibility with older kernels). */
++  if ( ( d = opendir( SYS_BAT_DIR ) ) != NULL ) {
++    /* DBG:  fprintf(stderr, " found in sysfs.\n"); */
++    BatteryUsesProcAcpi = 0;
++  } else if ( ( d = opendir( PROC_BAT_DIR ) ) != NULL ) {
++    /* DBG:  fprintf(stderr, " found in procfs.\n"); */
++    BatteryUsesProcAcpi = 1;
++  } else {
++    /* DBG:  fprintf(stderr, " not found in either procfs or sysfs.\n"); */
+ 	AcpiBatteryNum = -1;
+     return;
++  }
++
++  if ( BatteryUsesProcAcpi ) {
++    procfs_initAcpiBattery( sm, d );
+   } else {
+-	AcpiBatteryNum = 0;
+-    while ( ( de = readdir( d ) ) )
+-      if ( ( strcmp( de->d_name, "." ) != 0 ) && ( strcmp( de->d_name, ".." ) != 0 ) ) {
+-		  strncpy( AcpiBatteryNames[ AcpiBatteryNum ], de->d_name, 8 );
+-		  snprintf( s, sizeof( s ), "acpi/battery/%d/batterycharge", AcpiBatteryNum );
+-		  registerMonitor( s, "integer", printAcpiBatFill, printAcpiBatFillInfo, sm );
+-		  snprintf( s, sizeof( s ), "acpi/battery/%d/batteryusage", AcpiBatteryNum );
+-		  registerMonitor( s, "integer", printAcpiBatUsage, printAcpiBatUsageInfo, sm);
+-		  AcpiBatteryCharge[ AcpiBatteryNum ] = 0;
+-		  AcpiBatteryNum++;
+-	  }
++    sysfs_initAcpiBattery( sm, d );
+   }
++
++  closedir( d );
+ }
+ 
+ 
+-int updateAcpiBattery( void )
++int procfs_updateAcpiBattery( void )
+ {
+   int i, fd;
+   char s[ ACPIFILENAMELENGTHMAX ];
+@@ -107,13 +198,13 @@
+   char *p;
+   int AcpiBatCapacity = 1;
+   int AcpiBatRemainingCapacity = 0;
+-  
++
+   if ( AcpiBatteryNum <= 0 )
+     return -1;
+ 
+   for ( i = 0; i < AcpiBatteryNum; i++ ) {
+     /* get total capacity */
+-    snprintf( s, sizeof( s ), "/proc/acpi/battery/%s/info", AcpiBatteryNames[ i ] );
++    snprintf( s, sizeof( s ), PROC_BAT_INFO_FMT, AcpiBatteryNames[ i ] );
+     if ( ( fd = open( s, O_RDONLY ) ) < 0 ) {
+       print_error( "Cannot open file \'%s\'!\n"
+                    "Load the battery ACPI kernel module or\n"
+@@ -135,7 +226,7 @@
+         p++;
+     }
+     /* get remaining capacity */
+-    snprintf( s, sizeof( s ), "/proc/acpi/battery/%s/state", AcpiBatteryNames[ i ] );
++    snprintf( s, sizeof( s ), PROC_BAT_STATE_FMT, AcpiBatteryNames[ i ] );
+     if ( ( fd = open( s, O_RDONLY ) ) < 0 ) {
+       print_error( "Cannot open file \'%s\'!\n"
+                    "Load the battery ACPI kernel module or\n"
+@@ -156,7 +247,7 @@
+       if ( p )
+         p++;
+     }
+-    
++
+     /* get current battery usage, (current Current) */
+     p = AcpiBatStateBuf;
+     while ( ( p!= NULL ) && ( sscanf( p, "present rate: %d ",
+@@ -164,19 +255,94 @@
+       p = strchr( p, '\n' );
+       if ( p )
+         p++;
+-    } 
+-    
+-    
++    }
++
++
+     /* calculate charge rate */
+     if ( AcpiBatCapacity > 0 )
+       AcpiBatteryCharge[ i ] = AcpiBatRemainingCapacity * 100 / AcpiBatCapacity;
+     else
+       AcpiBatteryCharge[ i ] = 0;
+-  } 
++  }
+ 
+   return 0;
+ }
+ 
++
++int sysfs_updateAcpiBattery( void )
++{
++  int i, fd;
++  char s[ ACPIFILENAMELENGTHMAX ];
++  size_t n;
++  char AcpiBatBuf[ ACPIBATTERYSTATEBUFSIZE ];
++  int sysfs_pct_capacity = 0;
++  int sysfs_discharge_rate = 0;
++
++  if ( AcpiBatteryNum <= 0 )
++    return -1;
++
++  for ( i = 0; i < AcpiBatteryNum; i++ ) {
++    /* read capacity */
++    snprintf( s, sizeof( s ), SYS_BAT_CAPACITY_FMT, AcpiBatteryNames[ i ] );
++    if ( ( fd = open( s, O_RDONLY ) ) < 0 ) {
++      print_error( "Cannot open file \'%s\'!\n"
++                   "Load the battery ACPI kernel module or\n"
++                   "compile it into your kernel.\n", s );
++      return -1;
++    }
++    if ( ( n = read( fd, AcpiBatBuf, ACPIBATTERYSTATEBUFSIZE - 1 ) )
++         == ACPIBATTERYSTATEBUFSIZE - 1 ) {
++      log_error( "Internal buffer too small to read \'%s\'", s );
++      close( fd );
++      return -1;
++    }
++    close( fd );
++
++    if ( sscanf( AcpiBatBuf,  "%d", &sysfs_pct_capacity ) ) {
++      AcpiBatteryCharge[ i ] = sysfs_pct_capacity;
++    }
++
++    /* read usage */
++    snprintf( s, sizeof( s ), SYS_BAT_RATE_FMT, AcpiBatteryNames[ i ] );
++    if ( ( fd = open( s, O_RDONLY ) ) < 0 ) {
++      print_error( "Cannot open file \'%s\'!\n"
++                   "Load the battery ACPI kernel module or\n"
++                   "compile it into your kernel.\n", s );
++      return -1;
++    }
++    if ( ( n = read( fd, AcpiBatBuf, ACPIBATTERYSTATEBUFSIZE - 1 ) ) ==
++         ACPIBATTERYSTATEBUFSIZE - 1 ) {
++      log_error( "Internal buffer too small to read \'%s\'", s);
++      close( fd );
++      return -1;
++    }
++    close( fd );
++
++    if ( sscanf( AcpiBatBuf,  "%d", &sysfs_discharge_rate ) ) {
++      /* [jpw] Note:  The discharge rate, as reported via the procfs, has been
++       * in units of mWh for some time now.  In sysfs, it's in units of
++       * micro-Wh, so we need to convert that.
++       */
++      AcpiBatteryUsage[ i ] = sysfs_discharge_rate / 1000;
++    }
++  }
++
++  return 0;
++}
++
++
++int updateAcpiBattery( void )
++{
++  if ( BatteryUsesProcAcpi ) {
++    return procfs_updateAcpiBattery();
++  }
++  /* [jpw] else:
++   */
++
++  return sysfs_updateAcpiBattery();
++}
++
++
+ void printAcpiBatFill( const char* cmd )
+ {
+   int i;
+@@ -196,7 +362,7 @@
+ void printAcpiBatUsage( const char* cmd)
+ {
+  int i;
+- 
++
+  sscanf( cmd + 13, "%d", &i );
+  fprintf(CurrentClient, "%d\n", AcpiBatteryUsage[ i ] );
+ }
+@@ -213,10 +379,15 @@
+ 
+ /************** ACPI Thermal *****************/
+ 
+-#define THERMAL_ZONE_DIR "/proc/acpi/thermal_zone"
+-#define TEMPERATURE_FILE "temperature"
++#define PROC_THERMAL_ZONE_DIR "/proc/acpi/thermal_zone"
++#define PROC_TEMPERATURE_FILE "temperature"
+ #define TEMPERATURE_FILE_MAXLEN 255
+ 
++#define SYS_THERMAL_ZONE_DIR "/sys/devices/virtual/thermal"
++#define SYSFS_TEMP_SUBDIR "thermal_zone"
++#define SYS_TEMPERATURE_FILE "temp"
++#define SYSFS_TEMP_SUBDIR_FMT SYSFS_TEMP_SUBDIR "%d"
++
+ 
+ /*static char **zone_names = NULL;*/
+ 
+@@ -239,22 +410,38 @@
+ 	return idx - *startidx;
+ }
+ 
+-void initAcpiThermal(struct SensorModul *sm)
++void sysfs_initAcpiThermal(struct SensorModul *sm, DIR *d)
+ {
+-
+-  char th_ref[ ACPIFILENAMELENGTHMAX ];
+-  DIR *d = NULL;
+   struct dirent *de;
++  char th_ref[ ACPIFILENAMELENGTHMAX ];
++  int tzone_number;
+ 
+-  d = opendir(THERMAL_ZONE_DIR);
+-  if (d == NULL) {
+-/*	  print_error( "Directory \'" THERMAL_ZONE_DIR
+-		"\' does not exist or is not readable.\n"
+-	  "Load the ACPI thermal kernel module or compile it into your kernel.\n" );
+-*/
+-	  AcpiThermalZones = -1;
+-	  return;
++  AcpiThermalZones = 0;
++  while ( (de = readdir(d)) != NULL ) {
++      /*
++      fprintf(stderr, "DBG:  \t\t(sysfs)ThermInit:  fname='%s'\n", de->d_name);
++      */
++      tzone_number = -1;
++
++      if ( sscanf(de->d_name, SYSFS_TEMP_SUBDIR_FMT, &tzone_number) > 0 ) {
++          AcpiThermalZones++;
++          snprintf(th_ref, sizeof(th_ref),
++                   "acpi/thermal_zone/%d/temperature", tzone_number);
++          registerMonitor(th_ref, "integer", printThermalZoneTemperature,
++                          printThermalZoneTemperatureInfo, sm);
++
++          /*
++          fprintf(stderr, "DBG:  (sysfs)ThermInit:  added as #%d\n",
++                  tzone_number);
++          */
++      }
+   }
++}
++
++void procfs_initAcpiThermal(struct SensorModul *sm, DIR *d)
++{
++  struct dirent *de;
++  char th_ref[ ACPIFILENAMELENGTHMAX ];
+ 
+   AcpiThermalZones = 0;
+   while ( (de = readdir(d)) != NULL ) {
+@@ -264,13 +451,48 @@
+ 	  }
+ 
+ 	  AcpiThermalZones++;
+-	  snprintf(th_ref, sizeof(th_ref), 
++	  snprintf(th_ref, sizeof(th_ref),
+ 			  "acpi/thermal_zone/%s/temperature", de->d_name);
+ 	  registerMonitor(th_ref, "integer", printThermalZoneTemperature,
+ 			  printThermalZoneTemperatureInfo, sm);
+   }
++}
++
++void initAcpiThermal(struct SensorModul *sm)
++{
++  DIR *d = NULL;
++
++  /* fprintf(stderr, "DBG:  ThermalZone Info..."); */
++
++  /* [jpw]  Since this is 2014, we'll look in "/sys" first, then in "/proc"
++   * (for compatibility with older kernels). */
++  d = opendir(SYS_THERMAL_ZONE_DIR);
++  if (d == NULL) {
++      d = opendir(PROC_THERMAL_ZONE_DIR);
++
++      if (d == NULL) {
++/*	  print_error( "Directory \'" PROC_THERMAL_ZONE_DIR
++		"\' does not exist or is not readable.\n"
++	  "Load the ACPI thermal kernel module or compile it into your kernel.\n" );
++*/
++          AcpiThermalZones = -1;
++          return;
++      } else {
++          /* DBG:  fprintf(stderr, " found in procfs.\n"); */
++          ThermalZoneUsesProcAcpi = 1;
++      }
++  } else {
++      /* DBG:  fprintf(stderr, " found in sysfs.\n"); */
++      ThermalZoneUsesProcAcpi = 0;
++  }
+ 
+-  return;
++  if (ThermalZoneUsesProcAcpi) {
++      procfs_initAcpiThermal(sm, d);
++  } else {
++      sysfs_initAcpiThermal(sm, d);
++  }
++
++  closedir( d );
+ }
+ 
+ int updateAcpiThermal()
+@@ -290,9 +512,18 @@
+ 	len_zone_name = extract_zone_name(&zone_name, cmd);
+ 	if (len_zone_name <= 0) return -1;
+ 
+-	snprintf(th_file, sizeof(th_file),
+-			THERMAL_ZONE_DIR "/%.*s/" TEMPERATURE_FILE,
+-			len_zone_name, zone_name);
++    /* [jpw] Build the appropriate filename for "/proc" or "/sys", as
++     * appropriate. */
++    if (ThermalZoneUsesProcAcpi) {
++        snprintf(th_file, sizeof(th_file),
++                 PROC_THERMAL_ZONE_DIR "/%.*s/" PROC_TEMPERATURE_FILE,
++                 len_zone_name, zone_name);
++    } else {
++        snprintf(th_file, sizeof(th_file),
++                 SYS_THERMAL_ZONE_DIR "/"
++                 SYSFS_TEMP_SUBDIR "%.*s/" SYS_TEMPERATURE_FILE,
++                 len_zone_name, zone_name);
++    }
+ 
+ 	fd = open(th_file, O_RDONLY);
+ 	if (fd < 0) {
+@@ -310,7 +541,15 @@
+     }
+ 	close(fd);
+ 
+-	sscanf(input_buf, "temperature: %d C", &temperature);
++    /* [jpw] Reading the temperature differs between "/proc" and "/sys" */
++    if (ThermalZoneUsesProcAcpi) {
++        sscanf(input_buf, "temperature: %d C", &temperature);
++    } else {
++        /* [jpw] The value in sysfs is in units of "mC". */
++        sscanf(input_buf, "%d", &temperature);
++        temperature /= 1000;
++    }
++
+ 	return temperature;
+ }
+ 
+@@ -326,26 +565,87 @@
+ 
+ /********** ACPI Fan State***************/
+ 
+-#define FAN_DIR "/proc/acpi/fan"
+-#define FAN_STATE_FILE "state"
++#define PROC_FAN_DIR "/proc/acpi/fan"
++#define PROC_FAN_STATE_FILE "state"
+ #define FAN_STATE_FILE_MAXLEN 255
+ 
+-void initAcpiFan(struct SensorModul *sm)
+-{
++/* This is correct, believe it or not.  */
++#define SYS_FAN_DIR "/sys/devices/virtual/thermal"
++#define SYSFS_FAN_SUBDIR "cooling_device"
++#define SYS_FAN_STATE_FILE "cur_state"
++#define SYSFS_FAN_SUBDIR_FMT SYSFS_FAN_SUBDIR "%d"
+ 
+-  char th_ref[ ACPIFILENAMELENGTHMAX ];
+-  DIR *d = NULL;
++/* [jpw] We're going to use a different subtree name, since a
++ * 'cooling_device' may or may not be a fan. */
++#define ACPI_FAN_FMT "acpi/cooling_device/%d/state"
++
++
++void sysfs_initAcpiFan(struct SensorModul *sm, DIR *d)
++{
++  char th_ref[ ACPIFILENAMELENGTHMAX*4 ];
+   struct dirent *de;
++  int cooler_number;
++  char cooler_type_fname[ FAN_STATE_FILE_MAXLEN ];
++  int bytes_read, fd;
++  char cooler_type[ FAN_STATE_FILE_MAXLEN ];
++  char* trailing_newline;
+ 
+-  d = opendir(FAN_DIR);
+-  if (d == NULL) {
+-/*	  print_error( "Directory \'" THERMAL_ZONE_DIR
+-		"\' does not exist or is not readable.\n"
+-	  "Load the ACPI thermal kernel module or compile it into your kernel.\n" );
+-*/
+-	  AcpiFans = -1;
+-	  return;
++
++  AcpiFans = 0;
++  while ( (de = readdir(d)) != NULL ) {
++      /*
++      fprintf(stderr, "DBG:  \t\t(sysfs)FanInit:  fname='%s'\n", de->d_name);
++       */
++      cooler_number = -1;
++
++      if ( sscanf(de->d_name, SYSFS_FAN_SUBDIR_FMT, &cooler_number) > 0 ) {
++          AcpiFans++;
++
++          /* [jpw] A sysfs 'cooling_device' may or may not be a fan, so we're
++           * going to try and read its type.  If we can, we'll add it to the
++           * monitor's name.
++           * If there are any errors, we'll punt and use a "plain" monitor
++           * name.
++           */
++          snprintf(cooler_type_fname, sizeof(cooler_type_fname),
++                   SYS_FAN_DIR "/%s/type", de->d_name);
++          bytes_read = 0;
++          fd = open(cooler_type_fname, O_RDONLY);
++          if (fd >= 0) {
++              bytes_read = read(fd, cooler_type, sizeof(cooler_type) - 1);
++              close(fd);
++
++              /* [jpw] Trim off the trailing newline. */
++              trailing_newline = NULL;
++              if (bytes_read > 0) {
++                  trailing_newline = strrchr(cooler_type, '\n');
++              }
++              if (trailing_newline != NULL) {
++                  *trailing_newline = '\0';
++              }
++          }
++
++          if (bytes_read > 0) {
++              snprintf(th_ref, sizeof(th_ref), ACPI_FAN_FMT "__%s",
++                       cooler_number, cooler_type);
++          } else {
++              snprintf(th_ref, sizeof(th_ref), ACPI_FAN_FMT, cooler_number);
++          }
++
++          registerMonitor(th_ref, "integer", printFanState,
++                          printFanStateInfo, sm);
++
++          /*
++          fprintf(stderr, "DBG:  (sysfs)FanInit:  added as '%s'\n", th_ref);
++           */
++      }
+   }
++}
++
++void procfs_initAcpiFan(struct SensorModul *sm, DIR *d)
++{
++  char th_ref[ ACPIFILENAMELENGTHMAX ];
++  struct dirent *de;
+ 
+   AcpiFans = 0;
+   while ( (de = readdir(d)) != NULL ) {
+@@ -355,13 +655,50 @@
+ 	  }
+ 
+ 	  AcpiFans++;
+-	  snprintf(th_ref, sizeof(th_ref), 
++	  snprintf(th_ref, sizeof(th_ref),
+ 			  "acpi/fan/%s/state", de->d_name);
+ 	  registerMonitor(th_ref, "integer", printFanState,
+ 			  printFanStateInfo, sm);
+   }
++}
++
++void initAcpiFan(struct SensorModul *sm)
++{
++  DIR *d = NULL;
++
++  /* */
++  fprintf(stderr, "DBG:  CoolingDevice Info...");
+ 
+-  return;
++  /* [jpw]  Since this is 2014, we'll look in "/sys" first, then in "/proc"
++   * (for compatibility with older kernels). */
++  d = opendir(SYS_FAN_DIR);
++  if (d == NULL) {
++      d = opendir(PROC_FAN_DIR);
++
++      if (d == NULL) {
++/*	  print_error( "Directory \'" THERMAL_ZONE_DIR
++		"\' does not exist or is not readable.\n"
++	  "Load the ACPI thermal kernel module or compile it into your kernel.\n" );
++*/
++          AcpiFans = -1;
++          return;
++      } else {
++          /* DBG:  fprintf(stderr, " found in procfs.\n"); */
++          FanUsesProcAcpi = 1;
++      }
++  } else {
++      /* DBG:  fprintf(stderr, " found in sysfs.\n"); */
++      FanUsesProcAcpi = 0;
++  }
++
++
++  if (FanUsesProcAcpi) {
++      procfs_initAcpiFan(sm, d);
++  } else {
++      sysfs_initAcpiFan(sm, d);
++  }
++
++  closedir( d );
+ }
+ 
+ int updateAcpiFan()
+@@ -377,13 +714,22 @@
+ 	char *fan_name = NULL;
+ 	int read_bytes = 0, fd = 0, len_fan_name = 0;
+ 	char fan_state[4];
++    int cooler_cur_state;
+ 
+ 	len_fan_name = extract_zone_name(&fan_name, cmd);
+ 	if (len_fan_name <= 0) return -1;
+ 
+-	snprintf(fan_state_file, sizeof(fan_state_file),
+-			FAN_DIR "/%.*s/" FAN_STATE_FILE,
+-			len_fan_name, fan_name);
++    /* [jpw] Build the appropriate filename for "/proc" or "/sys", as
++     * appropriate. */
++    if (FanUsesProcAcpi) {
++        snprintf(fan_state_file, sizeof(fan_state_file),
++                 PROC_FAN_DIR "/%.*s/" PROC_FAN_STATE_FILE,
++                 len_fan_name, fan_name);
++    } else {
++        snprintf(fan_state_file, sizeof(fan_state_file),
++                 SYS_FAN_DIR "/" SYSFS_FAN_SUBDIR "%.*s/" SYS_FAN_STATE_FILE,
++                 len_fan_name, fan_name);
++    }
+ 
+ 	fd = open(fan_state_file, O_RDONLY);
+ 	if (fd < 0) {
+@@ -401,8 +747,20 @@
+     }
+ 	close(fd);
+ 
+-	sscanf(input_buf, "status: %2s", fan_state);
+-	return (fan_state[1] == 'n') ? 1 : 0;
++    /* [jpw] Reading the fan state differs between "/proc" and "/sys" */
++    if (FanUsesProcAcpi) {
++        sscanf(input_buf, "status: %2s", fan_state);
++        return (fan_state[1] == 'n') ? 1 : 0;
++    }
++    /* [jpw] else:
++     *
++     * We're reading the fan state from the sysfs.  According to the kernel
++     * documentation (in the file 'Documentation/thermal/sysfs-api.txt'), when
++     * the 'cooling_device<n>/cur_state' file contains a '0', the status of
++     * that fan (or other cooling device) is "off".  Any other value is "on".
++     */
++    sscanf(input_buf, "%d", &cooler_cur_state);
++    return (cooler_cur_state ? 1 : 0);
+ }
+ 
+ void printFanState(const char *cmd) {
+Only in kdebase-trinity-3.5.13: .pc

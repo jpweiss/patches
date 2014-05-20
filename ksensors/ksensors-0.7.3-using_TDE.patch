@@ -1,0 +1,5831 @@
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/admin/acinclude.m4.in ksensors-0.7.3-jpw1/admin/acinclude.m4.in
+*** ksensors-0.7.3-orig/admin/acinclude.m4.in	2003-09-09 10:44:53.000000000 -0400
+--- ksensors-0.7.3-jpw1/admin/acinclude.m4.in	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 21,27 ****
+  
+  dnl IMPORTANT NOTE:
+  dnl Please do not modify this file unless you expect your modifications to be
+! dnl carried into every other module in the repository. 
+  dnl
+  dnl Single-module modifications are best placed in configure.in for kdelibs
+  dnl and kdebase or configure.in.in if present.
+--- 21,27 ----
+  
+  dnl IMPORTANT NOTE:
+  dnl Please do not modify this file unless you expect your modifications to be
+! dnl carried into every other module in the repository.
+  dnl
+  dnl Single-module modifications are best placed in configure.in for kdelibs
+  dnl and kdebase or configure.in.in if present.
+***************
+*** 29,35 ****
+  # KDE_PATH_X_DIRECT
+  dnl Internal subroutine of AC_PATH_X.
+  dnl Set ac_x_includes and/or ac_x_libraries.
+! AC_DEFUN(KDE_PATH_X_DIRECT,
+  [
+  AC_REQUIRE([KDE_CHECK_LIB64])
+  
+--- 29,35 ----
+  # KDE_PATH_X_DIRECT
+  dnl Internal subroutine of AC_PATH_X.
+  dnl Set ac_x_includes and/or ac_x_libraries.
+! AC_DEFUN([KDE_PATH_X_DIRECT],
+  [
+  AC_REQUIRE([KDE_CHECK_LIB64])
+  
+***************
+*** 156,162 ****
+  dnl Find a file (or one of more files in a list of dirs)
+  dnl ------------------------------------------------------------------------
+  dnl
+! AC_DEFUN(AC_FIND_FILE,
+  [
+  $3=NO
+  for i in $2;
+--- 156,162 ----
+  dnl Find a file (or one of more files in a list of dirs)
+  dnl ------------------------------------------------------------------------
+  dnl
+! AC_DEFUN([AC_FIND_FILE],
+  [
+  $3=NO
+  for i in $2;
+***************
+*** 175,181 ****
+  
+  dnl KDE_FIND_PATH(programm-name, variable-name, list of directories,
+  dnl	if-not-found, test-parameter)
+! AC_DEFUN(KDE_FIND_PATH,
+  [
+     AC_MSG_CHECKING([for $1])
+     if test -n "$$2"; then
+--- 175,181 ----
+  
+  dnl KDE_FIND_PATH(programm-name, variable-name, list of directories,
+  dnl	if-not-found, test-parameter)
+! AC_DEFUN([KDE_FIND_PATH],
+  [
+     AC_MSG_CHECKING([for $1])
+     if test -n "$$2"; then
+***************
+*** 228,234 ****
+     fi
+  ])
+  
+! AC_DEFUN(KDE_MOC_ERROR_MESSAGE,
+  [
+      AC_MSG_ERROR([No Qt meta object compiler (moc) found!
+  Please check whether you installed Qt correctly.
+--- 228,234 ----
+     fi
+  ])
+  
+! AC_DEFUN([KDE_MOC_ERROR_MESSAGE],
+  [
+      AC_MSG_ERROR([No Qt meta object compiler (moc) found!
+  Please check whether you installed Qt correctly.
+***************
+*** 240,246 ****
+  ])
+  ])
+  
+! AC_DEFUN(KDE_UIC_ERROR_MESSAGE,
+  [
+      AC_MSG_WARN([No Qt ui compiler (uic) found!
+  Please check whether you installed Qt correctly.
+--- 240,246 ----
+  ])
+  ])
+  
+! AC_DEFUN([KDE_UIC_ERROR_MESSAGE],
+  [
+      AC_MSG_WARN([No Qt ui compiler (uic) found!
+  Please check whether you installed Qt correctly.
+***************
+*** 253,259 ****
+  ])
+  
+  
+! AC_DEFUN(KDE_CHECK_UIC_FLAG,
+  [
+      AC_MSG_CHECKING([whether uic supports -$1 ])
+      kde_cache=`echo $1 | sed 'y% .=/+-%____p_%'`
+--- 253,259 ----
+  ])
+  
+  
+! AC_DEFUN([KDE_CHECK_UIC_FLAG],
+  [
+      AC_MSG_CHECKING([whether uic supports -$1 ])
+      kde_cache=`echo $1 | sed 'y% .=/+-%____p_%'`
+***************
+*** 288,294 ****
+  dnl in $QTDIR/bin, and some more usual places
+  dnl ------------------------------------------------------------------------
+  dnl
+! AC_DEFUN(AC_PATH_QT_MOC_UIC,
+  [
+     qt_bindirs=""
+     for dir in $kde_qt_dirs; do
+--- 288,294 ----
+  dnl in $QTDIR/bin, and some more usual places
+  dnl ------------------------------------------------------------------------
+  dnl
+! AC_DEFUN([AC_PATH_QT_MOC_UIC],
+  [
+     qt_bindirs=""
+     for dir in $kde_qt_dirs; do
+***************
+*** 332,338 ****
+     AC_SUBST(UIC_TR)
+  ])
+  
+! AC_DEFUN(KDE_1_CHECK_PATHS,
+  [
+    KDE_1_CHECK_PATH_HEADERS
+  
+--- 332,338 ----
+     AC_SUBST(UIC_TR)
+  ])
+  
+! AC_DEFUN([KDE_1_CHECK_PATHS],
+  [
+    KDE_1_CHECK_PATH_HEADERS
+  
+***************
+*** 380,386 ****
+  
+  ])
+  
+! AC_DEFUN(KDE_SET_PATHS,
+  [
+    kde_cv_all_paths="kde_have_all_paths=\"yes\" \
+  	kde_htmldir=\"$kde_htmldir\" \
+--- 380,386 ----
+  
+  ])
+  
+! AC_DEFUN([KDE_SET_PATHS],
+  [
+    kde_cv_all_paths="kde_have_all_paths=\"yes\" \
+  	kde_htmldir=\"$kde_htmldir\" \
+***************
+*** 406,412 ****
+  	kde_result=$1"
+  ])
+  
+! AC_DEFUN(KDE_SET_DEFAULT_PATHS,
+  [
+  if test "$1" = "default"; then
+  
+--- 406,412 ----
+  	kde_result=$1"
+  ])
+  
+! AC_DEFUN([KDE_SET_DEFAULT_PATHS],
+  [
+  if test "$1" = "default"; then
+  
+***************
+*** 460,472 ****
+--- 460,484 ----
+        kde_moduledir='\${libdir}/kde2'
+      else
+        kde_moduledir='\${libdir}/kde3'
++       dnl [jpw; 20130210]  Added support for Trinity (in addition to KDE3).
++       if test ! -r "$kde_moduledir"; then
++          kde_moduledir='\${libdir}/trinity'
++       fi
+      fi
+    fi
+    if test -z "$kde_styledir"; then
+      kde_styledir='\${libdir}/kde3/plugins/styles'
++     dnl [jpw; 20130210]  Added support for Trinity (in addition to KDE3).
++     if test ! -r "$kde_styledir"; then
++       kde_styledir='\${libdir}/trinity/plugins/styles'
++     fi
+    fi
+    if test -z "$kde_widgetdir"; then
+      kde_widgetdir='\${libdir}/kde3/plugins/designer'
++     dnl [jpw; 20130210]  Added support for Trinity (in addition to KDE3).
++     if test ! -r "$kde_widgetdir"; then
++       kde_widgetdir='\${libdir}/trinity/plugins/designer'
++     fi
+    fi
+    if test -z "$xdg_appsdir"; then
+      xdg_appsdir='\${datadir}/applications'
+***************
+*** 489,495 ****
+  fi
+  ])
+  
+! AC_DEFUN(KDE_CHECK_PATHS_FOR_COMPLETENESS,
+  [ if test -z "$kde_htmldir" || test -z "$kde_appsdir" ||
+     test -z "$kde_icondir" || test -z "$kde_sounddir" ||
+     test -z "$kde_datadir" || test -z "$kde_locale"  ||
+--- 501,507 ----
+  fi
+  ])
+  
+! AC_DEFUN([KDE_CHECK_PATHS_FOR_COMPLETENESS],
+  [ if test -z "$kde_htmldir" || test -z "$kde_appsdir" ||
+     test -z "$kde_icondir" || test -z "$kde_sounddir" ||
+     test -z "$kde_datadir" || test -z "$kde_locale"  ||
+***************
+*** 499,525 ****
+     test -z "$kde_bindir" || test -z "$kde_servicesdir" ||
+     test -z "$kde_servicetypesdir" || test -z "$kde_moduledir" ||
+     test -z "$kde_styledir" || test -z "kde_widgetdir" ||
+!    test -z "$xdg_appsdir" || test -z "xdg_directorydir" 
+     test "x$kde_have_all_paths" != "xyes"; then
+       kde_have_all_paths=no
+    fi
+  ])
+  
+! AC_DEFUN(KDE_MISSING_PROG_ERROR,
+  [
+      AC_MSG_ERROR([The important program $1 was not found!
+  Please check whether you installed KDE correctly.
+  ])
+  ])
+  
+! AC_DEFUN(KDE_MISSING_ARTS_ERROR,
+  [
+      AC_MSG_ERROR([The important program $1 was not found!
+  Please check whether you installed aRts correctly.
+  ])
+  ])
+  
+! AC_DEFUN(KDE_SUBST_PROGRAMS,
+  [
+      AC_ARG_WITH(arts,
+          [  --without-arts        build without aRts [default=detect] ],
+--- 511,537 ----
+     test -z "$kde_bindir" || test -z "$kde_servicesdir" ||
+     test -z "$kde_servicetypesdir" || test -z "$kde_moduledir" ||
+     test -z "$kde_styledir" || test -z "kde_widgetdir" ||
+!    test -z "$xdg_appsdir" || test -z "xdg_directorydir"
+     test "x$kde_have_all_paths" != "xyes"; then
+       kde_have_all_paths=no
+    fi
+  ])
+  
+! AC_DEFUN([KDE_MISSING_PROG_ERROR],
+  [
+      AC_MSG_ERROR([The important program $1 was not found!
+  Please check whether you installed KDE correctly.
+  ])
+  ])
+  
+! AC_DEFUN([KDE_MISSING_ARTS_ERROR],
+  [
+      AC_MSG_ERROR([The important program $1 was not found!
+  Please check whether you installed aRts correctly.
+  ])
+  ])
+  
+! AC_DEFUN([KDE_SUBST_PROGRAMS],
+  [
+      AC_ARG_WITH(arts,
+          [  --without-arts        build without aRts [default=detect] ],
+***************
+*** 528,534 ****
+      )
+      AM_CONDITIONAL(include_ARTS, test "$build_arts" != "no")
+  
+!         kde_default_bindirs="/usr/bin /usr/local/bin /opt/local/bin /usr/X11R6/bin /opt/kde/bin /opt/kde3/bin /usr/kde/bin /usr/local/kde/bin"
+          test -n "$KDEDIR" && kde_default_bindirs="$KDEDIR/bin $kde_default_bindirs"
+          if test -n "$KDEDIRS"; then
+             kde_save_IFS=$IFS
+--- 540,547 ----
+      )
+      AM_CONDITIONAL(include_ARTS, test "$build_arts" != "no")
+  
+!         dnl [jpw; 20130210]  Added support for Trinity (in addition to KDE3).
+!         kde_default_bindirs="/usr/bin /usr/local/bin /opt/local/bin /usr/X11R6/bin /opt/trinity/bin /opt/kde/bin /opt/kde3/bin /usr/kde/bin /usr/local/kde/bin"
+          test -n "$KDEDIR" && kde_default_bindirs="$KDEDIR/bin $kde_default_bindirs"
+          if test -n "$KDEDIRS"; then
+             kde_save_IFS=$IFS
+***************
+*** 548,555 ****
+          KDE_FIND_PATH(kde-config, KDECONFIG, [$kde_default_bindirs])
+          KDE_FIND_PATH(meinproc, MEINPROC, [$kde_default_bindirs])
+  
+!         if test -n "$MEINPROC" && test ! "$MEINPROC" = "compiled"; then  
+!  	    kde_sharedirs="/usr/share/kde /usr/local/share /usr/share /opt/kde3/share /opt/kde/share $prefix/share"
+              test -n "$KDEDIR" && kde_sharedirs="$KDEDIR/share $kde_sharedirs"
+              AC_FIND_FILE(apps/ksgmltools2/customization/kde-chunk.xsl, $kde_sharedirs, KDE_XSL_STYLESHEET)
+  	    if test "$KDE_XSL_STYLESHEET" = "NO"; then
+--- 561,569 ----
+          KDE_FIND_PATH(kde-config, KDECONFIG, [$kde_default_bindirs])
+          KDE_FIND_PATH(meinproc, MEINPROC, [$kde_default_bindirs])
+  
+!         if test -n "$MEINPROC" && test ! "$MEINPROC" = "compiled"; then
+!         dnl [jpw; 20130210]  Added support for Trinity (in addition to KDE3).
+!  	    kde_sharedirs="/usr/share/kde /usr/local/share /usr/share /opt/trinity/share /opt/kde3/share /opt/kde/share $prefix/share"
+              test -n "$KDEDIR" && kde_sharedirs="$KDEDIR/share $kde_sharedirs"
+              AC_FIND_FILE(apps/ksgmltools2/customization/kde-chunk.xsl, $kde_sharedirs, KDE_XSL_STYLESHEET)
+  	    if test "$KDE_XSL_STYLESHEET" = "NO"; then
+***************
+*** 587,593 ****
+          AC_SUBST(kde_libs_htmldir)
+  ])dnl
+  
+! AC_DEFUN(AC_CREATE_KFSSTND,
+  [
+  AC_REQUIRE([AC_CHECK_RPATH])
+  
+--- 601,607 ----
+          AC_SUBST(kde_libs_htmldir)
+  ])dnl
+  
+! AC_DEFUN([AC_CREATE_KFSSTND],
+  [
+  AC_REQUIRE([AC_CHECK_RPATH])
+  
+***************
+*** 635,641 ****
+  
+  ])
+  
+! AC_DEFUN(AC_SUBST_KFSSTND,
+  [
+  AC_SUBST(kde_htmldir)
+  AC_SUBST(kde_appsdir)
+--- 649,655 ----
+  
+  ])
+  
+! AC_DEFUN([AC_SUBST_KFSSTND],
+  [
+  AC_SUBST(kde_htmldir)
+  AC_SUBST(kde_appsdir)
+***************
+*** 670,680 ****
+  dnl AC_SUBST(kde_toolbardir)
+  ])
+  
+! AC_DEFUN(KDE_MISC_TESTS,
+  [
+     AC_LANG_C
+     dnl Checks for libraries.
+!    AC_CHECK_LIB(util, main, [LIBUTIL="-lutil"]) dnl for *BSD 
+     AC_SUBST(LIBUTIL)
+     AC_CHECK_LIB(compat, main, [LIBCOMPAT="-lcompat"]) dnl for *BSD
+     AC_SUBST(LIBCOMPAT)
+--- 684,694 ----
+  dnl AC_SUBST(kde_toolbardir)
+  ])
+  
+! AC_DEFUN([KDE_MISC_TESTS],
+  [
+     AC_LANG_C
+     dnl Checks for libraries.
+!    AC_CHECK_LIB(util, main, [LIBUTIL="-lutil"]) dnl for *BSD
+     AC_SUBST(LIBUTIL)
+     AC_CHECK_LIB(compat, main, [LIBCOMPAT="-lcompat"]) dnl for *BSD
+     AC_SUBST(LIBCOMPAT)
+***************
+*** 715,721 ****
+     # BSDI BSD/OS 2.1 needs -lipc for XOpenDisplay.
+     AC_CHECK_FUNC(shmat, ,
+       AC_CHECK_LIB(ipc, shmat, X_EXTRA_LIBS="$X_EXTRA_LIBS -lipc"))
+!    
+     # more headers that need to be explicitly included on darwin
+     AC_CHECK_HEADERS(sys/types.h stdint.h)
+  
+--- 729,735 ----
+     # BSDI BSD/OS 2.1 needs -lipc for XOpenDisplay.
+     AC_CHECK_FUNC(shmat, ,
+       AC_CHECK_LIB(ipc, shmat, X_EXTRA_LIBS="$X_EXTRA_LIBS -lipc"))
+! 
+     # more headers that need to be explicitly included on darwin
+     AC_CHECK_HEADERS(sys/types.h stdint.h)
+  
+***************
+*** 753,759 ****
+  # darwin needs this to initialize the environment
+  AC_CHECK_HEADERS(crt_externs.h)
+  AC_CHECK_FUNC(_NSGetEnviron, [AC_DEFINE(HAVE_NSGETENVIRON, 1, [Define if your system needs _NSGetEnviron to set up the environment])])
+!  
+  AH_VERBATIM(_DARWIN_ENVIRON,
+  [
+  #if defined(HAVE_NSGETENVIRON) && defined(HAVE_CRT_EXTERNS_H)
+--- 767,773 ----
+  # darwin needs this to initialize the environment
+  AC_CHECK_HEADERS(crt_externs.h)
+  AC_CHECK_FUNC(_NSGetEnviron, [AC_DEFINE(HAVE_NSGETENVIRON, 1, [Define if your system needs _NSGetEnviron to set up the environment])])
+! 
+  AH_VERBATIM(_DARWIN_ENVIRON,
+  [
+  #if defined(HAVE_NSGETENVIRON) && defined(HAVE_CRT_EXTERNS_H)
+***************
+*** 807,813 ****
+  dnl macro AC_PATH_X
+  dnl ------------------------------------------------------------------------
+  dnl
+! AC_DEFUN(K_PATH_X,
+  [
+  AC_REQUIRE([KDE_MISC_TESTS])dnl
+  AC_REQUIRE([KDE_CHECK_LIB64])
+--- 821,827 ----
+  dnl macro AC_PATH_X
+  dnl ------------------------------------------------------------------------
+  dnl
+! AC_DEFUN([K_PATH_X],
+  [
+  AC_REQUIRE([KDE_MISC_TESTS])dnl
+  AC_REQUIRE([KDE_CHECK_LIB64])
+***************
+*** 1027,1033 ****
+  
+  ])
+  
+! AC_DEFUN(KDE_PRINT_QT_PROGRAM,
+  [
+  AC_REQUIRE([KDE_USE_QT])
+  cat > conftest.$ac_ext <<EOF
+--- 1041,1047 ----
+  
+  ])
+  
+! AC_DEFUN([KDE_PRINT_QT_PROGRAM],
+  [
+  AC_REQUIRE([KDE_USE_QT])
+  cat > conftest.$ac_ext <<EOF
+***************
+*** 1090,1096 ****
+  EOF
+  ])
+  
+! AC_DEFUN(KDE_USE_QT,
+  [
+  if test -z "$1"; then
+    # Current default Qt version: 3.1
+--- 1104,1110 ----
+  EOF
+  ])
+  
+! AC_DEFUN([KDE_USE_QT],
+  [
+  if test -z "$1"; then
+    # Current default Qt version: 3.1
+***************
+*** 1163,1169 ****
+  fi
+  ])
+  
+! AC_DEFUN(KDE_CHECK_QT_DIRECT,
+  [
+  AC_REQUIRE([KDE_USE_QT])
+  AC_MSG_CHECKING([if Qt compiles without flags])
+--- 1177,1183 ----
+  fi
+  ])
+  
+! AC_DEFUN([KDE_CHECK_QT_DIRECT],
+  [
+  AC_REQUIRE([KDE_USE_QT])
+  AC_MSG_CHECKING([if Qt compiles without flags])
+***************
+*** 1226,1232 ****
+  dnl and $(QT_INCLUDES) will be -Iqthdrlocation (if needed)
+  dnl ------------------------------------------------------------------------
+  dnl
+! AC_DEFUN(AC_PATH_QT_1_3,
+  [
+  AC_REQUIRE([K_PATH_X])
+  AC_REQUIRE([KDE_USE_QT])
+--- 1240,1246 ----
+  dnl and $(QT_INCLUDES) will be -Iqthdrlocation (if needed)
+  dnl ------------------------------------------------------------------------
+  dnl
+! AC_DEFUN([AC_PATH_QT_1_3],
+  [
+  AC_REQUIRE([K_PATH_X])
+  AC_REQUIRE([KDE_USE_QT])
+***************
+*** 1532,1543 ****
+  AC_SUBST(kde_qtver)
+  ])
+  
+! AC_DEFUN(AC_PATH_QT,
+  [
+  AC_PATH_QT_1_3
+  ])
+  
+! AC_DEFUN(KDE_CHECK_UIC_PLUGINS,
+  [
+  AC_REQUIRE([AC_PATH_QT_MOC_UIC])
+  
+--- 1546,1557 ----
+  AC_SUBST(kde_qtver)
+  ])
+  
+! AC_DEFUN([AC_PATH_QT],
+  [
+  AC_PATH_QT_1_3
+  ])
+  
+! AC_DEFUN([KDE_CHECK_UIC_PLUGINS],
+  [
+  AC_REQUIRE([AC_PATH_QT_MOC_UIC])
+  
+***************
+*** 1558,1564 ****
+  </widget>
+  </UI>
+  EOF
+!        
+  
+  
+  kde_cv_uic_plugins=no
+--- 1572,1578 ----
+  </widget>
+  </UI>
+  EOF
+! 
+  
+  
+  kde_cv_uic_plugins=no
+***************
+*** 1582,1588 ****
+  fi
+  ])
+  
+! AC_DEFUN(KDE_CHECK_FINAL,
+  [
+    AC_ARG_ENABLE(final, [  --enable-final          build size optimized apps (experimental - needs lots of memory)],
+  	kde_use_final=$enableval, kde_use_final=no)
+--- 1596,1602 ----
+  fi
+  ])
+  
+! AC_DEFUN([KDE_CHECK_FINAL],
+  [
+    AC_ARG_ENABLE(final, [  --enable-final          build size optimized apps (experimental - needs lots of memory)],
+  	kde_use_final=$enableval, kde_use_final=no)
+***************
+*** 1598,1604 ****
+    AC_SUBST(KDE_USE_FINAL_FALSE)
+  ])
+  
+! AC_DEFUN(KDE_CHECK_CLOSURE,
+  [
+    AC_ARG_ENABLE(closure, [  --disable-closure       don't delay template instantiation],
+    	kde_use_closure=$enableval, kde_use_closure=yes)
+--- 1612,1618 ----
+    AC_SUBST(KDE_USE_FINAL_FALSE)
+  ])
+  
+! AC_DEFUN([KDE_CHECK_CLOSURE],
+  [
+    AC_ARG_ENABLE(closure, [  --disable-closure       don't delay template instantiation],
+    	kde_use_closure=$enableval, kde_use_closure=yes)
+***************
+*** 1622,1628 ****
+    AC_SUBST(KDE_NO_UNDEFINED)
+  ])
+  
+! AC_DEFUN(KDE_CHECK_NMCHECK,
+  [
+    AC_ARG_ENABLE(nmcheck, [  --enable-nmcheck        enable automatic namespace cleanness check],
+  	kde_use_nmcheck=$enableval, kde_use_nmcheck=no)
+--- 1636,1642 ----
+    AC_SUBST(KDE_NO_UNDEFINED)
+  ])
+  
+! AC_DEFUN([KDE_CHECK_NMCHECK],
+  [
+    AC_ARG_ENABLE(nmcheck, [  --enable-nmcheck        enable automatic namespace cleanness check],
+  	kde_use_nmcheck=$enableval, kde_use_nmcheck=no)
+***************
+*** 1645,1651 ****
+  dnl and $(kde_includes) will be the kdehdrlocation (if needed)
+  dnl ------------------------------------------------------------------------
+  dnl
+! AC_DEFUN(AC_BASE_PATH_KDE,
+  [
+  AC_PREREQ([2.13])
+  AC_REQUIRE([AC_PATH_QT])dnl
+--- 1659,1665 ----
+  dnl and $(kde_includes) will be the kdehdrlocation (if needed)
+  dnl ------------------------------------------------------------------------
+  dnl
+! AC_DEFUN([AC_BASE_PATH_KDE],
+  [
+  AC_PREREQ([2.13])
+  AC_REQUIRE([AC_PATH_QT])dnl
+***************
+*** 1688,1694 ****
+  
+  if test -z "$1"; then
+  
+! kde_incdirs="/usr/lib/kde/include /usr/local/kde/include /usr/local/include /usr/kde/include /usr/include/kde /usr/include /opt/kde3/include /opt/kde/include $x_includes $qt_includes"
+  test -n "$KDEDIR" && kde_incdirs="$KDEDIR/include $KDEDIR/include/kde $KDEDIR $kde_incdirs"
+  kde_incdirs="$ac_kde_includes $kde_incdirs"
+  AC_FIND_FILE($kde_check_header, $kde_incdirs, kde_incdir)
+--- 1702,1709 ----
+  
+  if test -z "$1"; then
+  
+! dnl [jpw; 20130210]  Added support for Trinity (in addition to KDE3).
+! kde_incdirs="/usr/lib/kde/include /usr/local/kde/include /usr/local/include /usr/kde/include /usr/include/kde /usr/include /opt/trinity/include /opt/kde3/include /opt/kde/include $x_includes $qt_includes"
+  test -n "$KDEDIR" && kde_incdirs="$KDEDIR/include $KDEDIR/include/kde $KDEDIR $kde_incdirs"
+  kde_incdirs="$ac_kde_includes $kde_incdirs"
+  AC_FIND_FILE($kde_check_header, $kde_incdirs, kde_incdir)
+***************
+*** 1700,1706 ****
+  So, check this please and use another prefix!])
+  fi
+  
+! kde_libdirs="/usr/lib/kde/lib${kdelibsuff} /usr/local/kde/lib${kdelibsuff} /usr/kde/lib${kdelibsuff} /usr/lib${kdelibsuff}/kde /usr/lib${kdelibsuff}/kde3 /usr/lib${kdelibsuff} /usr/X11R6/lib${kdelibsuff} /usr/local/lib${kdelibsuff} /opt/kde3/lib${kdelibsuff} /opt/kde/lib${kdelibsuff} /usr/X11R6/kde/lib${kdelibsuff}"
+  test -n "$KDEDIR" && kde_libdirs="$KDEDIR/lib${kdelibsuff} $KDEDIR $kde_libdirs"
+  kde_libdirs="$ac_kde_libraries $libdir $kde_libdirs"
+  AC_FIND_FILE($kde_check_lib, $kde_libdirs, kde_libdir)
+--- 1715,1722 ----
+  So, check this please and use another prefix!])
+  fi
+  
+! dnl [jpw; 20130210]  Added support for Trinity (in addition to KDE3).
+! kde_libdirs="/usr/lib/kde/lib${kdelibsuff} /usr/local/kde/lib${kdelibsuff} /usr/kde/lib${kdelibsuff} /usr/lib${kdelibsuff}/kde /usr/lib${kdelibsuff}/kde3 /usr/lib${kdelibsuff}/trinity /usr/lib${kdelibsuff} /usr/X11R6/lib${kdelibsuff} /usr/local/lib${kdelibsuff} /opt/trinity/lib${kdelibsuff} /opt/kde3/lib${kdelibsuff} /opt/kde/lib${kdelibsuff} /usr/X11R6/kde/lib${kdelibsuff}"
+  test -n "$KDEDIR" && kde_libdirs="$KDEDIR/lib${kdelibsuff} $KDEDIR $kde_libdirs"
+  kde_libdirs="$ac_kde_libraries $libdir $kde_libdirs"
+  AC_FIND_FILE($kde_check_lib, $kde_libdirs, kde_libdir)
+***************
+*** 1709,1714 ****
+--- 1725,1734 ----
+  kde_widgetdir=NO
+  dnl this might be somewhere else
+  AC_FIND_FILE("kde3/plugins/designer/kdewidgets.la", $kde_libdirs, kde_widgetdir)
++ if test -n "$kde_widgetdir"; then
++   dnl [jpw; 20130210]  Added support for Trinity (in addition to KDE3).
++   AC_FIND_FILE("trinity/plugins/designer/kdewidgets.la", $kde_libdirs, kde_widgetdir)
++ fi
+  
+  if test -n "$ac_kde_libraries" && test ! -r "$ac_kde_libraries/$kde_check_lib"; then
+  AC_MSG_ERROR([
+***************
+*** 1716,1729 ****
+  So, check this please and use another prefix!])
+  fi
+  
+! if test -n "$kde_widgetdir" && test ! -r "$kde_widgetdir/kde3/plugins/designer/kdewidgets.la"; then
+  AC_MSG_ERROR([
+  I can't find the designer plugins. These are required and should have been installed
+  by kdelibs])
+  fi
+  
+! if test -n "$kde_widgetdir"; then
+!     kde_widgetdir="$kde_widgetdir/kde3/plugins/designer"
+  fi
+  
+  
+--- 1736,1757 ----
+  So, check this please and use another prefix!])
+  fi
+  
+! if test -n "$kde_widgetdir"; then
+!   kde_designer_plugindir="$kde_widgetdir/kde3/plugins/designer"
+!   dnl [jpw; 20130210]  Added support for Trinity (in addition to KDE3).
+!   if test ! -r "$kde_designer_plugindir/kdewidgets.la"; then
+!     kde_designer_plugindir="$kde_widgetdir/trinity/plugins/designer"
+!   fi
+! 
+!   if test ! -r "$kde_designer_plugindir/kdewidgets.la"; then
+  AC_MSG_ERROR([
+  I can't find the designer plugins. These are required and should have been installed
+  by kdelibs])
+  fi
+  
+!   if test -n "$kde_widgetdir"; then
+!       kde_widgetdir="$kde_designer_plugindir"
+!   fi
+  fi
+  
+  
+***************
+*** 1779,1788 ****
+  fi
+  
+  KDE_DEFAULT_CXXFLAGS="-DQT_CLEAN_NAMESPACE -DQT_NO_ASCII_CAST -DQT_NO_STL -DQT_NO_COMPAT -DQT_NO_TRANSLATION"
+!  
+  KDE_LDFLAGS="-L$kde_libraries"
+! if test ! "$kde_libraries" = "$x_libraries" && test ! "$kde_libraries" = "$qt_libraries" ; then 
+!  all_libraries="$all_libraries $KDE_LDFLAGS"
+  fi
+  
+  AC_SUBST(KDE_LDFLAGS)
+--- 1807,1818 ----
+  fi
+  
+  KDE_DEFAULT_CXXFLAGS="-DQT_CLEAN_NAMESPACE -DQT_NO_ASCII_CAST -DQT_NO_STL -DQT_NO_COMPAT -DQT_NO_TRANSLATION"
+! 
+  KDE_LDFLAGS="-L$kde_libraries"
+! if test ! "$kde_libraries" = "$x_libraries" && test ! "$kde_libraries" = "$qt_libraries" ; then
+! dnl [jpw]  The KDE libdir has to come first on systems where KDE3 and KDE4 are
+! dnl        both installed.  Otherwise, you'll get link errors.
+!  all_libraries="$KDE_LDFLAGS $all_libraries"
+  fi
+  
+  AC_SUBST(KDE_LDFLAGS)
+***************
+*** 1806,1812 ****
+  
+  ])
+  
+! AC_DEFUN(KDE_CHECK_EXTRA_LIBS,
+  [
+  AC_MSG_CHECKING(for extra includes)
+  AC_ARG_WITH(extra-includes, [  --with-extra-includes=DIR
+--- 1836,1842 ----
+  
+  ])
+  
+! AC_DEFUN([KDE_CHECK_EXTRA_LIBS],
+  [
+  AC_MSG_CHECKING(for extra includes)
+  AC_ARG_WITH(extra-includes, [  --with-extra-includes=DIR
+***************
+*** 1861,1867 ****
+  
+  ])
+  
+! AC_DEFUN(KDE_1_CHECK_PATH_HEADERS,
+  [
+      AC_MSG_CHECKING([for KDE headers installed])
+      AC_LANG_SAVE
+--- 1891,1897 ----
+  
+  ])
+  
+! AC_DEFUN([KDE_1_CHECK_PATH_HEADERS],
+  [
+      AC_MSG_CHECKING([for KDE headers installed])
+      AC_LANG_SAVE
+***************
+*** 1912,1918 ****
+    AC_LANG_RESTORE
+  ])
+  
+! AC_DEFUN(KDE_CHECK_KDEQTADDON,
+  [
+  AC_MSG_CHECKING(for kde-qt-addon)
+  AC_CACHE_VAL(kde_cv_have_kdeqtaddon,
+--- 1942,1948 ----
+    AC_LANG_RESTORE
+  ])
+  
+! AC_DEFUN([KDE_CHECK_KDEQTADDON],
+  [
+  AC_MSG_CHECKING(for kde-qt-addon)
+  AC_CACHE_VAL(kde_cv_have_kdeqtaddon,
+***************
+*** 1948,1954 ****
+  fi
+  ])
+  
+! AC_DEFUN(KDE_CHECK_KIMGIO,
+  [
+     AC_REQUIRE([AC_BASE_PATH_KDE])
+     AC_REQUIRE([KDE_CHECK_EXTRA_LIBS])
+--- 1978,1984 ----
+  fi
+  ])
+  
+! AC_DEFUN([KDE_CHECK_KIMGIO],
+  [
+     AC_REQUIRE([AC_BASE_PATH_KDE])
+     AC_REQUIRE([KDE_CHECK_EXTRA_LIBS])
+***************
+*** 1979,1985 ****
+     AC_SUBST(LIB_KIMGIO)
+  ])
+  
+! AC_DEFUN(KDE_CREATE_LIBS_ALIASES,
+  [
+     AC_REQUIRE([KDE_MISC_TESTS])
+     AC_REQUIRE([KDE_CHECK_LIBDL])
+--- 2009,2015 ----
+     AC_SUBST(LIB_KIMGIO)
+  ])
+  
+! AC_DEFUN([KDE_CREATE_LIBS_ALIASES],
+  [
+     AC_REQUIRE([KDE_MISC_TESTS])
+     AC_REQUIRE([KDE_CHECK_LIBDL])
+***************
+*** 2020,2026 ****
+  fi
+  ])
+  
+! AC_DEFUN(AC_PATH_KDE,
+  [
+    AC_BASE_PATH_KDE
+    AC_ARG_ENABLE(path-check, [  --disable-path-check    don't try to find out, where to install],
+--- 2050,2056 ----
+  fi
+  ])
+  
+! AC_DEFUN([AC_PATH_KDE],
+  [
+    AC_BASE_PATH_KDE
+    AC_ARG_ENABLE(path-check, [  --disable-path-check    don't try to find out, where to install],
+***************
+*** 2045,2051 ****
+  ])
+  
+  dnl KDE_CHECK_FUNC_EXT(<func>, [headers], [sample-use], [C prototype], [autoheader define], [call if found])
+! AC_DEFUN(KDE_CHECK_FUNC_EXT,
+  [
+  AC_MSG_CHECKING(for $1)
+  AC_CACHE_VAL(kde_cv_func_$1,
+--- 2075,2081 ----
+  ])
+  
+  dnl KDE_CHECK_FUNC_EXT(<func>, [headers], [sample-use], [C prototype], [autoheader define], [call if found])
+! AC_DEFUN([KDE_CHECK_FUNC_EXT],
+  [
+  AC_MSG_CHECKING(for $1)
+  AC_CACHE_VAL(kde_cv_func_$1,
+***************
+*** 2133,2222 ****
+  ])
+  ])
+  
+! AC_DEFUN(AC_CHECK_SETENV,
+  [
+  	KDE_CHECK_FUNC_EXT(setenv, [
+  #include <stdlib.h>
+! ], 
+  		[setenv("VAR", "VALUE", 1);],
+  	        [int setenv (const char *, const char *, int)],
+  		[SETENV])
+  ])
+  
+! AC_DEFUN(AC_CHECK_UNSETENV,
+  [
+  	KDE_CHECK_FUNC_EXT(unsetenv, [
+  #include <stdlib.h>
+! ], 
+  		[unsetenv("VAR");],
+  	        [void unsetenv (const char *)],
+  		[UNSETENV])
+  ])
+  
+! AC_DEFUN(AC_CHECK_GETDOMAINNAME,
+  [
+  	KDE_CHECK_FUNC_EXT(getdomainname, [
+  #include <stdlib.h>
+  #include <unistd.h>
+! ], 
+  		[
+  char buffer[200];
+  getdomainname(buffer, 200);
+! ], 	
+  	        [int getdomainname (char *, size_t)],
+  		[GETDOMAINNAME])
+  ])
+  
+! AC_DEFUN(AC_CHECK_GETHOSTNAME,
+  [
+  	KDE_CHECK_FUNC_EXT(gethostname, [
+  #include <stdlib.h>
+  #include <unistd.h>
+! ], 
+  		[
+  char buffer[200];
+  gethostname(buffer, 200);
+! ], 	
+  	        [int gethostname (char *, unsigned int)],
+  		[GETHOSTNAME])
+  ])
+  
+! AC_DEFUN(AC_CHECK_USLEEP,
+  [
+  	KDE_CHECK_FUNC_EXT(usleep, [
+  #include <unistd.h>
+! ], 
+  		[
+  usleep(200);
+! ], 	
+  	        [int usleep (unsigned int)],
+  		[USLEEP])
+  ])
+  
+  
+! AC_DEFUN(AC_CHECK_RANDOM,
+  [
+  	KDE_CHECK_FUNC_EXT(random, [
+  #include <stdlib.h>
+! ], 
+  		[
+  random();
+! ], 	
+  	        [long int random(void)],
+  		[RANDOM])
+  
+  	KDE_CHECK_FUNC_EXT(srandom, [
+  #include <stdlib.h>
+! ], 
+  		[
+  srandom(27);
+! ], 	
+  	        [void srandom(unsigned int)],
+  		[SRANDOM])
+  
+  ])
+  
+! AC_DEFUN(AC_CHECK_INITGROUPS,
+  [
+  	KDE_CHECK_FUNC_EXT(initgroups, [
+  #include <sys/types.h>
+--- 2163,2252 ----
+  ])
+  ])
+  
+! AC_DEFUN([AC_CHECK_SETENV],
+  [
+  	KDE_CHECK_FUNC_EXT(setenv, [
+  #include <stdlib.h>
+! ],
+  		[setenv("VAR", "VALUE", 1);],
+  	        [int setenv (const char *, const char *, int)],
+  		[SETENV])
+  ])
+  
+! AC_DEFUN([AC_CHECK_UNSETENV],
+  [
+  	KDE_CHECK_FUNC_EXT(unsetenv, [
+  #include <stdlib.h>
+! ],
+  		[unsetenv("VAR");],
+  	        [void unsetenv (const char *)],
+  		[UNSETENV])
+  ])
+  
+! AC_DEFUN([AC_CHECK_GETDOMAINNAME],
+  [
+  	KDE_CHECK_FUNC_EXT(getdomainname, [
+  #include <stdlib.h>
+  #include <unistd.h>
+! ],
+  		[
+  char buffer[200];
+  getdomainname(buffer, 200);
+! ],
+  	        [int getdomainname (char *, size_t)],
+  		[GETDOMAINNAME])
+  ])
+  
+! AC_DEFUN([AC_CHECK_GETHOSTNAME],
+  [
+  	KDE_CHECK_FUNC_EXT(gethostname, [
+  #include <stdlib.h>
+  #include <unistd.h>
+! ],
+  		[
+  char buffer[200];
+  gethostname(buffer, 200);
+! ],
+  	        [int gethostname (char *, unsigned int)],
+  		[GETHOSTNAME])
+  ])
+  
+! AC_DEFUN([AC_CHECK_USLEEP],
+  [
+  	KDE_CHECK_FUNC_EXT(usleep, [
+  #include <unistd.h>
+! ],
+  		[
+  usleep(200);
+! ],
+  	        [int usleep (unsigned int)],
+  		[USLEEP])
+  ])
+  
+  
+! AC_DEFUN([AC_CHECK_RANDOM],
+  [
+  	KDE_CHECK_FUNC_EXT(random, [
+  #include <stdlib.h>
+! ],
+  		[
+  random();
+! ],
+  	        [long int random(void)],
+  		[RANDOM])
+  
+  	KDE_CHECK_FUNC_EXT(srandom, [
+  #include <stdlib.h>
+! ],
+  		[
+  srandom(27);
+! ],
+  	        [void srandom(unsigned int)],
+  		[SRANDOM])
+  
+  ])
+  
+! AC_DEFUN([AC_CHECK_INITGROUPS],
+  [
+  	KDE_CHECK_FUNC_EXT(initgroups, [
+  #include <sys/types.h>
+***************
+*** 2231,2237 ****
+  	[INITGROUPS])
+  ])
+  
+! AC_DEFUN(AC_CHECK_MKSTEMPS,
+  [
+  	KDE_CHECK_FUNC_EXT(mkstemps, [
+  #include <stdlib.h>
+--- 2261,2267 ----
+  	[INITGROUPS])
+  ])
+  
+! AC_DEFUN([AC_CHECK_MKSTEMPS],
+  [
+  	KDE_CHECK_FUNC_EXT(mkstemps, [
+  #include <stdlib.h>
+***************
+*** 2244,2250 ****
+  	[MKSTEMPS])
+  ])
+  
+! AC_DEFUN(AC_CHECK_MKDTEMP,
+  [
+  	KDE_CHECK_FUNC_EXT(mkdtemp, [
+  #include <stdlib.h>
+--- 2274,2280 ----
+  	[MKSTEMPS])
+  ])
+  
+! AC_DEFUN([AC_CHECK_MKDTEMP],
+  [
+  	KDE_CHECK_FUNC_EXT(mkdtemp, [
+  #include <stdlib.h>
+***************
+*** 2258,2264 ****
+  ])
+  
+  
+! AC_DEFUN(AC_CHECK_RES_INIT,
+  [
+    AC_MSG_CHECKING([if res_init needs -lresolv])
+    kde_libs_safe="$LIBS"
+--- 2288,2294 ----
+  ])
+  
+  
+! AC_DEFUN([AC_CHECK_RES_INIT],
+  [
+    AC_MSG_CHECKING([if res_init needs -lresolv])
+    kde_libs_safe="$LIBS"
+***************
+*** 2271,2277 ****
+  #include <resolv.h>
+      ],
+      [
+!       res_init(); 
+      ],
+      [
+        LIBRESOLV="-lresolv"
+--- 2301,2307 ----
+  #include <resolv.h>
+      ],
+      [
+!       res_init();
+      ],
+      [
+        LIBRESOLV="-lresolv"
+***************
+*** 2302,2308 ****
+    )
+  ])
+  
+! AC_DEFUN(AC_CHECK_STRLCPY,
+  [
+  	KDE_CHECK_FUNC_EXT(strlcpy, [
+  #include <string.h>
+--- 2332,2338 ----
+    )
+  ])
+  
+! AC_DEFUN([AC_CHECK_STRLCPY],
+  [
+  	KDE_CHECK_FUNC_EXT(strlcpy, [
+  #include <string.h>
+***************
+*** 2314,2320 ****
+  	[STRLCPY])
+  ])
+  
+! AC_DEFUN(AC_CHECK_STRLCAT,
+  [
+  	KDE_CHECK_FUNC_EXT(strlcat, [
+  #include <string.h>
+--- 2344,2350 ----
+  	[STRLCPY])
+  ])
+  
+! AC_DEFUN([AC_CHECK_STRLCAT],
+  [
+  	KDE_CHECK_FUNC_EXT(strlcat, [
+  #include <string.h>
+***************
+*** 2327,2333 ****
+  	[STRLCAT])
+  ])
+  
+! AC_DEFUN(AC_FIND_GIF,
+     [AC_MSG_CHECKING([for giflib])
+  AC_CACHE_VAL(ac_cv_lib_gif,
+  [ac_save_LIBS="$LIBS"
+--- 2357,2363 ----
+  	[STRLCAT])
+  ])
+  
+! AC_DEFUN([AC_FIND_GIF],
+     [AC_MSG_CHECKING([for giflib])
+  AC_CACHE_VAL(ac_cv_lib_gif,
+  [ac_save_LIBS="$LIBS"
+***************
+*** 2361,2367 ****
+  fi
+  ])
+  
+! AC_DEFUN(KDE_FIND_JPEG_HELPER,
+  [
+  AC_MSG_CHECKING([for libjpeg$2])
+  AC_CACHE_VAL(ac_cv_lib_jpeg_$1,
+--- 2391,2397 ----
+  fi
+  ])
+  
+! AC_DEFUN([KDE_FIND_JPEG_HELPER],
+  [
+  AC_MSG_CHECKING([for libjpeg$2])
+  AC_CACHE_VAL(ac_cv_lib_jpeg_$1,
+***************
+*** 2404,2410 ****
+  
+  ])
+  
+! AC_DEFUN(AC_FIND_JPEG,
+  [
+  dnl first look for libraries
+  KDE_FIND_JPEG_HELPER(6b, 6b,
+--- 2434,2440 ----
+  
+  ])
+  
+! AC_DEFUN([AC_FIND_JPEG],
+  [
+  dnl first look for libraries
+  KDE_FIND_JPEG_HELPER(6b, 6b,
+***************
+*** 2456,2462 ****
+  ])
+  ])
+  
+! AC_DEFUN(KDE_CHECK_QT_JPEG,
+  [
+  if test -n "$LIBJPEG"; then
+  AC_MSG_CHECKING([if Qt needs $LIBJPEG])
+--- 2486,2492 ----
+  ])
+  ])
+  
+! AC_DEFUN([KDE_CHECK_QT_JPEG],
+  [
+  if test -n "$LIBJPEG"; then
+  AC_MSG_CHECKING([if Qt needs $LIBJPEG])
+***************
+*** 2493,2499 ****
+  
+  ])
+  
+! AC_DEFUN(AC_FIND_ZLIB,
+  [
+  AC_REQUIRE([KDE_CHECK_EXTRA_LIBS])
+  AC_MSG_CHECKING([for libz])
+--- 2523,2529 ----
+  
+  ])
+  
+! AC_DEFUN([AC_FIND_ZLIB],
+  [
+  AC_REQUIRE([KDE_CHECK_EXTRA_LIBS])
+  AC_MSG_CHECKING([for libz])
+***************
+*** 2514,2520 ****
+    /* this would segfault.. but we only link, don't run */
+    (void) gzgets(f, buf, sizeof(buf));
+  
+!   return (zlibVersion() == ZLIB_VERSION); 
+  ],
+              eval "ac_cv_lib_z='-lz'",
+              eval "ac_cv_lib_z=no")
+--- 2544,2550 ----
+    /* this would segfault.. but we only link, don't run */
+    (void) gzgets(f, buf, sizeof(buf));
+  
+!   return (zlibVersion() == ZLIB_VERSION);
+  ],
+              eval "ac_cv_lib_z='-lz'",
+              eval "ac_cv_lib_z=no")
+***************
+*** 2526,2532 ****
+    LIBZ="$ac_cv_lib_z"
+    AC_MSG_RESULT($ac_cv_lib_z)
+  else
+!   AC_MSG_ERROR(not found. 
+            Possibly configure picks up an outdated version
+            installed by XFree86. Remove it from your system.
+  
+--- 2556,2562 ----
+    LIBZ="$ac_cv_lib_z"
+    AC_MSG_RESULT($ac_cv_lib_z)
+  else
+!   AC_MSG_ERROR(not found.
+            Possibly configure picks up an outdated version
+            installed by XFree86. Remove it from your system.
+  
+***************
+*** 2536,2542 ****
+  AC_SUBST(LIBZ)
+  ])
+  
+! AC_DEFUN(KDE_TRY_TIFFLIB,
+  [
+  AC_MSG_CHECKING([for libtiff $1])
+  
+--- 2566,2572 ----
+  AC_SUBST(LIBZ)
+  ])
+  
+! AC_DEFUN([KDE_TRY_TIFFLIB],
+  [
+  AC_MSG_CHECKING([for libtiff $1])
+  
+***************
+*** 2582,2588 ****
+  
+  ])
+  
+! AC_DEFUN(AC_FIND_TIFF,
+  [
+  AC_REQUIRE([K_PATH_X])
+  AC_REQUIRE([AC_FIND_ZLIB])
+--- 2612,2618 ----
+  
+  ])
+  
+! AC_DEFUN([AC_FIND_TIFF],
+  [
+  AC_REQUIRE([K_PATH_X])
+  AC_REQUIRE([AC_FIND_ZLIB])
+***************
+*** 2596,2602 ****
+  ])
+  
+  
+! AC_DEFUN(AC_FIND_PNG,
+  [
+  AC_REQUIRE([KDE_CHECK_EXTRA_LIBS])
+  AC_REQUIRE([AC_FIND_ZLIB])
+--- 2626,2632 ----
+  ])
+  
+  
+! AC_DEFUN([AC_FIND_PNG],
+  [
+  AC_REQUIRE([KDE_CHECK_EXTRA_LIBS])
+  AC_REQUIRE([AC_FIND_ZLIB])
+***************
+*** 2640,2646 ****
+  ])
+  
+  
+! AC_DEFUN(AC_FIND_JASPER,
+  [
+  AC_REQUIRE([KDE_CHECK_EXTRA_LIBS])
+  AC_REQUIRE([AC_FIND_JPEG])
+--- 2670,2676 ----
+  ])
+  
+  
+! AC_DEFUN([AC_FIND_JASPER],
+  [
+  AC_REQUIRE([KDE_CHECK_EXTRA_LIBS])
+  AC_REQUIRE([AC_FIND_JPEG])
+***************
+*** 2676,2687 ****
+  AC_SUBST(LIB_JASPER)
+  ])
+  
+! AC_DEFUN(AC_CHECK_BOOL,
+  [
+    AC_DEFINE_UNQUOTED(HAVE_BOOL, 1, [You _must_ have bool])
+  ])
+  
+! AC_DEFUN(AC_CHECK_GNU_EXTENSIONS,
+  [
+  AC_MSG_CHECKING(if you need GNU extensions)
+  AC_CACHE_VAL(ac_cv_gnu_extensions,
+--- 2706,2717 ----
+  AC_SUBST(LIB_JASPER)
+  ])
+  
+! AC_DEFUN([AC_CHECK_BOOL],
+  [
+    AC_DEFINE_UNQUOTED(HAVE_BOOL, 1, [You _must_ have bool])
+  ])
+  
+! AC_DEFUN([AC_CHECK_GNU_EXTENSIONS],
+  [
+  AC_MSG_CHECKING(if you need GNU extensions)
+  AC_CACHE_VAL(ac_cv_gnu_extensions,
+***************
+*** 2709,2715 ****
+  fi
+  ])
+  
+! AC_DEFUN(KDE_CHECK_COMPILER_FLAG,
+  [
+  AC_MSG_CHECKING([whether $CXX supports -$1])
+  kde_cache=`echo $1 | sed 'y% .=/+-,%____p__%'`
+--- 2739,2745 ----
+  fi
+  ])
+  
+! AC_DEFUN([KDE_CHECK_COMPILER_FLAG],
+  [
+  AC_MSG_CHECKING([whether $CXX supports -$1])
+  kde_cache=`echo $1 | sed 'y% .=/+-,%____p__%'`
+***************
+*** 2737,2743 ****
+  dnl AC_REMOVE_FORBIDDEN removes forbidden arguments from variables
+  dnl use: AC_REMOVE_FORBIDDEN(CC, [-forbid -bad-option whatever])
+  dnl it's all white-space separated
+! AC_DEFUN(AC_REMOVE_FORBIDDEN,
+  [ __val=$$1
+    __forbid=" $2 "
+    if test -n "$__val"; then
+--- 2767,2773 ----
+  dnl AC_REMOVE_FORBIDDEN removes forbidden arguments from variables
+  dnl use: AC_REMOVE_FORBIDDEN(CC, [-forbid -bad-option whatever])
+  dnl it's all white-space separated
+! AC_DEFUN([AC_REMOVE_FORBIDDEN],
+  [ __val=$$1
+    __forbid=" $2 "
+    if test -n "$__val"; then
+***************
+*** 2758,2764 ****
+  ])
+  
+  dnl AC_VALIDIFY_CXXFLAGS checks for forbidden flags the user may have given
+! AC_DEFUN(AC_VALIDIFY_CXXFLAGS,
+  [dnl
+  if test "x$kde_use_qt_emb" != "xyes"; then
+   AC_REMOVE_FORBIDDEN(CXX, [-fno-rtti -rpath])
+--- 2788,2794 ----
+  ])
+  
+  dnl AC_VALIDIFY_CXXFLAGS checks for forbidden flags the user may have given
+! AC_DEFUN([AC_VALIDIFY_CXXFLAGS],
+  [dnl
+  if test "x$kde_use_qt_emb" != "xyes"; then
+   AC_REMOVE_FORBIDDEN(CXX, [-fno-rtti -rpath])
+***************
+*** 2769,2775 ****
+  fi
+  ])
+  
+! AC_DEFUN(AC_CHECK_COMPILERS,
+  [
+    AC_ARG_ENABLE(debug,[  --enable-debug[=ARG]    enables debug symbols (yes|no|full) [default=no]],
+    [
+--- 2799,2805 ----
+  fi
+  ])
+  
+! AC_DEFUN([AC_CHECK_COMPILERS],
+  [
+    AC_ARG_ENABLE(debug,[  --enable-debug[=ARG]    enables debug symbols (yes|no|full) [default=no]],
+    [
+***************
+*** 2787,2793 ****
+          kde_use_debug_define=yes
+          ;;
+      esac
+!   ], 
+      [kde_use_debug_code="no"
+        kde_use_debug_define=no
+    ])
+--- 2817,2823 ----
+          kde_use_debug_define=yes
+          ;;
+      esac
+!   ],
+      [kde_use_debug_code="no"
+        kde_use_debug_define=no
+    ])
+***************
+*** 2826,2832 ****
+    dnl this prevents stupid AC_PROG_CC to add "-g" to the default CFLAGS
+    CFLAGS=" $CFLAGS"
+  
+!   AC_PROG_CC 
+  
+    AC_PROG_CPP
+  
+--- 2856,2862 ----
+    dnl this prevents stupid AC_PROG_CC to add "-g" to the default CFLAGS
+    CFLAGS=" $CFLAGS"
+  
+!   AC_PROG_CC
+  
+    AC_PROG_CPP
+  
+***************
+*** 2881,2893 ****
+          CXXFLAGS="+K3 $CXXFLAGS"
+        else
+          CXXFLAGS="-O2 $CXXFLAGS"
+!       fi  
+      fi
+    fi
+  
+    if test "$kde_use_debug_define" = "yes"; then
+      CXXFLAGS="-DNDEBUG -DNO_DEBUG $CXXFLAGS"
+!   fi  
+  
+    if test "$kde_use_profiling" = "yes"; then
+      KDE_CHECK_COMPILER_FLAG(pg,
+--- 2911,2923 ----
+          CXXFLAGS="+K3 $CXXFLAGS"
+        else
+          CXXFLAGS="-O2 $CXXFLAGS"
+!       fi
+      fi
+    fi
+  
+    if test "$kde_use_debug_define" = "yes"; then
+      CXXFLAGS="-DNDEBUG -DNO_DEBUG $CXXFLAGS"
+!   fi
+  
+    if test "$kde_use_profiling" = "yes"; then
+      KDE_CHECK_COMPILER_FLAG(pg,
+***************
+*** 2900,2906 ****
+    if test "$kde_use_warnings" = "yes"; then
+        if test "$GCC" = "yes"; then
+          case $host in
+!           *-*-linux-gnu)	
+              CFLAGS="-ansi -W -Wall -pedantic -Wchar-subscripts -Wshadow -Wpointer-arith -Wmissing-prototypes -Wwrite-strings -D_XOPEN_SOURCE=500 -D_BSD_SOURCE $CFLAGS"
+              CXXFLAGS="-ansi -D_XOPEN_SOURCE=500 -D_BSD_SOURCE -Wcast-align -Wconversion -Wchar-subscripts $CXXFLAGS"
+              KDE_CHECK_COMPILER_FLAG(Wmissing-format-attribute, [CXXFLAGS="$CXXFLAGS -Wformat-security -Wmissing-format-attribute"; CFLAGS="$CFLAGS -Wformat-security -Wmissing-format-attribute"])
+--- 2930,2936 ----
+    if test "$kde_use_warnings" = "yes"; then
+        if test "$GCC" = "yes"; then
+          case $host in
+!           *-*-linux-gnu)
+              CFLAGS="-ansi -W -Wall -pedantic -Wchar-subscripts -Wshadow -Wpointer-arith -Wmissing-prototypes -Wwrite-strings -D_XOPEN_SOURCE=500 -D_BSD_SOURCE $CFLAGS"
+              CXXFLAGS="-ansi -D_XOPEN_SOURCE=500 -D_BSD_SOURCE -Wcast-align -Wconversion -Wchar-subscripts $CXXFLAGS"
+              KDE_CHECK_COMPILER_FLAG(Wmissing-format-attribute, [CXXFLAGS="$CXXFLAGS -Wformat-security -Wmissing-format-attribute"; CFLAGS="$CFLAGS -Wformat-security -Wmissing-format-attribute"])
+***************
+*** 2916,2922 ****
+    if test "$GXX" = "yes" && test "$kde_use_strict_options" = "yes"; then
+      CXXFLAGS="-Wcast-qual -Wshadow -Wcast-align $CXXFLAGS"
+    fi
+!     
+    if test "$GXX" = "yes"; then
+      KDE_CHECK_COMPILER_FLAG(fno-exceptions,[CXXFLAGS="$CXXFLAGS -fno-exceptions"])
+      KDE_CHECK_COMPILER_FLAG(fno-check-new, [CXXFLAGS="$CXXFLAGS -fno-check-new"])
+--- 2946,2952 ----
+    if test "$GXX" = "yes" && test "$kde_use_strict_options" = "yes"; then
+      CXXFLAGS="-Wcast-qual -Wshadow -Wcast-align $CXXFLAGS"
+    fi
+! 
+    if test "$GXX" = "yes"; then
+      KDE_CHECK_COMPILER_FLAG(fno-exceptions,[CXXFLAGS="$CXXFLAGS -fno-exceptions"])
+      KDE_CHECK_COMPILER_FLAG(fno-check-new, [CXXFLAGS="$CXXFLAGS -fno-check-new"])
+***************
+*** 2933,2939 ****
+      [
+        kde_use_pch=$enableval
+      ],[kde_use_pch=no])
+!  
+      if test "$kde_use_pch" = "yes"; then
+        dnl TODO: support --pch-dir!
+        KDE_CHECK_COMPILER_FLAG(-pch,[CXXFLAGS="$CXXFLAGS --pch"])
+--- 2963,2969 ----
+      [
+        kde_use_pch=$enableval
+      ],[kde_use_pch=no])
+! 
+      if test "$kde_use_pch" = "yes"; then
+        dnl TODO: support --pch-dir!
+        KDE_CHECK_COMPILER_FLAG(-pch,[CXXFLAGS="$CXXFLAGS --pch"])
+***************
+*** 2946,2952 ****
+        dnl   [CXXFLAGS="$CXXFLAGS --pch_dir `pwd`/pcheaders"])
+      fi
+      dnl this flag controls inlining. by default KCC inlines in optimisation mode
+!     dnl all implementations that are defined inside the class {} declaration. 
+      dnl because of templates-compatibility with broken gcc compilers, this
+      dnl can cause excessive inlining. This flag limits it to a sane level
+      KDE_CHECK_COMPILER_FLAG(-inline_keyword_space_time=6,[CXXFLAGS="$CXXFLAGS --inline_keyword_space_time=6"])
+--- 2976,2982 ----
+        dnl   [CXXFLAGS="$CXXFLAGS --pch_dir `pwd`/pcheaders"])
+      fi
+      dnl this flag controls inlining. by default KCC inlines in optimisation mode
+!     dnl all implementations that are defined inside the class {} declaration.
+      dnl because of templates-compatibility with broken gcc compilers, this
+      dnl can cause excessive inlining. This flag limits it to a sane level
+      KDE_CHECK_COMPILER_FLAG(-inline_keyword_space_time=6,[CXXFLAGS="$CXXFLAGS --inline_keyword_space_time=6"])
+***************
+*** 2969,2975 ****
+        *-*-irix*)  test "$GXX" = yes && CXXFLAGS="-D_LANGUAGE_C_PLUS_PLUS -D__LANGUAGE_C_PLUS_PLUS $CXXFLAGS" ;;
+        *-*-sysv4.2uw*) CXXFLAGS="-D_UNIXWARE $CXXFLAGS";;
+        *-*-sysv5uw7*) CXXFLAGS="-D_UNIXWARE7 $CXXFLAGS";;
+!       *-*-solaris*) 
+          if test "$GXX" = yes; then
+            libstdcpp=`$CXX -print-file-name=libstdc++.so`
+            if test ! -f $libstdcpp; then
+--- 2999,3005 ----
+        *-*-irix*)  test "$GXX" = yes && CXXFLAGS="-D_LANGUAGE_C_PLUS_PLUS -D__LANGUAGE_C_PLUS_PLUS $CXXFLAGS" ;;
+        *-*-sysv4.2uw*) CXXFLAGS="-D_UNIXWARE $CXXFLAGS";;
+        *-*-sysv5uw7*) CXXFLAGS="-D_UNIXWARE7 $CXXFLAGS";;
+!       *-*-solaris*)
+          if test "$GXX" = yes; then
+            libstdcpp=`$CXX -print-file-name=libstdc++.so`
+            if test ! -f $libstdcpp; then
+***************
+*** 2998,3011 ****
+    ifdef([AM_DEPENDENCIES], AC_REQUIRE([KDE_ADD_DEPENDENCIES]), [])
+  ])
+  
+! AC_DEFUN(KDE_ADD_DEPENDENCIES,
+  [
+     [A]M_DEPENDENCIES(CC)
+     [A]M_DEPENDENCIES(CXX)
+  ])
+  
+  dnl just a wrapper to clean up configure.in
+! AC_DEFUN(KDE_PROG_LIBTOOL,
+  [
+  AC_REQUIRE([AC_CHECK_COMPILERS])
+  AC_REQUIRE([AC_ENABLE_SHARED])
+--- 3028,3041 ----
+    ifdef([AM_DEPENDENCIES], AC_REQUIRE([KDE_ADD_DEPENDENCIES]), [])
+  ])
+  
+! AC_DEFUN([KDE_ADD_DEPENDENCIES],
+  [
+     [A]M_DEPENDENCIES(CC)
+     [A]M_DEPENDENCIES(CXX)
+  ])
+  
+  dnl just a wrapper to clean up configure.in
+! AC_DEFUN([KDE_PROG_LIBTOOL],
+  [
+  AC_REQUIRE([AC_CHECK_COMPILERS])
+  AC_REQUIRE([AC_ENABLE_SHARED])
+***************
+*** 3030,3036 ****
+  
+  AC_ARG_ENABLE(objprelink, [  --enable-objprelink     prelink apps using objprelink (obsolete)],
+         kde_use_objprelink=$enableval, kde_use_objprelink=no)
+!   if test "x$kde_use_objprelink" = "xyes"; then 
+          AC_MSG_WARN([
+  ------------------------------------------------------------
+  Configuration option --enable-objprelink is no longer useful.
+--- 3060,3066 ----
+  
+  AC_ARG_ENABLE(objprelink, [  --enable-objprelink     prelink apps using objprelink (obsolete)],
+         kde_use_objprelink=$enableval, kde_use_objprelink=no)
+!   if test "x$kde_use_objprelink" = "xyes"; then
+          AC_MSG_WARN([
+  ------------------------------------------------------------
+  Configuration option --enable-objprelink is no longer useful.
+***************
+*** 3042,3048 ****
+    fi
+  ])
+  
+! AC_DEFUN(KDE_CHECK_LIB64,
+  [
+      kdelibsuff=none
+      AC_ARG_ENABLE(libsuffix,
+--- 3072,3078 ----
+    fi
+  ])
+  
+! AC_DEFUN([KDE_CHECK_LIB64],
+  [
+      kdelibsuff=none
+      AC_ARG_ENABLE(libsuffix,
+***************
+*** 3067,3079 ****
+      fi
+  ])
+  
+! AC_DEFUN(KDE_CHECK_TYPES,
+  [  AC_CHECK_SIZEOF(int, 4)dnl
+    AC_CHECK_SIZEOF(long, 4)dnl
+    AC_CHECK_SIZEOF(char *, 4)dnl
+  ])dnl
+  
+! AC_DEFUN(KDE_DO_IT_ALL,
+  [
+  AC_CANONICAL_SYSTEM
+  AC_ARG_PROGRAM
+--- 3097,3109 ----
+      fi
+  ])
+  
+! AC_DEFUN([KDE_CHECK_TYPES],
+  [  AC_CHECK_SIZEOF(int, 4)dnl
+    AC_CHECK_SIZEOF(long, 4)dnl
+    AC_CHECK_SIZEOF(char *, 4)dnl
+  ])dnl
+  
+! AC_DEFUN([KDE_DO_IT_ALL],
+  [
+  AC_CANONICAL_SYSTEM
+  AC_ARG_PROGRAM
+***************
+*** 3086,3092 ****
+  AC_PATH_KDE
+  ])
+  
+! AC_DEFUN(AC_CHECK_RPATH,
+  [
+  AC_MSG_CHECKING(for rpath)
+  AC_ARG_ENABLE(rpath,
+--- 3116,3122 ----
+  AC_PATH_KDE
+  ])
+  
+! AC_DEFUN([AC_CHECK_RPATH],
+  [
+  AC_MSG_CHECKING(for rpath)
+  AC_ARG_ENABLE(rpath,
+***************
+*** 3102,3108 ****
+    fi
+    dnl $x_libraries is set to /usr/lib in case
+    if test -n "$X_LDFLAGS"; then
+!     X_RPATH="-R \$(x_libraries)" 
+      KDE_RPATH="$KDE_RPATH $X_RPATH"
+    fi
+    if test -n "$KDE_EXTRA_RPATH"; then
+--- 3132,3138 ----
+    fi
+    dnl $x_libraries is set to /usr/lib in case
+    if test -n "$X_LDFLAGS"; then
+!     X_RPATH="-R \$(x_libraries)"
+      KDE_RPATH="$KDE_RPATH $X_RPATH"
+    fi
+    if test -n "$KDE_EXTRA_RPATH"; then
+***************
+*** 3116,3122 ****
+  ])
+  
+  dnl Check for the type of the third argument of getsockname
+! AC_DEFUN(AC_CHECK_SOCKLEN_T, [
+    AC_MSG_CHECKING(for socklen_t)
+    AC_CACHE_VAL(ac_cv_socklen_t, [
+      AC_LANG_SAVE
+--- 3146,3152 ----
+  ])
+  
+  dnl Check for the type of the third argument of getsockname
+! AC_DEFUN([AC_CHECK_SOCKLEN_T], [
+    AC_MSG_CHECKING(for socklen_t)
+    AC_CACHE_VAL(ac_cv_socklen_t, [
+      AC_LANG_SAVE
+***************
+*** 3168,3174 ****
+  dnl >
+  dnl for this file it is relicensed under LGPL
+  
+! AC_DEFUN(AM_KDE_WITH_NLS,
+    [
+      dnl If we use NLS figure out what method
+  
+--- 3198,3204 ----
+  dnl >
+  dnl for this file it is relicensed under LGPL
+  
+! AC_DEFUN([AM_KDE_WITH_NLS],
+    [
+      dnl If we use NLS figure out what method
+  
+***************
+*** 3211,3217 ****
+  
+  dnl AM_PATH_PROG_WITH_TEST_KDE(VARIABLE, PROG-TO-CHECK-FOR,
+  dnl   TEST-PERFORMED-ON-FOUND_PROGRAM [, VALUE-IF-NOT-FOUND [, PATH]])
+! AC_DEFUN(AM_PATH_PROG_WITH_TEST_KDE,
+  [# Extract the first word of "$2", so it can be a program name with args.
+  set dummy $2; ac_word=[$]2
+  AC_MSG_CHECKING([for $ac_word])
+--- 3241,3247 ----
+  
+  dnl AM_PATH_PROG_WITH_TEST_KDE(VARIABLE, PROG-TO-CHECK-FOR,
+  dnl   TEST-PERFORMED-ON-FOUND_PROGRAM [, VALUE-IF-NOT-FOUND [, PATH]])
+! AC_DEFUN([AM_PATH_PROG_WITH_TEST_KDE],
+  [# Extract the first word of "$2", so it can be a program name with args.
+  set dummy $2; ac_word=[$]2
+  AC_MSG_CHECKING([for $ac_word])
+***************
+*** 3253,3259 ****
+  
+  # serial 1
+  
+! AC_DEFUN(AM_LC_MESSAGES,
+    [if test $ac_cv_header_locale_h = yes; then
+      AC_CACHE_CHECK([for LC_MESSAGES], am_cv_val_LC_MESSAGES,
+        [AC_TRY_LINK([#include <locale.h>], [return LC_MESSAGES],
+--- 3283,3289 ----
+  
+  # serial 1
+  
+! AC_DEFUN([AM_LC_MESSAGES],
+    [if test $ac_cv_header_locale_h = yes; then
+      AC_CACHE_CHECK([for LC_MESSAGES], am_cv_val_LC_MESSAGES,
+        [AC_TRY_LINK([#include <locale.h>], [return LC_MESSAGES],
+***************
+*** 3299,3305 ****
+  # serial 1
+  # Stephan Kulow: I put a KDE in it to avoid name conflicts
+  
+! AC_DEFUN(AM_KDE_GNU_GETTEXT,
+    [AC_REQUIRE([AC_PROG_MAKE_SET])dnl
+     AC_REQUIRE([AC_PROG_RANLIB])dnl
+     AC_REQUIRE([AC_HEADER_STDC])dnl
+--- 3329,3335 ----
+  # serial 1
+  # Stephan Kulow: I put a KDE in it to avoid name conflicts
+  
+! AC_DEFUN([AM_KDE_GNU_GETTEXT],
+    [AC_REQUIRE([AC_PROG_MAKE_SET])dnl
+     AC_REQUIRE([AC_PROG_RANLIB])dnl
+     AC_REQUIRE([AC_HEADER_STDC])dnl
+***************
+*** 3361,3367 ****
+  
+    ])
+  
+! AC_DEFUN(AC_HAVE_XPM,
+   [AC_REQUIRE_CPP()dnl
+    AC_REQUIRE([KDE_CHECK_EXTRA_LIBS])
+  
+--- 3391,3397 ----
+  
+    ])
+  
+! AC_DEFUN([AC_HAVE_XPM],
+   [AC_REQUIRE_CPP()dnl
+    AC_REQUIRE([KDE_CHECK_EXTRA_LIBS])
+  
+***************
+*** 3417,3423 ****
+   AC_SUBST(XPMLIB)
+  ])
+  
+! AC_DEFUN(AC_HAVE_DPMS,
+   [AC_REQUIRE_CPP()dnl
+    AC_REQUIRE([KDE_CHECK_EXTRA_LIBS])
+  
+--- 3447,3453 ----
+   AC_SUBST(XPMLIB)
+  ])
+  
+! AC_DEFUN([AC_HAVE_DPMS],
+   [AC_REQUIRE_CPP()dnl
+    AC_REQUIRE([KDE_CHECK_EXTRA_LIBS])
+  
+***************
+*** 3505,3511 ****
+   AC_SUBST(DPMSLIB)
+  ])
+  
+! AC_DEFUN(AC_HAVE_GL,
+   [AC_REQUIRE_CPP()dnl
+    AC_REQUIRE([KDE_CHECK_EXTRA_LIBS])
+  
+--- 3535,3541 ----
+   AC_SUBST(DPMSLIB)
+  ])
+  
+! AC_DEFUN([AC_HAVE_GL],
+   [AC_REQUIRE_CPP()dnl
+    AC_REQUIRE([KDE_CHECK_EXTRA_LIBS])
+  
+***************
+*** 3588,3594 ****
+  
+   dnl shadow password and PAM magic - maintained by ossi@kde.org
+  
+! AC_DEFUN(KDE_PAM, [
+    AC_REQUIRE([KDE_CHECK_LIBDL])
+  
+    AC_ARG_WITH(pam,
+--- 3618,3624 ----
+  
+   dnl shadow password and PAM magic - maintained by ossi@kde.org
+  
+! AC_DEFUN([KDE_PAM], [
+    AC_REQUIRE([KDE_CHECK_LIBDL])
+  
+    AC_ARG_WITH(pam,
+***************
+*** 3649,3655 ****
+  ])
+  
+  dnl DEF_PAM_SERVICE(arg name, full name, define name)
+! AC_DEFUN(DEF_PAM_SERVICE, [
+    AC_ARG_WITH($1-pam,
+      [  --with-$1-pam=[val]    override PAM service from --with-pam for $2],
+      [ if test "x$use_pam" = xyes; then
+--- 3679,3685 ----
+  ])
+  
+  dnl DEF_PAM_SERVICE(arg name, full name, define name)
+! AC_DEFUN([DEF_PAM_SERVICE], [
+    AC_ARG_WITH($1-pam,
+      [  --with-$1-pam=[val]    override PAM service from --with-pam for $2],
+      [ if test "x$use_pam" = xyes; then
+***************
+*** 3658,3664 ****
+          AC_MSG_ERROR([Cannot use use --with-$1-pam, as no PAM was detected.
+  You may want to enforce it by using --with-pam.])
+        fi
+!     ], 
+      [ if test "x$use_pam" = xyes; then
+          $3_PAM_SERVICE="$pam_service"
+        fi
+--- 3688,3694 ----
+          AC_MSG_ERROR([Cannot use use --with-$1-pam, as no PAM was detected.
+  You may want to enforce it by using --with-pam.])
+        fi
+!     ],
+      [ if test "x$use_pam" = xyes; then
+          $3_PAM_SERVICE="$pam_service"
+        fi
+***************
+*** 3670,3676 ****
+      AC_SUBST($3_PAM_SERVICE)
+  ])
+  
+! AC_DEFUN(KDE_SHADOWPASSWD, [
+    AC_REQUIRE([KDE_PAM])
+  
+    AC_CHECK_LIB(shadow, getspent,
+--- 3700,3706 ----
+      AC_SUBST($3_PAM_SERVICE)
+  ])
+  
+! AC_DEFUN([KDE_SHADOWPASSWD], [
+    AC_REQUIRE([KDE_PAM])
+  
+    AC_CHECK_LIB(shadow, getspent,
+***************
+*** 3678,3695 ****
+        ac_use_shadow=yes
+      ],
+      [ dnl for UnixWare
+!       AC_CHECK_LIB(gen, getspent, 
+          [ LIBGEN="-lgen"
+            ac_use_shadow=yes
+!         ], 
+!         [ AC_CHECK_FUNC(getspent, 
+              [ ac_use_shadow=yes ],
+              [ ac_use_shadow=no ])
+  	])
+      ])
+    AC_SUBST(LIBSHADOW)
+    AC_SUBST(LIBGEN)
+!   
+    AC_MSG_CHECKING([for shadow passwords])
+  
+    AC_ARG_WITH(shadow,
+--- 3708,3725 ----
+        ac_use_shadow=yes
+      ],
+      [ dnl for UnixWare
+!       AC_CHECK_LIB(gen, getspent,
+          [ LIBGEN="-lgen"
+            ac_use_shadow=yes
+!         ],
+!         [ AC_CHECK_FUNC(getspent,
+              [ ac_use_shadow=yes ],
+              [ ac_use_shadow=no ])
+  	])
+      ])
+    AC_SUBST(LIBSHADOW)
+    AC_SUBST(LIBGEN)
+! 
+    AC_MSG_CHECKING([for shadow passwords])
+  
+    AC_ARG_WITH(shadow,
+***************
+*** 3714,3720 ****
+  
+    dnl finally make the relevant binaries setuid root, if we have shadow passwds.
+    dnl this still applies, if we could use it indirectly through pam.
+!   if test "x$use_shadow" = xyes || 
+       ( test "x$use_pam" = xyes && test "x$ac_use_shadow" = xyes ); then
+        case $host in
+        *-*-freebsd* | *-*-netbsd* | *-*-openbsd*)
+--- 3744,3750 ----
+  
+    dnl finally make the relevant binaries setuid root, if we have shadow passwds.
+    dnl this still applies, if we could use it indirectly through pam.
+!   if test "x$use_shadow" = xyes ||
+       ( test "x$use_pam" = xyes && test "x$ac_use_shadow" = xyes ); then
+        case $host in
+        *-*-freebsd* | *-*-netbsd* | *-*-openbsd*)
+***************
+*** 3727,3738 ****
+  
+  ])
+  
+! AC_DEFUN(KDE_PASSWDLIBS, [
+    AC_REQUIRE([KDE_MISC_TESTS]) dnl for LIBCRYPT
+    AC_REQUIRE([KDE_PAM])
+    AC_REQUIRE([KDE_SHADOWPASSWD])
+  
+!   if test "x$use_pam" = "xyes"; then 
+      PASSWDLIBS="$PAMLIBS"
+    else
+      PASSWDLIBS="$LIBCRYPT $LIBSHADOW $LIBGEN"
+--- 3757,3768 ----
+  
+  ])
+  
+! AC_DEFUN([KDE_PASSWDLIBS], [
+    AC_REQUIRE([KDE_MISC_TESTS]) dnl for LIBCRYPT
+    AC_REQUIRE([KDE_PAM])
+    AC_REQUIRE([KDE_SHADOWPASSWD])
+  
+!   if test "x$use_pam" = "xyes"; then
+      PASSWDLIBS="$PAMLIBS"
+    else
+      PASSWDLIBS="$LIBCRYPT $LIBSHADOW $LIBGEN"
+***************
+*** 3753,3759 ****
+    AC_SUBST(PASSWDLIBS)
+  ])
+  
+! AC_DEFUN(KDE_CHECK_LIBDL,
+  [
+  AC_CHECK_LIB(dl, dlopen, [
+  LIBDL="-ldl"
+--- 3783,3789 ----
+    AC_SUBST(PASSWDLIBS)
+  ])
+  
+! AC_DEFUN([KDE_CHECK_LIBDL],
+  [
+  AC_CHECK_LIB(dl, dlopen, [
+  LIBDL="-ldl"
+***************
+*** 3768,3774 ****
+  AC_SUBST(LIBDL)
+  ])
+  
+! AC_DEFUN(KDE_CHECK_DLOPEN,
+  [
+  KDE_CHECK_LIBDL
+  AC_CHECK_HEADERS(dlfcn.h dl.h)
+--- 3798,3804 ----
+  AC_SUBST(LIBDL)
+  ])
+  
+! AC_DEFUN([KDE_CHECK_DLOPEN],
+  [
+  KDE_CHECK_LIBDL
+  AC_CHECK_HEADERS(dlfcn.h dl.h)
+***************
+*** 3808,3814 ****
+  
+  ])
+  
+! AC_DEFUN(KDE_CHECK_DYNAMIC_LOADING,
+  [
+  KDE_CHECK_DLOPEN(libtool_enable_shared=yes, libtool_enable_static=no)
+  KDE_PROG_LIBTOOL
+--- 3838,3844 ----
+  
+  ])
+  
+! AC_DEFUN([KDE_CHECK_DYNAMIC_LOADING],
+  [
+  KDE_CHECK_DLOPEN(libtool_enable_shared=yes, libtool_enable_static=no)
+  KDE_PROG_LIBTOOL
+***************
+*** 3828,3834 ****
+  fi
+  ])
+  
+! AC_DEFUN(KDE_ADD_INCLUDES,
+  [
+  if test -z "$1"; then
+    test_include="Pix.h"
+--- 3858,3864 ----
+  fi
+  ])
+  
+! AC_DEFUN([KDE_ADD_INCLUDES],
+  [
+  if test -z "$1"; then
+    test_include="Pix.h"
+***************
+*** 3866,3872 ****
+  ])
+  
+  
+! AC_DEFUN(KDE_CHECK_MICO,
+  [
+  AC_REQUIRE([KDE_CHECK_LIBDL])
+  AC_REQUIRE([KDE_MISC_TESTS])
+--- 3896,3902 ----
+  ])
+  
+  
+! AC_DEFUN([KDE_CHECK_MICO],
+  [
+  AC_REQUIRE([KDE_CHECK_LIBDL])
+  AC_REQUIRE([KDE_MISC_TESTS])
+***************
+*** 3975,3981 ****
+  
+  ])
+  
+! AC_DEFUN(KDE_CHECK_MINI_STL,
+  [
+  AC_REQUIRE([KDE_CHECK_MICO])
+  
+--- 4005,4011 ----
+  
+  ])
+  
+! AC_DEFUN([KDE_CHECK_MINI_STL],
+  [
+  AC_REQUIRE([KDE_CHECK_MICO])
+  
+***************
+*** 4013,4025 ****
+  ])
+  
+  
+! AC_DEFUN(KDE_CHECK_LIBPTHREAD,
+  [
+  AC_CHECK_LIB(pthread, pthread_create, [LIBPTHREAD="-lpthread"] )
+  AC_SUBST(LIBPTHREAD)
+  ])
+  
+! AC_DEFUN(KDE_CHECK_PTHREAD_OPTION,
+  [
+      AC_ARG_ENABLE(kernel-threads, [  --enable-kernel-threads Enable the use of the LinuxThreads port on FreeBSD/i386 only.],
+  	kde_use_kernthreads=$enableval, kde_use_kernthreads=no)
+--- 4043,4055 ----
+  ])
+  
+  
+! AC_DEFUN([KDE_CHECK_LIBPTHREAD],
+  [
+  AC_CHECK_LIB(pthread, pthread_create, [LIBPTHREAD="-lpthread"] )
+  AC_SUBST(LIBPTHREAD)
+  ])
+  
+! AC_DEFUN([KDE_CHECK_PTHREAD_OPTION],
+  [
+      AC_ARG_ENABLE(kernel-threads, [  --enable-kernel-threads Enable the use of the LinuxThreads port on FreeBSD/i386 only.],
+  	kde_use_kernthreads=$enableval, kde_use_kernthreads=no)
+***************
+*** 4043,4049 ****
+            USE_THREADS="-D_THREAD_SAFE -I/usr/local/include/pthread/linuxthreads"
+          fi
+        fi
+!     else 
+        USE_THREADS=""
+        if test -z "$LIBPTHREAD"; then
+          KDE_CHECK_COMPILER_FLAG(pthread, [USE_THREADS="-pthread"] )
+--- 4073,4079 ----
+            USE_THREADS="-D_THREAD_SAFE -I/usr/local/include/pthread/linuxthreads"
+          fi
+        fi
+!     else
+        USE_THREADS=""
+        if test -z "$LIBPTHREAD"; then
+          KDE_CHECK_COMPILER_FLAG(pthread, [USE_THREADS="-pthread"] )
+***************
+*** 4080,4086 ****
+      AC_SUBST(LIBPTHREAD)
+  ])
+  
+! AC_DEFUN(KDE_CHECK_THREADING,
+  [
+    AC_REQUIRE([KDE_CHECK_LIBPTHREAD])
+    AC_REQUIRE([KDE_CHECK_PTHREAD_OPTION])
+--- 4110,4116 ----
+      AC_SUBST(LIBPTHREAD)
+  ])
+  
+! AC_DEFUN([KDE_CHECK_THREADING],
+  [
+    AC_REQUIRE([KDE_CHECK_LIBPTHREAD])
+    AC_REQUIRE([KDE_CHECK_PTHREAD_OPTION])
+***************
+*** 4101,4107 ****
+    fi
+  ])
+  
+! AC_DEFUN(KDE_TRY_LINK_PYTHON,
+  [
+  if test "$kde_python_link_found" = no; then
+  
+--- 4131,4137 ----
+    fi
+  ])
+  
+! AC_DEFUN([KDE_TRY_LINK_PYTHON],
+  [
+  if test "$kde_python_link_found" = no; then
+  
+***************
+*** 4153,4162 ****
+  
+  ])
+  
+! AC_DEFUN(KDE_CHECK_PYTHON_DIR,
+  [
+  AC_MSG_CHECKING([for Python directory])
+!  
+  AC_CACHE_VAL(kde_cv_pythondir,
+  [
+    if test -z "$PYTHONDIR"; then
+--- 4183,4192 ----
+  
+  ])
+  
+! AC_DEFUN([KDE_CHECK_PYTHON_DIR],
+  [
+  AC_MSG_CHECKING([for Python directory])
+! 
+  AC_CACHE_VAL(kde_cv_pythondir,
+  [
+    if test -z "$PYTHONDIR"; then
+***************
+*** 4165,4182 ****
+      kde_cv_pythondir="$PYTHONDIR"
+    fi
+  ])
+!  
+  AC_ARG_WITH(pythondir,
+  [  --with-pythondir=pythondir   use python installed in pythondir ],
+  [
+    ac_python_dir=$withval
+  ], ac_python_dir=$kde_cv_pythondir
+  )
+!  
+  AC_MSG_RESULT($ac_python_dir)
+  ])
+  
+! AC_DEFUN(KDE_CHECK_PYTHON_INTERN,
+  [
+  AC_REQUIRE([KDE_CHECK_LIBDL])
+  AC_REQUIRE([KDE_CHECK_LIBPTHREAD])
+--- 4195,4212 ----
+      kde_cv_pythondir="$PYTHONDIR"
+    fi
+  ])
+! 
+  AC_ARG_WITH(pythondir,
+  [  --with-pythondir=pythondir   use python installed in pythondir ],
+  [
+    ac_python_dir=$withval
+  ], ac_python_dir=$kde_cv_pythondir
+  )
+! 
+  AC_MSG_RESULT($ac_python_dir)
+  ])
+  
+! AC_DEFUN([KDE_CHECK_PYTHON_INTERN],
+  [
+  AC_REQUIRE([KDE_CHECK_LIBDL])
+  AC_REQUIRE([KDE_CHECK_LIBPTHREAD])
+***************
+*** 4234,4240 ****
+     test "x$PYTHONLIB" = "x-Lno" && PYTHONLIB=""
+     test "x$PYTHONINC" = "x-Ino" && PYTHONINC=""
+     $2
+! else 
+    dnl Note: this test is very weak
+    kde_python_link_found=no
+    KDE_TRY_LINK_PYTHON(normal)
+--- 4264,4270 ----
+     test "x$PYTHONLIB" = "x-Lno" && PYTHONLIB=""
+     test "x$PYTHONINC" = "x-Ino" && PYTHONINC=""
+     $2
+! else
+    dnl Note: this test is very weak
+    kde_python_link_found=no
+    KDE_TRY_LINK_PYTHON(normal)
+***************
+*** 4266,4284 ****
+  ])
+  
+  
+! AC_DEFUN(KDE_CHECK_PYTHON,
+  [
+!   KDE_CHECK_PYTHON_INTERN("2.3", 
+!    [KDE_CHECK_PYTHON_INTERN("2.2", 
+!      [KDE_CHECK_PYTHON_INTERN("2.1", 
+!        [KDE_CHECK_PYTHON_INTERN("2.0", 
+           [KDE_CHECK_PYTHON_INTERN($1, $2) ])
+         ])
+       ])
+     ])
+  ])
+  
+! AC_DEFUN(KDE_CHECK_STL_SGI,
+  [
+      AC_MSG_CHECKING([if STL implementation is SGI like])
+      AC_CACHE_VAL(kde_cv_stl_type_sgi,
+--- 4296,4314 ----
+  ])
+  
+  
+! AC_DEFUN([KDE_CHECK_PYTHON],
+  [
+!   KDE_CHECK_PYTHON_INTERN("2.3",
+!    [KDE_CHECK_PYTHON_INTERN("2.2",
+!      [KDE_CHECK_PYTHON_INTERN("2.1",
+!        [KDE_CHECK_PYTHON_INTERN("2.0",
+           [KDE_CHECK_PYTHON_INTERN($1, $2) ])
+         ])
+       ])
+     ])
+  ])
+  
+! AC_DEFUN([KDE_CHECK_STL_SGI],
+  [
+      AC_MSG_CHECKING([if STL implementation is SGI like])
+      AC_CACHE_VAL(kde_cv_stl_type_sgi,
+***************
+*** 4301,4307 ****
+     fi
+  ])
+  
+! AC_DEFUN(KDE_CHECK_STL_HP,
+  [
+      AC_MSG_CHECKING([if STL implementation is HP like])
+      AC_CACHE_VAL(kde_cv_stl_type_hp,
+--- 4331,4337 ----
+     fi
+  ])
+  
+! AC_DEFUN([KDE_CHECK_STL_HP],
+  [
+      AC_MSG_CHECKING([if STL implementation is HP like])
+      AC_CACHE_VAL(kde_cv_stl_type_hp,
+***************
+*** 4323,4329 ****
+     fi
+  ])
+  
+! AC_DEFUN(KDE_CHECK_STL,
+  [
+      AC_LANG_SAVE
+      AC_LANG_CPLUSPLUS
+--- 4353,4359 ----
+     fi
+  ])
+  
+! AC_DEFUN([KDE_CHECK_STL],
+  [
+      AC_LANG_SAVE
+      AC_LANG_CPLUSPLUS
+***************
+*** 4343,4349 ****
+      AC_LANG_RESTORE
+  ])
+  
+! AC_DEFUN(AC_FIND_QIMGIO,
+     [AC_REQUIRE([AC_FIND_JPEG])
+  AC_REQUIRE([KDE_CHECK_EXTRA_LIBS])
+  AC_MSG_CHECKING([for qimgio])
+--- 4373,4379 ----
+      AC_LANG_RESTORE
+  ])
+  
+! AC_DEFUN([AC_FIND_QIMGIO],
+     [AC_REQUIRE([AC_FIND_JPEG])
+  AC_REQUIRE([KDE_CHECK_EXTRA_LIBS])
+  AC_MSG_CHECKING([for qimgio])
+***************
+*** 4382,4392 ****
+  fi
+  ])
+  
+! AC_DEFUN(KDE_CHECK_ANSI,
+  [
+  ])
+  
+! AC_DEFUN(KDE_CHECK_INSURE,
+  [
+    AC_ARG_ENABLE(insure, [  --enable-insure             use insure++ for debugging [default=no]],
+    [
+--- 4412,4422 ----
+  fi
+  ])
+  
+! AC_DEFUN([KDE_CHECK_ANSI],
+  [
+  ])
+  
+! AC_DEFUN([KDE_CHECK_INSURE],
+  [
+    AC_ARG_ENABLE(insure, [  --enable-insure             use insure++ for debugging [default=no]],
+    [
+***************
+*** 4403,4409 ****
+     fi
+  ])
+  
+! AC_DEFUN(AM_DISABLE_LIBRARIES,
+  [
+      AC_PROVIDE([AM_ENABLE_STATIC])
+      AC_PROVIDE([AM_ENABLE_SHARED])
+--- 4433,4439 ----
+     fi
+  ])
+  
+! AC_DEFUN([AM_DISABLE_LIBRARIES],
+  [
+      AC_PROVIDE([AM_ENABLE_STATIC])
+      AC_PROVIDE([AM_ENABLE_SHARED])
+***************
+*** 4412,4418 ****
+  ])
+  
+  
+! AC_DEFUN(AC_CHECK_UTMP_FILE,
+  [
+      AC_MSG_CHECKING([for utmp file])
+  
+--- 4442,4448 ----
+  ])
+  
+  
+! AC_DEFUN([AC_CHECK_UTMP_FILE],
+  [
+      AC_MSG_CHECKING([for utmp file])
+  
+***************
+*** 4445,4451 ****
+  ])
+  
+  
+! AC_DEFUN(KDE_CREATE_SUBDIRSLIST,
+  [
+  
+  DO_NOT_COMPILE="$DO_NOT_COMPILE CVS debian bsd-port admin"
+--- 4475,4481 ----
+  ])
+  
+  
+! AC_DEFUN([KDE_CREATE_SUBDIRSLIST],
+  [
+  
+  DO_NOT_COMPILE="$DO_NOT_COMPILE CVS debian bsd-port admin"
+***************
+*** 4491,4497 ****
+  AC_SUBST(TOPSUBDIRS)
+  ])
+  
+! AC_DEFUN(KDE_CHECK_NAMESPACES,
+  [
+  AC_MSG_CHECKING(whether C++ compiler supports namespaces)
+  AC_LANG_SAVE
+--- 4521,4527 ----
+  AC_SUBST(TOPSUBDIRS)
+  ])
+  
+! AC_DEFUN([KDE_CHECK_NAMESPACES],
+  [
+  AC_MSG_CHECKING(whether C++ compiler supports namespaces)
+  AC_LANG_SAVE
+***************
+*** 4517,4523 ****
+  AC_LANG_RESTORE
+  ])
+  
+! AC_DEFUN(KDE_CHECK_NEWLIBS,
+  [
+  
+  ])
+--- 4547,4553 ----
+  AC_LANG_RESTORE
+  ])
+  
+! AC_DEFUN([KDE_CHECK_NEWLIBS],
+  [
+  
+  ])
+***************
+*** 4526,4532 ****
+  dnl Check for S_ISSOCK macro. Doesn't exist on Unix SCO. faure@kde.org
+  dnl ------------------------------------------------------------------------
+  dnl
+! AC_DEFUN(AC_CHECK_S_ISSOCK,
+  [
+  AC_MSG_CHECKING(for S_ISSOCK)
+  AC_CACHE_VAL(ac_cv_have_s_issock,
+--- 4556,4562 ----
+  dnl Check for S_ISSOCK macro. Doesn't exist on Unix SCO. faure@kde.org
+  dnl ------------------------------------------------------------------------
+  dnl
+! AC_DEFUN([AC_CHECK_S_ISSOCK],
+  [
+  AC_MSG_CHECKING(for S_ISSOCK)
+  AC_CACHE_VAL(ac_cv_have_s_issock,
+***************
+*** 4564,4570 ****
+  dnl Check for MAXPATHLEN macro, defines KDEMAXPATHLEN. faure@kde.org
+  dnl ------------------------------------------------------------------------
+  dnl
+! AC_DEFUN(AC_CHECK_KDEMAXPATHLEN,
+  [
+  AC_MSG_CHECKING(for MAXPATHLEN)
+  AC_CACHE_VAL(ac_cv_maxpathlen,
+--- 4594,4600 ----
+  dnl Check for MAXPATHLEN macro, defines KDEMAXPATHLEN. faure@kde.org
+  dnl ------------------------------------------------------------------------
+  dnl
+! AC_DEFUN([AC_CHECK_KDEMAXPATHLEN],
+  [
+  AC_MSG_CHECKING(for MAXPATHLEN)
+  AC_CACHE_VAL(ac_cv_maxpathlen,
+***************
+*** 4599,4605 ****
+  AC_DEFINE_UNQUOTED(KDEMAXPATHLEN,$ac_cv_maxpathlen, [Define a safe value for MAXPATHLEN] )
+  ])
+  
+! AC_DEFUN(KDE_CHECK_HEADER,
+  [
+     AC_LANG_SAVE
+     kde_safe_cppflags=$CPPFLAGS
+--- 4629,4635 ----
+  AC_DEFINE_UNQUOTED(KDEMAXPATHLEN,$ac_cv_maxpathlen, [Define a safe value for MAXPATHLEN] )
+  ])
+  
+! AC_DEFUN([KDE_CHECK_HEADER],
+  [
+     AC_LANG_SAVE
+     kde_safe_cppflags=$CPPFLAGS
+***************
+*** 4610,4616 ****
+     AC_LANG_RESTORE
+  ])
+  
+! AC_DEFUN(KDE_CHECK_HEADERS,
+  [
+     AH_CHECK_HEADERS([$1])
+     AC_LANG_SAVE
+--- 4640,4646 ----
+     AC_LANG_RESTORE
+  ])
+  
+! AC_DEFUN([KDE_CHECK_HEADERS],
+  [
+     AH_CHECK_HEADERS([$1])
+     AC_LANG_SAVE
+***************
+*** 4622,4635 ****
+     AC_LANG_RESTORE
+  ])
+  
+! AC_DEFUN(KDE_FAST_CONFIGURE,
+  [
+    dnl makes configure fast (needs perl)
+    AC_ARG_ENABLE(fast-perl, [  --disable-fast-perl     disable fast Makefile generation (needs perl)],
+        with_fast_perl=$enableval, with_fast_perl=yes)
+  ])
+  
+! AC_DEFUN(KDE_CONF_FILES,
+  [
+    val=
+    if test -f $srcdir/configure.files ; then
+--- 4652,4665 ----
+     AC_LANG_RESTORE
+  ])
+  
+! AC_DEFUN([KDE_FAST_CONFIGURE],
+  [
+    dnl makes configure fast (needs perl)
+    AC_ARG_ENABLE(fast-perl, [  --disable-fast-perl     disable fast Makefile generation (needs perl)],
+        with_fast_perl=$enableval, with_fast_perl=yes)
+  ])
+  
+! AC_DEFUN([KDE_CONF_FILES],
+  [
+    val=
+    if test -f $srcdir/configure.files ; then
+***************
+*** 4644,4650 ****
+    AC_SUBST(CONF_FILES)
+  ])dnl
+  
+! AC_DEFUN(KDE_SET_PREFIX,
+  [
+    unset CDPATH
+    dnl make $KDEDIR the default for the installation
+--- 4674,4680 ----
+    AC_SUBST(CONF_FILES)
+  ])dnl
+  
+! AC_DEFUN([KDE_SET_PREFIX],
+  [
+    unset CDPATH
+    dnl make $KDEDIR the default for the installation
+***************
+*** 4727,4733 ****
+    fi
+  ])dnl
+  
+! AC_DEFUN(KDE_LANG_CPLUSPLUS,
+  [AC_LANG_CPLUSPLUS
+  ac_link='rm -rf SunWS_cache; ${CXX-g++} -o conftest${ac_exeext} $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&AC_FD_CC'
+  pushdef([AC_LANG_CPLUSPLUS], [popdef([AC_LANG_CPLUSPLUS]) KDE_LANG_CPLUSPLUS])
+--- 4757,4763 ----
+    fi
+  ])dnl
+  
+! AC_DEFUN([KDE_LANG_CPLUSPLUS],
+  [AC_LANG_CPLUSPLUS
+  ac_link='rm -rf SunWS_cache; ${CXX-g++} -o conftest${ac_exeext} $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&AC_FD_CC'
+  pushdef([AC_LANG_CPLUSPLUS], [popdef([AC_LANG_CPLUSPLUS]) KDE_LANG_CPLUSPLUS])
+***************
+*** 4738,4744 ****
+  KDE_LANG_CPLUSPLUS
+  ])
+  
+! AC_DEFUN(KDE_CHECK_LONG_LONG,
+  [
+  AC_MSG_CHECKING(for long long)
+  AC_CACHE_VAL(kde_cv_c_long_long,
+--- 4768,4774 ----
+  KDE_LANG_CPLUSPLUS
+  ])
+  
+! AC_DEFUN([KDE_CHECK_LONG_LONG],
+  [
+  AC_MSG_CHECKING(for long long)
+  AC_CACHE_VAL(kde_cv_c_long_long,
+***************
+*** 4758,4764 ****
+  fi
+  ])
+  
+! AC_DEFUN(KDE_CHECK_LIB,
+  [
+       kde_save_LDFLAGS="$LDFLAGS"
+       dnl AC_CHECK_LIB modifies LIBS, so save it here
+--- 4788,4794 ----
+  fi
+  ])
+  
+! AC_DEFUN([KDE_CHECK_LIB],
+  [
+       kde_save_LDFLAGS="$LDFLAGS"
+       dnl AC_CHECK_LIB modifies LIBS, so save it here
+***************
+*** 4774,4785 ****
+       LIBS="$kde_save_LIBS"
+  ])
+  
+! AC_DEFUN(KDE_JAVA_PREFIX,
+  [
+  	dir=`dirname "$1"`
+  	base=`basename "$1"`
+  	list=`ls -1 $dir 2> /dev/null`
+! 	for entry in $list; do 
+  		if test -d $dir/$entry/bin; then
+  			case $entry in
+  			   $base)
+--- 4804,4815 ----
+       LIBS="$kde_save_LIBS"
+  ])
+  
+! AC_DEFUN([KDE_JAVA_PREFIX],
+  [
+  	dir=`dirname "$1"`
+  	base=`basename "$1"`
+  	list=`ls -1 $dir 2> /dev/null`
+! 	for entry in $list; do
+  		if test -d $dir/$entry/bin; then
+  			case $entry in
+  			   $base)
+***************
+*** 4797,4803 ****
+  ])
+  
+  dnl KDE_CHEC_JAVA_DIR(onlyjre)
+! AC_DEFUN(KDE_CHECK_JAVA_DIR,
+  [
+  
+  AC_ARG_WITH(java,
+--- 4827,4833 ----
+  ])
+  
+  dnl KDE_CHEC_JAVA_DIR(onlyjre)
+! AC_DEFUN([KDE_CHECK_JAVA_DIR],
+  [
+  
+  AC_ARG_WITH(java,
+***************
+*** 4816,4823 ****
+     kde_java_libhpidir=no
+  else
+    if test "x$ac_java_dir" = "x"; then
+!      
+!      
+        dnl No option set -> look in $PATH
+        KDE_JAVA_PREFIX(/usr/j2se)
+        KDE_JAVA_PREFIX(/usr/j*dk*)
+--- 4846,4853 ----
+     kde_java_libhpidir=no
+  else
+    if test "x$ac_java_dir" = "x"; then
+! 
+! 
+        dnl No option set -> look in $PATH
+        KDE_JAVA_PREFIX(/usr/j2se)
+        KDE_JAVA_PREFIX(/usr/j*dk*)
+***************
+*** 4832,4838 ****
+        KDE_JAVA_PREFIX(/usr/lib/IBMJava2*)
+        KDE_JAVA_PREFIX(/usr/lib/IBMJava*)
+        KDE_JAVA_PREFIX(/opt/java*)
+!     
+        kde_cv_path="NONE"
+        kde_save_IFS=$IFS
+        IFS=':'
+--- 4862,4868 ----
+        KDE_JAVA_PREFIX(/usr/lib/IBMJava2*)
+        KDE_JAVA_PREFIX(/usr/lib/IBMJava*)
+        KDE_JAVA_PREFIX(/opt/java*)
+! 
+        kde_cv_path="NONE"
+        kde_save_IFS=$IFS
+        IFS=':'
+***************
+*** 4918,4924 ****
+  
+    if test ! -r "$kde_java_libjvmdir/libjvm.so"; then
+       AC_MSG_ERROR([libjvm.so not found under $kde_java_libjvmdir. Use --without-java.])
+!   fi 
+  
+    if test ! -x "$kde_java_bindir/java"; then
+        AC_MSG_ERROR([java not found under $kde_java_bindir. javac was found though! Use --with-java or --without-java.])
+--- 4948,4954 ----
+  
+    if test ! -r "$kde_java_libjvmdir/libjvm.so"; then
+       AC_MSG_ERROR([libjvm.so not found under $kde_java_libjvmdir. Use --without-java.])
+!   fi
+  
+    if test ! -x "$kde_java_bindir/java"; then
+        AC_MSG_ERROR([java not found under $kde_java_bindir. javac was found though! Use --with-java or --without-java.])
+***************
+*** 4947,4961 ****
+  
+      if test $kde_jni_works = no; then
+        AC_MSG_ERROR([Incorrect version of $kde_java_includedir/jni.h.
+! 		    You need to have Java Development Kit (JDK) version 1.2. 
+  
+  		    Use --with-java to specify another location.
+  		    Use --without-java to configure without java support.
+! 		    Or download a newer JDK and try again. 
+  		    See e.g. http://java.sun.com/products/jdk/1.2 ])
+      fi
+  
+!     CXXFLAGS="$ac_cxxflags_safe"    
+      AC_LANG_RESTORE
+  
+      dnl All tests ok, inform and subst the variables
+--- 4977,4991 ----
+  
+      if test $kde_jni_works = no; then
+        AC_MSG_ERROR([Incorrect version of $kde_java_includedir/jni.h.
+! 		    You need to have Java Development Kit (JDK) version 1.2.
+  
+  		    Use --with-java to specify another location.
+  		    Use --without-java to configure without java support.
+! 		    Or download a newer JDK and try again.
+  		    See e.g. http://java.sun.com/products/jdk/1.2 ])
+      fi
+  
+!     CXXFLAGS="$ac_cxxflags_safe"
+      AC_LANG_RESTORE
+  
+      dnl All tests ok, inform and subst the variables
+***************
+*** 5013,5019 ****
+  m4_define([AC_FOREACH],
+  [mm_foreach([$1], m4_split(m4_normalize([$2])), [$3])])
+  
+! AC_DEFUN(KDE_NEED_FLEX,
+  [
+  kde_libs_safe=$LIBS
+  LIBS="$LIBS $USER_LDFLAGS"
+--- 5043,5049 ----
+  m4_define([AC_FOREACH],
+  [mm_foreach([$1], m4_split(m4_normalize([$2])), [$3])])
+  
+! AC_DEFUN([KDE_NEED_FLEX],
+  [
+  kde_libs_safe=$LIBS
+  LIBS="$LIBS $USER_LDFLAGS"
+***************
+*** 5025,5031 ****
+  AC_SUBST(LEXLIB)
+  ])
+  
+! AC_DEFUN(AC_PATH_QTOPIA,
+  [
+    dnl TODO: use AC_CACHE_VAL
+  
+--- 5055,5061 ----
+  AC_SUBST(LEXLIB)
+  ])
+  
+! AC_DEFUN([AC_PATH_QTOPIA],
+  [
+    dnl TODO: use AC_CACHE_VAL
+  
+***************
+*** 5055,5062 ****
+  
+    AC_ARG_WITH(qtopia-dir,
+                [  --with-qtopia-dir=DIR   where the root of Qtopia is installed ],
+!               [  ac_qtopia_incdir="$withval"/include] ) 
+!   
+    qtopia_incdirs=""
+    for dir in $kde_qtopia_dirs; do
+      qtopia_incdirs="$qtopia_incdirs $dir/include"
+--- 5085,5092 ----
+  
+    AC_ARG_WITH(qtopia-dir,
+                [  --with-qtopia-dir=DIR   where the root of Qtopia is installed ],
+!               [  ac_qtopia_incdir="$withval"/include] )
+! 
+    qtopia_incdirs=""
+    for dir in $kde_qtopia_dirs; do
+      qtopia_incdirs="$qtopia_incdirs $dir/include"
+***************
+*** 5129,5135 ****
+  ])
+  
+  
+! AC_DEFUN(KDE_INIT_DOXYGEN,
+  [
+  AC_MSG_CHECKING([for Qt docs])
+  kde_qtdir=
+--- 5159,5165 ----
+  ])
+  
+  
+! AC_DEFUN([KDE_INIT_DOXYGEN],
+  [
+  AC_MSG_CHECKING([for Qt docs])
+  kde_qtdir=
+***************
+*** 5166,5172 ****
+  ])
+  
+  
+! AC_DEFUN(AC_FIND_BZIP2,
+  [
+  AC_MSG_CHECKING([for bzDecompress in libbz2])
+  AC_CACHE_VAL(ac_cv_lib_bzip2,
+--- 5196,5202 ----
+  ])
+  
+  
+! AC_DEFUN([AC_FIND_BZIP2],
+  [
+  AC_MSG_CHECKING([for bzDecompress in libbz2])
+  AC_CACHE_VAL(ac_cv_lib_bzip2,
+***************
+*** 5228,5239 ****
+     ])dnl
+  
+     AC_MSG_RESULT($ac_cv_lib_bzip2_prefix)
+!    
+  
+  
+     if test ! "$ac_cv_lib_bzip2_prefix" = no; then
+       BZIP2DIR=bzip2
+!     
+       LIBBZ2="$ac_cv_lib_bzip2_prefix"
+       AC_SUBST(LIBBZ2)
+  
+--- 5258,5269 ----
+     ])dnl
+  
+     AC_MSG_RESULT($ac_cv_lib_bzip2_prefix)
+! 
+  
+  
+     if test ! "$ac_cv_lib_bzip2_prefix" = no; then
+       BZIP2DIR=bzip2
+! 
+       LIBBZ2="$ac_cv_lib_bzip2_prefix"
+       AC_SUBST(LIBBZ2)
+  
+***************
+*** 5251,5257 ****
+  dnl and $(SSL_INCLUDES) will be -Isslhdrlocation (if needed)
+  dnl ------------------------------------------------------------------------
+  dnl
+! AC_DEFUN(KDE_CHECK_SSL,
+  [
+  LIBSSL="-lssl -lcrypto"
+  AC_REQUIRE([KDE_CHECK_LIB64])
+--- 5281,5287 ----
+  dnl and $(SSL_INCLUDES) will be -Isslhdrlocation (if needed)
+  dnl ------------------------------------------------------------------------
+  dnl
+! AC_DEFUN([KDE_CHECK_SSL],
+  [
+  LIBSSL="-lssl -lcrypto"
+  AC_REQUIRE([KDE_CHECK_LIB64])
+***************
+*** 5276,5282 ****
+  
+  AC_CACHE_VAL(ac_cv_have_ssl,
+  [#try to guess OpenSSL locations
+!   
+    ssl_incdirs="/usr/include /usr/local/include /usr/ssl/include /usr/local/ssl/include $prefix/include $kde_extra_includes"
+    ssl_incdirs="$ac_ssl_includes $ssl_incdirs"
+    AC_FIND_FILE(openssl/ssl.h, $ssl_incdirs, ssl_incdir)
+--- 5306,5312 ----
+  
+  AC_CACHE_VAL(ac_cv_have_ssl,
+  [#try to guess OpenSSL locations
+! 
+    ssl_incdirs="/usr/include /usr/local/include /usr/ssl/include /usr/local/ssl/include $prefix/include $kde_extra_includes"
+    ssl_incdirs="$ac_ssl_includes $ssl_incdirs"
+    AC_FIND_FILE(openssl/ssl.h, $ssl_incdirs, ssl_incdir)
+***************
+*** 5347,5359 ****
+    AC_CACHE_VAL(ac_cv_ssl_version,
+    [
+      AC_LANG_SAVE
+!     AC_LANG_C 
+  
+      cat >conftest.$ac_ext <<EOF
+  #include <openssl/opensslv.h>
+  #include <stdio.h>
+      int main() {
+!  
+  #ifndef OPENSSL_VERSION_NUMBER
+        printf("ssl_version=\\"error\\"\n");
+  #else
+--- 5377,5389 ----
+    AC_CACHE_VAL(ac_cv_ssl_version,
+    [
+      AC_LANG_SAVE
+!     AC_LANG_C
+  
+      cat >conftest.$ac_ext <<EOF
+  #include <openssl/opensslv.h>
+  #include <stdio.h>
+      int main() {
+! 
+  #ifndef OPENSSL_VERSION_NUMBER
+        printf("ssl_version=\\"error\\"\n");
+  #else
+***************
+*** 5367,5373 ****
+  EOF
+  
+      ac_compile='${CC-gcc} $CFLAGS -I$ac_ssl_includes conftest.$ac_ext -o conftest'
+!     if AC_TRY_EVAL(ac_compile); then 
+  
+        if eval `./conftest 2>&5`; then
+          if test $ssl_version = error; then
+--- 5397,5403 ----
+  EOF
+  
+      ac_compile='${CC-gcc} $CFLAGS -I$ac_ssl_includes conftest.$ac_ext -o conftest'
+!     if AC_TRY_EVAL(ac_compile); then
+  
+        if eval `./conftest 2>&5`; then
+          if test $ssl_version = error; then
+***************
+*** 5381,5395 ****
+          ac_cv_ssl_version="ssl_version=$ssl_version"
+        else
+          AC_MSG_ERROR([Your system couldn't run a small SSL test program.
+!         Check config.log, and if you can't figure it out, send a mail to 
+          David Faure <faure@kde.org>, attaching your config.log])
+        fi
+  
+      else
+        AC_MSG_ERROR([Your system couldn't link a small SSL test program.
+!       Check config.log, and if you can't figure it out, send a mail to 
+        David Faure <faure@kde.org>, attaching your config.log])
+!     fi 
+  
+      AC_LANG_RESTORE
+  
+--- 5411,5425 ----
+          ac_cv_ssl_version="ssl_version=$ssl_version"
+        else
+          AC_MSG_ERROR([Your system couldn't run a small SSL test program.
+!         Check config.log, and if you can't figure it out, send a mail to
+          David Faure <faure@kde.org>, attaching your config.log])
+        fi
+  
+      else
+        AC_MSG_ERROR([Your system couldn't link a small SSL test program.
+!       Check config.log, and if you can't figure it out, send a mail to
+        David Faure <faure@kde.org>, attaching your config.log])
+!     fi
+  
+      AC_LANG_RESTORE
+  
+***************
+*** 5405,5417 ****
+    AC_DEFINE(HAVE_SSL, 1, [If we are going to use OpenSSL])
+    ac_cv_have_ssl="have_ssl=yes \
+      ac_ssl_includes=$ac_ssl_includes ac_ssl_libraries=$ac_ssl_libraries ac_ssl_rsaref=$ac_ssl_rsaref"
+!   
+!   
+    ssl_libraries="$ac_ssl_libraries"
+    ssl_includes="$ac_ssl_includes"
+  
+    if test "$ac_ssl_rsaref" = yes; then
+!     LIBSSL="-lssl -lcrypto -lRSAglue -lrsaref" 
+    fi
+  
+    if test $ssl_version = "old"; then
+--- 5435,5447 ----
+    AC_DEFINE(HAVE_SSL, 1, [If we are going to use OpenSSL])
+    ac_cv_have_ssl="have_ssl=yes \
+      ac_ssl_includes=$ac_ssl_includes ac_ssl_libraries=$ac_ssl_libraries ac_ssl_rsaref=$ac_ssl_rsaref"
+! 
+! 
+    ssl_libraries="$ac_ssl_libraries"
+    ssl_includes="$ac_ssl_includes"
+  
+    if test "$ac_ssl_rsaref" = yes; then
+!     LIBSSL="-lssl -lcrypto -lRSAglue -lrsaref"
+    fi
+  
+    if test $ssl_version = "old"; then
+***************
+*** 5436,5442 ****
+  AC_SUBST(LIBSSL)
+  ])
+  
+! AC_DEFUN(KDE_CHECK_STRLCPY,
+  [
+    AC_REQUIRE([AC_CHECK_STRLCAT])
+    AC_REQUIRE([AC_CHECK_STRLCPY])
+--- 5466,5472 ----
+  AC_SUBST(LIBSSL)
+  ])
+  
+! AC_DEFUN([KDE_CHECK_STRLCPY],
+  [
+    AC_REQUIRE([AC_CHECK_STRLCAT])
+    AC_REQUIRE([AC_CHECK_STRLCPY])
+***************
+*** 5451,5463 ****
+      ],AC_MSG_RESULT([yes]),[
+        AC_MSG_RESULT(no)
+        AC_MSG_ERROR([
+!        Apparently on your system our assumption sizeof size_t == sizeof unsigned long 
+         does not apply. Please mail kde-devel@kde.org with a description of your system!
+        ])
+    ])
+  ])
+  
+! AC_DEFUN(KDE_CHECK_BINUTILS,
+  [
+    AC_MSG_CHECKING([if ld supports unversioned version maps])
+  
+--- 5481,5493 ----
+      ],AC_MSG_RESULT([yes]),[
+        AC_MSG_RESULT(no)
+        AC_MSG_ERROR([
+!        Apparently on your system our assumption sizeof size_t == sizeof unsigned long
+         does not apply. Please mail kde-devel@kde.org with a description of your system!
+        ])
+    ])
+  ])
+  
+! AC_DEFUN([KDE_CHECK_BINUTILS],
+  [
+    AC_MSG_CHECKING([if ld supports unversioned version maps])
+  
+***************
+*** 5476,5482 ****
+  ], kde_supports_versionmaps=yes, kde_supports_versionmaps=no)
+    LDFLAGS="$kde_save_LDFLAGS"
+    rm -f conftest.map
+!   AM_CONDITIONAL(include_VERSION_SCRIPT, 
+      [test "$kde_supports_versionmaps" = "yes" && test "$kde_use_debug_code" = "no"])
+  
+    AC_MSG_RESULT($kde_supports_versionmaps)
+--- 5506,5512 ----
+  ], kde_supports_versionmaps=yes, kde_supports_versionmaps=no)
+    LDFLAGS="$kde_save_LDFLAGS"
+    rm -f conftest.map
+!   AM_CONDITIONAL(include_VERSION_SCRIPT,
+      [test "$kde_supports_versionmaps" = "yes" && test "$kde_use_debug_code" = "no"])
+  
+    AC_MSG_RESULT($kde_supports_versionmaps)
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/admin/cvs.sh ksensors-0.7.3-jpw1/admin/cvs.sh
+*** ksensors-0.7.3-orig/admin/cvs.sh	2003-07-11 11:00:30.000000000 -0400
+--- ksensors-0.7.3-jpw1/admin/cvs.sh	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 29,35 ****
+  {
+  AUTOCONF_VERSION=`$AUTOCONF --version | head -n 1`
+  case $AUTOCONF_VERSION in
+!   Autoconf*2.5* | autoconf*2.5* ) : ;;
+    "" )
+      echo "*** AUTOCONF NOT FOUND!."
+      echo "*** KDE requires autoconf 2.52, 2.53 or 2.54"
+--- 29,35 ----
+  {
+  AUTOCONF_VERSION=`$AUTOCONF --version | head -n 1`
+  case $AUTOCONF_VERSION in
+!   Autoconf*2.[56]* | autoconf*2.[56]* ) : ;;
+    "" )
+      echo "*** AUTOCONF NOT FOUND!."
+      echo "*** KDE requires autoconf 2.52, 2.53 or 2.54"
+***************
+*** 41,50 ****
+      exit 1
+      ;;
+  esac
+!  
+  AUTOHEADER_VERSION=`$AUTOHEADER --version | head -n 1`
+  case $AUTOHEADER_VERSION in
+!   Autoconf*2.5* | autoheader*2.5* ) : ;;
+    "" )
+      echo "*** AUTOHEADER NOT FOUND!."
+      echo "*** KDE requires autoheader 2.52 or 2.53 (part of autoconf)"
+--- 41,50 ----
+      exit 1
+      ;;
+  esac
+! 
+  AUTOHEADER_VERSION=`$AUTOHEADER --version | head -n 1`
+  case $AUTOHEADER_VERSION in
+!   Autoconf*2.[56]* | autoheader*2.[56]* ) : ;;
+    "" )
+      echo "*** AUTOHEADER NOT FOUND!."
+      echo "*** KDE requires autoheader 2.52 or 2.53 (part of autoconf)"
+***************
+*** 57,62 ****
+--- 57,63 ----
+      ;;
+  esac
+  
++ # [jpw;20130210]  Fixed to support automake versions 1.9, 1.10, and 1.11:
+  AUTOMAKE_STRING=`$AUTOMAKE --version | head -n 1`
+  case $AUTOMAKE_STRING in
+    automake*1.5d* | automake*1.5* | automake*1.5-* )
+***************
+*** 64,70 ****
+      echo "*** KDE requires automake 1.6.1 or newer"
+      exit 1
+      ;;
+!   automake*1.6.* | automake*1.7* ) : ;;
+    "" )
+      echo "*** AUTOMAKE NOT FOUND!."
+      echo "*** KDE requires automake 1.6.1 or newer"
+--- 65,71 ----
+      echo "*** KDE requires automake 1.6.1 or newer"
+      exit 1
+      ;;
+!   automake*1.[679].* | automake*1.1[01]*) : ;;
+    "" )
+      echo "*** AUTOMAKE NOT FOUND!."
+      echo "*** KDE requires automake 1.6.1 or newer"
+***************
+*** 85,96 ****
+  cvs()
+  {
+  check_autotool_versions
+!  
+  ### Produce acinclude.m4
+  if grep '\$(top_srcdir)/acinclude.m4:' $makefile_am >/dev/null; then
+    echo "*** Creating acinclude.m4"
+    rm -f acinclude.m4 configure.files
+!   
+    strip_makefile
+    $MAKE -f $makefile_wo top_srcdir=. ./acinclude.m4
+  fi
+--- 86,97 ----
+  cvs()
+  {
+  check_autotool_versions
+! 
+  ### Produce acinclude.m4
+  if grep '\$(top_srcdir)/acinclude.m4:' $makefile_am >/dev/null; then
+    echo "*** Creating acinclude.m4"
+    rm -f acinclude.m4 configure.files
+! 
+    strip_makefile
+    $MAKE -f $makefile_wo top_srcdir=. ./acinclude.m4
+  fi
+***************
+*** 105,111 ****
+  
+      if test -r Makefile.am.in; then
+          echo "*** Creating Makefile.am"
+!         if grep '\$(top_srcdir)/Makefile.am:' $makefile_am >/dev/null; then 
+              strip_makefile
+              $MAKE -f $makefile_wo top_srcdir=. ./Makefile.am || exit 1
+          else
+--- 106,112 ----
+  
+      if test -r Makefile.am.in; then
+          echo "*** Creating Makefile.am"
+!         if grep '\$(top_srcdir)/Makefile.am:' $makefile_am >/dev/null; then
+              strip_makefile
+              $MAKE -f $makefile_wo top_srcdir=. ./Makefile.am || exit 1
+          else
+***************
+*** 235,241 ****
+      done
+  fi
+  
+! for topleveldir in $topleveldirs; do 
+    if test -f $topleveldir/configure.in; then
+  	continue
+    fi
+--- 236,242 ----
+      done
+  fi
+  
+! for topleveldir in $topleveldirs; do
+    if test -f $topleveldir/configure.in; then
+  	continue
+    fi
+***************
+*** 256,262 ****
+  
+  files=`cat configure.files`
+  list=`egrep '^dnl AC_OUTPUT\(.*\)' $files | sed -e "s#^.*dnl AC_OUTPUT(\(.*\))#\1#"`
+! for file in $list; do 
+      echo "AC_CONFIG_FILES([ $file ])" >>  configure.in.new
+  done
+  
+--- 257,263 ----
+  
+  files=`cat configure.files`
+  list=`egrep '^dnl AC_OUTPUT\(.*\)' $files | sed -e "s#^.*dnl AC_OUTPUT(\(.*\))#\1#"`
+! for file in $list; do
+      echo "AC_CONFIG_FILES([ $file ])" >>  configure.in.new
+  done
+  
+***************
+*** 287,296 ****
+       VERSION="\"3.1.0\""
+  fi
+  if test -z "$modulename" || test "$modulename" = "@MODULENAME@"; then
+!    modulename=`pwd`; 
+     modulename=`basename $modulename`
+     esc_VERSION=`echo $VERSION | sed -e "s#[^.0-9a-zA-Z]##g"`
+!    modulename=`echo $modulename | sed -e "s#-$esc_VERSION##"`   
+  
+  fi
+  if test -n "$kde_use_qt_param"; then
+--- 288,297 ----
+       VERSION="\"3.1.0\""
+  fi
+  if test -z "$modulename" || test "$modulename" = "@MODULENAME@"; then
+!    modulename=`pwd`;
+     modulename=`basename $modulename`
+     esc_VERSION=`echo $VERSION | sed -e "s#[^.0-9a-zA-Z]##g"`
+!    modulename=`echo $modulename | sed -e "s#-$esc_VERSION##"`
+  
+  fi
+  if test -n "$kde_use_qt_param"; then
+***************
+*** 338,344 ****
+  
+  create_subdirs()
+  {
+! if grep '\$(top_srcdir)/subdirs:' $makefile_am >/dev/null; then 
+      # as many modules contain rules to create subdirs without any
+      # dependencies make won't create it unless there is no file.
+      # so we check if that's a dummy rule or one that works
+--- 339,345 ----
+  
+  create_subdirs()
+  {
+! if grep '\$(top_srcdir)/subdirs:' $makefile_am >/dev/null; then
+      # as many modules contain rules to create subdirs without any
+      # dependencies make won't create it unless there is no file.
+      # so we check if that's a dummy rule or one that works
+***************
+*** 350,356 ****
+      $MAKE -f $makefile_wo top_srcdir=. ./subdirs || exit 1
+      if test -f subdirs.cvs.sh.$$; then
+  	if test -s subdirs; then
+! 	    rm subdirs.cvs.sh.$$ 
+  	else
+  	    mv subdirs.cvs.sh.$$ subdirs
+  	fi
+--- 351,357 ----
+      $MAKE -f $makefile_wo top_srcdir=. ./subdirs || exit 1
+      if test -f subdirs.cvs.sh.$$; then
+  	if test -s subdirs; then
+! 	    rm subdirs.cvs.sh.$$
+  	else
+  	    mv subdirs.cvs.sh.$$ subdirs
+  	fi
+***************
+*** 387,393 ****
+     echo $d >> ./_SUBDIRS
+  done
+  
+! (for d in $dirs; do 
+     list=`sed -ne "s#^COMPILE_BEFORE_$d""[ ]*=[ ]*##p" $makefile_am | head -n 1`
+     for s in $list; do
+        echo $s $d
+--- 388,394 ----
+     echo $d >> ./_SUBDIRS
+  done
+  
+! (for d in $dirs; do
+     list=`sed -ne "s#^COMPILE_BEFORE_$d""[ ]*=[ ]*##p" $makefile_am | head -n 1`
+     for s in $list; do
+        echo $s $d
+***************
+*** 518,524 ****
+  
+     $MAKE -s -f _transMakefile podir=$podir EXTRACTRC="$EXTRACTRC" PREPARETIPS="$PREPARETIPS" \
+  	XGETTEXT="${XGETTEXT:-xgettext} -C -ki18n -ktr2i18n -kI18N_NOOP -ktranslate -kaliasLocale -x ${includedir:-${KDEDIR:-/usr/local/kde}/include}/kde.pot" \
+! 	messages 
+     exit_code=$?
+     if test "$exit_code" != 0; then
+         echo "make exit code: $exit_code"
+--- 519,525 ----
+  
+     $MAKE -s -f _transMakefile podir=$podir EXTRACTRC="$EXTRACTRC" PREPARETIPS="$PREPARETIPS" \
+  	XGETTEXT="${XGETTEXT:-xgettext} -C -ki18n -ktr2i18n -kI18N_NOOP -ktranslate -kaliasLocale -x ${includedir:-${KDEDIR:-/usr/local/kde}/include}/kde.pot" \
+! 	messages
+     exit_code=$?
+     if test "$exit_code" != 0; then
+         echo "make exit code: $exit_code"
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/admin/debianrules ksensors-0.7.3-jpw1/admin/debianrules
+*** ksensors-0.7.3-orig/admin/debianrules	2003-07-11 11:00:30.000000000 -0400
+--- ksensors-0.7.3-jpw1/admin/debianrules	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 7,19 ****
+  $origPwd = `pwd`;
+  chomp $origPwd;
+  
+! $kde_confdir		=	"/etc/kde3";
+! $kde_prefix		=	"/usr";
+  $kde_bindir		=	"$kde_prefix/bin";
+  $kde_includedir		=	"$kde_prefix/include/kde";
+  $kde_libdir		=	"$kde_prefix/lib";
+  $kde_cgidir		=	"$kde_prefix/lib/cgi-bin";
+! $kde_moduledir		=	"$kde_prefix/lib/kde3";
+  $kde_appsdir		=	"$kde_prefix/share/applnk";
+  $kde_datadir		=	"$kde_prefix/share/apps";
+  $kde_htmldir		=	"$kde_prefix/share/doc/kde/HTML";
+--- 7,29 ----
+  $origPwd = `pwd`;
+  chomp $origPwd;
+  
+! 
+! # [jpw;20130210]  Comment the next line out if you're building using an
+! #                  old version of KDE3 instead of Trinity.
+! $trinity_includes	=	"--with-extra-includes=/usr/include/tqt";
+! 
+! # [jpw;20130210]  Uncomment this line and comment out the next if you're
+! #                  building using an old version of KDE3 instead of Trinity.
+! #$kde3_type="kde3";
+! $kde3_type="trinity";
+! 
+! $kde_confdir		=	"/etc/$kde3_type";
+! $kde_prefix		=	"/opt/$kde3_type";
+  $kde_bindir		=	"$kde_prefix/bin";
+  $kde_includedir		=	"$kde_prefix/include/kde";
+  $kde_libdir		=	"$kde_prefix/lib";
+  $kde_cgidir		=	"$kde_prefix/lib/cgi-bin";
+! $kde_moduledir		=	"$kde_prefix/lib/$kde3_type";
+  $kde_appsdir		=	"$kde_prefix/share/applnk";
+  $kde_datadir		=	"$kde_prefix/share/apps";
+  $kde_htmldir		=	"$kde_prefix/share/doc/kde/HTML";
+***************
+*** 86,94 ****
+    print STDOUT "export ARTSCCONFIG=$ARTSCCONFIG\n";
+    print STDOUT "export INSTALL_DATA=install -p -c -m 644\n";
+  
+!   print STDOUT "configkde=$enable_debug $enable_final --disable-rpath --prefix=\$(kde_prefix) --libexecdir=\$(kde_bindir) --sysconfdir=\$(sysconfdir) --libdir=\$(kde_libdir) --includedir=\$(kde_includedir) --with-qt-includes=/usr/include/qt3 --mandir=\$(mandir) --infodir=\$(infodir) --with-xinerama\n";
+!   print STDOUT "configkdevelop=$enable_debug $enable_final --disable-rpath --enable-docbase --enable-kdoc2 --libdir=\$(kde_libdir) --includedir=\$(kde_includedir) --with-qt-includes=/usr/include/qt3 --mandir=\$(mandir) --with-kdelibsdoc-dir=/usr/share/doc/kdelibs3-doc/html --with-xinerama\n";
+!   print STDOUT "configkdepim=$enable_debug $enable_final --disable-rpath --with-extra-includes=/usr/include/libpisock --enable-shared --prefix=\$(kde_prefix) --libexecdir=\$(kde_bindir) --with-qt-includes=/usr/include/qt3 --mandir=\$(mandir) --infodir=\$(infodir) --with-xinerama\n";
+  
+    exit
+  }
+--- 96,104 ----
+    print STDOUT "export ARTSCCONFIG=$ARTSCCONFIG\n";
+    print STDOUT "export INSTALL_DATA=install -p -c -m 644\n";
+  
+!   print STDOUT "configkde=$enable_debug $enable_final --disable-rpath --prefix=\$(kde_prefix) --libexecdir=\$(kde_bindir) --sysconfdir=\$(sysconfdir) --libdir=\$(kde_libdir) --includedir=\$(kde_includedir) --with-qt-includes=/usr/include/qt3 $trinity_includes --mandir=\$(mandir) --infodir=\$(infodir) --with-xinerama\n";
+!   print STDOUT "configkdevelop=$enable_debug $enable_final --disable-rpath --enable-docbase --enable-kdoc2 --libdir=\$(kde_libdir) --includedir=\$(kde_includedir) --with-qt-includes=/usr/include/qt3 $trinity_includes --mandir=\$(mandir) --with-kdelibsdoc-dir=/usr/share/doc/kdelibs3-doc/html --with-xinerama\n";
+!   print STDOUT "configkdepim=$enable_debug $enable_final --disable-rpath --with-extra-includes=/usr/include/libpisock --enable-shared --prefix=\$(kde_prefix) --libexecdir=\$(kde_bindir) --with-qt-includes=/usr/include/qt3 $trinity_includes --mandir=\$(mandir) --infodir=\$(infodir) --with-xinerama\n";
+  
+    exit
+  }
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/config.h.in ksensors-0.7.3-jpw1/config.h.in
+*** ksensors-0.7.3-orig/config.h.in	2004-08-18 17:38:59.000000000 -0400
+--- ksensors-0.7.3-jpw1/config.h.in	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 1,5 ****
+--- 1,8 ----
+  /* config.h.in.  Generated from configure.in by autoheader.  */
+  
++ /* Define if building universal (internal helper macro) */
++ #undef AC_APPLE_UNIVERSAL_BUILD
++ 
+  /* Define if you have the CoreAudio API */
+  #undef HAVE_COREAUDIO
+  
+***************
+*** 85,90 ****
+--- 88,97 ----
+  /* Define a safe value for MAXPATHLEN */
+  #undef KDEMAXPATHLEN
+  
++ /* Define to the sub-directory in which libtool stores uninstalled libraries.
++    */
++ #undef LT_OBJDIR
++ 
+  /* Name of package */
+  #undef PACKAGE
+  
+***************
+*** 100,121 ****
+  /* Define to the one symbol short name of this package. */
+  #undef PACKAGE_TARNAME
+  
+  /* Define to the version of this package. */
+  #undef PACKAGE_VERSION
+  
+! /* The size of a `char *', as computed by sizeof. */
+  #undef SIZEOF_CHAR_P
+  
+! /* The size of a `int', as computed by sizeof. */
+  #undef SIZEOF_INT
+  
+! /* The size of a `long', as computed by sizeof. */
+  #undef SIZEOF_LONG
+  
+! /* The size of a `size_t', as computed by sizeof. */
+  #undef SIZEOF_SIZE_T
+  
+! /* The size of a `unsigned long', as computed by sizeof. */
+  #undef SIZEOF_UNSIGNED_LONG
+  
+  /* Define to 1 if you have the ANSI C header files. */
+--- 107,131 ----
+  /* Define to the one symbol short name of this package. */
+  #undef PACKAGE_TARNAME
+  
++ /* Define to the home page for this package. */
++ #undef PACKAGE_URL
++ 
+  /* Define to the version of this package. */
+  #undef PACKAGE_VERSION
+  
+! /* The size of `char *', as computed by sizeof. */
+  #undef SIZEOF_CHAR_P
+  
+! /* The size of `int', as computed by sizeof. */
+  #undef SIZEOF_INT
+  
+! /* The size of `long', as computed by sizeof. */
+  #undef SIZEOF_LONG
+  
+! /* The size of `size_t', as computed by sizeof. */
+  #undef SIZEOF_SIZE_T
+  
+! /* The size of `unsigned long', as computed by sizeof. */
+  #undef SIZEOF_UNSIGNED_LONG
+  
+  /* Define to 1 if you have the ANSI C header files. */
+***************
+*** 124,132 ****
+  /* Version number of package */
+  #undef VERSION
+  
+! /* Define to 1 if your processor stores words with the most significant byte
+!    first (like Motorola and SPARC, unlike Intel and VAX). */
+! #undef WORDS_BIGENDIAN
+  
+  /*
+   * jpeg.h needs HAVE_BOOLEAN, when the system uses boolean in system
+--- 134,150 ----
+  /* Version number of package */
+  #undef VERSION
+  
+! /* Define WORDS_BIGENDIAN to 1 if your processor stores words with the most
+!    significant byte first (like Motorola and SPARC, unlike Intel). */
+! #if defined AC_APPLE_UNIVERSAL_BUILD
+! # if defined __BIG_ENDIAN__
+! #  define WORDS_BIGENDIAN 1
+! # endif
+! #else
+! # ifndef WORDS_BIGENDIAN
+! #  undef WORDS_BIGENDIAN
+! # endif
+! #endif
+  
+  /*
+   * jpeg.h needs HAVE_BOOLEAN, when the system uses boolean in system
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/po/nb.po ksensors-0.7.3-jpw1/po/nb.po
+*** ksensors-0.7.3-orig/po/nb.po	1969-12-31 19:00:00.000000000 -0500
+--- ksensors-0.7.3-jpw1/po/nb.po	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 0 ****
+--- 1,422 ----
++ # translation of nb.po to Norwegian Bokmål
++ # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
++ # This file is distributed under the same license as the PACKAGE package.
++ #
++ # Per Øyvind Karlsen <pkarlsen@mandriva.com>, 2006.
++ msgid ""
++ msgstr ""
++ "Project-Id-Version: nb\n"
++ "Report-Msgid-Bugs-To: \n"
++ "POT-Creation-Date: 2004-08-18 23:19+0200\n"
++ "PO-Revision-Date: 2006-09-27 20:52+0200\n"
++ "Last-Translator: Per Øyvind Karlsen <pkarlsen@mandriva.com>\n"
++ "Language-Team: Norwegian Bokmål <cooker-i18n@mandrivalinux.com>\n"
++ "MIME-Version: 1.0\n"
++ "Content-Type: text/plain; charset=UTF-8\n"
++ "Content-Transfer-Encoding: 8bit\n"
++ "X-Generator: KBabel 1.11.4\n"
++ 
++ #: hdsensorslist.cpp:36
++ msgid "Hard Disks"
++ msgstr "Harddisker"
++ 
++ #: i8ksensorslist.cpp:29
++ msgid "MainBoard"
++ msgstr "Hovedkort"
++ 
++ #: ksensorscfg.cpp:51
++ msgid "KSensors Configuration"
++ msgstr "KSensors-oppsett"
++ 
++ #: ksensorscfg.cpp:56
++ msgid "Global settings"
++ msgstr "Globale innstillinger"
++ 
++ #: ksensorscfg.cpp:68
++ msgid " sensors"
++ msgstr " sensorer"
++ 
++ #: ksensorscfg.cpp:85
++ msgid "System Information"
++ msgstr "Systeminformasjon"
++ 
++ #: lmsensorscfg.cpp:101
++ msgid "Temperature"
++ msgstr "Temperatur"
++ 
++ #: lmsensorscfg.cpp:107
++ msgid "Fan"
++ msgstr "Vifte"
++ 
++ #: lmsensorscfg.cpp:110
++ msgid "Voltage"
++ msgstr "Spenning"
++ 
++ #: lmsensorsdock.cpp:62
++ msgid "&About KSensors"
++ msgstr "&Om KSensors"
++ 
++ #: lmsensorsdock.cpp:64
++ #: lmsensorsdock.cpp:124
++ msgid "&Minimize"
++ msgstr "&Minimiser"
++ 
++ #: lmsensorsdock.cpp:64
++ #: lmsensorsdock.cpp:124
++ msgid "&Restore"
++ msgstr "&Gjenopprett"
++ 
++ #: lmsensorsdock.cpp:65
++ msgid "&Exit"
++ msgstr "&Avslutt"
++ 
++ #: main.cpp:27
++ msgid "KSensors - A nice lmsensors frontend for KDE"
++ msgstr "KSensors - Ett behagelig lmsensors-grensesnitt for KDE"
++ 
++ #: main.cpp:33
++ msgid "Don't dock in KDE system tray."
++ msgstr "Ikke fest i KDE systemkurv."
++ 
++ #: main.cpp:34
++ msgid "Show splash screen."
++ msgstr "Vis velkomstbilde."
++ 
++ #: main.cpp:43
++ #: rc.cpp:5
++ msgid "KSensors"
++ msgstr "KSensors"
++ 
++ #: rc.cpp:1
++ msgid "C&ustom"
++ msgstr "&Egendefinert"
++ 
++ #: rc.cpp:2
++ msgid "AboutCfgDesign"
++ msgstr "AboutCfgDesign"
++ 
++ #: rc.cpp:3
++ msgid "KSensors configuration"
++ msgstr "KSensors-oppsett"
++ 
++ #: rc.cpp:4
++ msgid "Monitoring your motherboard"
++ msgstr "Overvåk hovedkortet ditt"
++ 
++ #: rc.cpp:6
++ msgid "Welcome to the KSensors configuration window. Click on the left to select a configuration option."
++ msgstr "Velkommen til KSensors opppsettsvindu. Klikk til venstre for å velge ett oppsettsvalg."
++ 
++ #: rc.cpp:7
++ msgid "GeneralCfg"
++ msgstr "GeneralCfg"
++ 
++ #: rc.cpp:8
++ msgid "Panels size"
++ msgstr "Panelstørrelse"
++ 
++ #: rc.cpp:9
++ msgid "64 x 64"
++ msgstr "64 x 64"
++ 
++ #: rc.cpp:10
++ msgid "56 x 56"
++ msgstr "56 x 56"
++ 
++ #: rc.cpp:11
++ msgid "48 x 48"
++ msgstr "48 x 48"
++ 
++ #: rc.cpp:12
++ #: rc.cpp:55
++ #: rc.cpp:59
++ #: rc.cpp:91
++ msgid "Colors"
++ msgstr "Farger"
++ 
++ #: rc.cpp:13
++ msgid "Startup"
++ msgstr "Oppstart"
++ 
++ #: rc.cpp:14
++ msgid "Autostart KSensors on KDE startup"
++ msgstr "Start opp automatisk ved oppstart av KDE"
++ 
++ #: rc.cpp:15
++ msgid "LMSensorsCfgDesign"
++ msgstr "LMSensorsCfgDesign"
++ 
++ #: rc.cpp:16
++ msgid "Sensors"
++ msgstr "Sensorer"
++ 
++ #: rc.cpp:17
++ msgid "General"
++ msgstr "Generelt"
++ 
++ #: rc.cpp:19
++ msgid "Description"
++ msgstr "Beskrivelse"
++ 
++ #: rc.cpp:21
++ msgid "Values"
++ msgstr "Verdier"
++ 
++ #: rc.cpp:23
++ msgid "Current"
++ msgstr "Gjeldende"
++ 
++ #: rc.cpp:24
++ msgid "Maximum"
++ msgstr "Maksimum"
++ 
++ #: rc.cpp:25
++ msgid "+1%"
++ msgstr "+1%"
++ 
++ #: rc.cpp:26
++ msgid "+2%"
++ msgstr "+2%"
++ 
++ #: rc.cpp:27
++ msgid "+3%"
++ msgstr "+3%"
++ 
++ #: rc.cpp:28
++ msgid "+4%"
++ msgstr "+4%"
++ 
++ #: rc.cpp:29
++ msgid "+5%"
++ msgstr "+5%"
++ 
++ #: rc.cpp:30
++ msgid "+10%"
++ msgstr "+10%"
++ 
++ #: rc.cpp:31
++ msgid "+15%"
++ msgstr "+15%"
++ 
++ #: rc.cpp:32
++ msgid "+20%"
++ msgstr "+20%"
++ 
++ #: rc.cpp:33
++ msgid "+30%"
++ msgstr "+30%"
++ 
++ #: rc.cpp:34
++ msgid "+40%"
++ msgstr "+40%"
++ 
++ #: rc.cpp:35
++ msgid "+50%"
++ msgstr "+50%"
++ 
++ #: rc.cpp:36
++ msgid "Multiplier"
++ msgstr "Multiplikator"
++ 
++ #: rc.cpp:37
++ msgid "Ideal"
++ msgstr "Ideell"
++ 
++ #: rc.cpp:38
++ msgid "Minimum"
++ msgstr "Minimum"
++ 
++ #: rc.cpp:39
++ msgid "Addition"
++ msgstr "Tillegg"
++ 
++ #: rc.cpp:41
++ msgid "-1%"
++ msgstr "-1%"
++ 
++ #: rc.cpp:42
++ msgid "-2%"
++ msgstr "-2%"
++ 
++ #: rc.cpp:43
++ msgid "-3%"
++ msgstr "-3%"
++ 
++ #: rc.cpp:44
++ msgid "-4%"
++ msgstr "-4%"
++ 
++ #: rc.cpp:45
++ msgid "-5%"
++ msgstr "-5%"
++ 
++ #: rc.cpp:46
++ msgid "-10%"
++ msgstr "-10%"
++ 
++ #: rc.cpp:47
++ msgid "-15%"
++ msgstr "-15%"
++ 
++ #: rc.cpp:48
++ msgid "-20%"
++ msgstr "-20%"
++ 
++ #: rc.cpp:49
++ msgid "-30%"
++ msgstr "-30%"
++ 
++ #: rc.cpp:50
++ msgid "-40%"
++ msgstr "-40%"
++ 
++ #: rc.cpp:51
++ msgid "-50%"
++ msgstr "-50%"
++ 
++ #: rc.cpp:52
++ msgid "Panel"
++ msgstr "Panel"
++ 
++ #: rc.cpp:54
++ #: rc.cpp:58
++ #: rc.cpp:90
++ msgid "Visible"
++ msgstr "Synlig"
++ 
++ #: rc.cpp:56
++ msgid "Dock"
++ msgstr "Systemkurvfesting"
++ 
++ #: rc.cpp:60
++ msgid "Alarm"
++ msgstr "Alarm"
++ 
++ #: rc.cpp:63
++ msgid "Normal"
++ msgstr "Normal"
++ 
++ #: rc.cpp:64
++ msgid "Alarms"
++ msgstr "Alarmer"
++ 
++ #: rc.cpp:65
++ msgid "On reach alarm value:"
++ msgstr "Ved oppnådd alarmverdi:"
++ 
++ #: rc.cpp:66
++ msgid "Apply to all sensors"
++ msgstr "Bruk for sensorer"
++ 
++ #: rc.cpp:67
++ msgid "Do nothing"
++ msgstr "Gjør ingenting"
++ 
++ #: rc.cpp:68
++ msgid "Test"
++ msgstr "Test"
++ 
++ #: rc.cpp:69
++ msgid "Play alarm sound"
++ msgstr "Spill alarmlyd"
++ 
++ #: rc.cpp:70
++ msgid "Run command"
++ msgstr "Kjør kommando"
++ 
++ #: rc.cpp:71
++ #: rc.cpp:92
++ msgid "Preferences"
++ msgstr "Egenskaper"
++ 
++ #: rc.cpp:72
++ msgid "Temperatures scale"
++ msgstr "Temperaturskala"
++ 
++ #: rc.cpp:73
++ msgid "Fahrenheit"
++ msgstr "Fahrenheit"
++ 
++ #: rc.cpp:74
++ msgid "Celsius"
++ msgstr "Celsius"
++ 
++ #: rc.cpp:75
++ msgid "Kelvin"
++ msgstr "Kelvin"
++ 
++ #: rc.cpp:76
++ #: rc.cpp:93
++ msgid "Update interval"
++ msgstr "Oppdateringsintervall"
++ 
++ #: rc.cpp:77
++ #: rc.cpp:94
++ msgid "s"
++ msgstr "s"
++ 
++ #: rc.cpp:78
++ msgid "PaletteCfg"
++ msgstr "PaletteCfg"
++ 
++ #: rc.cpp:79
++ #: rc.cpp:84
++ msgid "Title"
++ msgstr "Tittel"
++ 
++ #: rc.cpp:80
++ msgid "+3.5V"
++ msgstr "+3.5V"
++ 
++ #: rc.cpp:81
++ msgid "Default colors"
++ msgstr "Standardfarger"
++ 
++ #: rc.cpp:82
++ msgid "Background"
++ msgstr "Bakgrunn"
++ 
++ #: rc.cpp:85
++ msgid "Value"
++ msgstr "Verdi"
++ 
++ #: rc.cpp:87
++ msgid "SystemCfgDesign"
++ msgstr "SystemCfgDesign"
++ 
++ #: rc.cpp:88
++ msgid "System Panels"
++ msgstr "Systempaneler"
++ 
++ #: systemcfg.cpp:47
++ msgid "CPU Speed"
++ msgstr "CPU-hastighet"
++ 
++ #: systemcfg.cpp:48
++ msgid "CPU State"
++ msgstr "CPU-status"
++ 
++ #: systemcfg.cpp:49
++ msgid "RAM Used"
++ msgstr "RAM brukt"
++ 
++ #: systemcfg.cpp:50
++ msgid "SWAP Used"
++ msgstr "SWAP brukt"
++ 
++ #: systemcfg.cpp:51
++ msgid "Up Time"
++ msgstr "Oppetid"
++ 
++ #: _translatorinfo.cpp:1
++ msgid ""
++ "_: NAME OF TRANSLATORS\n"
++ "Your names"
++ msgstr "Per Øyvind Karlsen"
++ 
++ #: _translatorinfo.cpp:3
++ msgid ""
++ "_: EMAIL OF TRANSLATORS\n"
++ "Your emails"
++ msgstr "pkarlsen@mandriva.com"
++ 
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/po/pl.po ksensors-0.7.3-jpw1/po/pl.po
+*** ksensors-0.7.3-orig/po/pl.po	1969-12-31 19:00:00.000000000 -0500
+--- ksensors-0.7.3-jpw1/po/pl.po	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 0 ****
+--- 1,413 ----
++ # translation of pl.po to 
++ # translation of pl.po to
++ # translation of ksensors.po to
++ # This file is distributed under the same license as the PACKAGE package.
++ # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER, 2005.
++ #
++ msgid ""
++ msgstr ""
++ "Project-Id-Version: pl\n"
++ "Report-Msgid-Bugs-To: \n"
++ "POT-Creation-Date: 2004-08-18 23:19+0200\n"
++ "PO-Revision-Date: 2005-03-18 15:42+0100\n"
++ "Last-Translator: \n"
++ "Language-Team:  <pl@li.org>\n"
++ "MIME-Version: 1.0\n"
++ "Content-Type: text/plain; charset=UTF-8\n"
++ "Content-Transfer-Encoding: 8bit\n"
++ "X-Generator: KBabel 1.9.1\n"
++ 
++ #: hdsensorslist.cpp:36
++ msgid "Hard Disks"
++ msgstr "Twarde dyski"
++ 
++ #: i8ksensorslist.cpp:29
++ msgid "MainBoard"
++ msgstr "Płyta główna"
++ 
++ #: ksensorscfg.cpp:51
++ msgid "KSensors Configuration"
++ msgstr "Konfiguracja KSensors"
++ 
++ #: ksensorscfg.cpp:56
++ msgid "Global settings"
++ msgstr "Globalne ustawienia"
++ 
++ #: ksensorscfg.cpp:68
++ msgid " sensors"
++ msgstr " czujniki"
++ 
++ #: ksensorscfg.cpp:85
++ msgid "System Information"
++ msgstr "Informacja o systemie"
++ 
++ #: lmsensorscfg.cpp:101
++ msgid "Temperature"
++ msgstr "Temperatura"
++ 
++ #: lmsensorscfg.cpp:107
++ msgid "Fan"
++ msgstr "Wiatrak"
++ 
++ #: lmsensorscfg.cpp:110
++ msgid "Voltage"
++ msgstr "Napięcie"
++ 
++ #: lmsensorsdock.cpp:62
++ msgid "&About KSensors"
++ msgstr "&O KSensors"
++ 
++ #: lmsensorsdock.cpp:64 lmsensorsdock.cpp:124
++ msgid "&Minimize"
++ msgstr "&Minimalizuj"
++ 
++ #: lmsensorsdock.cpp:64 lmsensorsdock.cpp:124
++ msgid "&Restore"
++ msgstr "&Przywróć"
++ 
++ #: lmsensorsdock.cpp:65
++ msgid "&Exit"
++ msgstr "&Wyjście"
++ 
++ #: main.cpp:27
++ msgid "KSensors - A nice lmsensors frontend for KDE"
++ msgstr "KSensors - Ładny frondend lmsensors dla KDE"
++ 
++ #: main.cpp:33
++ msgid "Don't dock in KDE system tray."
++ msgstr "Nie dokuj w trayu systemowym KDE."
++ 
++ #: main.cpp:34
++ msgid "Show splash screen."
++ msgstr "Pokaż ekran powitalny."
++ 
++ #: main.cpp:43 rc.cpp:5
++ msgid "KSensors"
++ msgstr "KSensors"
++ 
++ #: rc.cpp:1
++ msgid "C&ustom"
++ msgstr "&Własne"
++ 
++ #: rc.cpp:2
++ msgid "AboutCfgDesign"
++ msgstr ""
++ 
++ #: rc.cpp:3
++ msgid "KSensors configuration"
++ msgstr "Konfiguracja KSensors"
++ 
++ #: rc.cpp:4
++ msgid "Monitoring your motherboard"
++ msgstr "Monitorowanie Twojej płyty głównej"
++ 
++ #: rc.cpp:6
++ msgid ""
++ "Welcome to the KSensors configuration window. Click on the left to select a "
++ "configuration option."
++ msgstr "Witamy w oknie konfiguracji programu KSensors. Kliknij po lewej aby wybrać opcję do konfiguracji."
++ 
++ #: rc.cpp:7
++ msgid "GeneralCfg"
++ msgstr ""
++ 
++ #: rc.cpp:8
++ msgid "Panels size"
++ msgstr "Rozmiar panelu"
++ 
++ #: rc.cpp:9
++ msgid "64 x 64"
++ msgstr ""
++ 
++ #: rc.cpp:10
++ msgid "56 x 56"
++ msgstr ""
++ 
++ #: rc.cpp:11
++ msgid "48 x 48"
++ msgstr ""
++ 
++ #: rc.cpp:12 rc.cpp:55 rc.cpp:59 rc.cpp:91
++ msgid "Colors"
++ msgstr "Kolory"
++ 
++ #: rc.cpp:13
++ msgid "Startup"
++ msgstr ""
++ 
++ #: rc.cpp:14
++ msgid "Autostart KSensors on KDE startup"
++ msgstr "Uruchom KSensors przy starcie KDE"
++ 
++ #: rc.cpp:15
++ msgid "LMSensorsCfgDesign"
++ msgstr ""
++ 
++ #: rc.cpp:16
++ msgid "Sensors"
++ msgstr "Czujniki"
++ 
++ #: rc.cpp:17
++ msgid "General"
++ msgstr "Ogólne"
++ 
++ #: rc.cpp:19
++ msgid "Description"
++ msgstr "Opis"
++ 
++ #: rc.cpp:21
++ msgid "Values"
++ msgstr "Wartość"
++ 
++ #: rc.cpp:23
++ msgid "Current"
++ msgstr "Bieżaca"
++ 
++ #: rc.cpp:24
++ msgid "Maximum"
++ msgstr "Maksymalna"
++ 
++ #: rc.cpp:25
++ msgid "+1%"
++ msgstr ""
++ 
++ #: rc.cpp:26
++ msgid "+2%"
++ msgstr ""
++ 
++ #: rc.cpp:27
++ msgid "+3%"
++ msgstr ""
++ 
++ #: rc.cpp:28
++ msgid "+4%"
++ msgstr ""
++ 
++ #: rc.cpp:29
++ msgid "+5%"
++ msgstr ""
++ 
++ #: rc.cpp:30
++ msgid "+10%"
++ msgstr ""
++ 
++ #: rc.cpp:31
++ msgid "+15%"
++ msgstr ""
++ 
++ #: rc.cpp:32
++ msgid "+20%"
++ msgstr ""
++ 
++ #: rc.cpp:33
++ msgid "+30%"
++ msgstr ""
++ 
++ #: rc.cpp:34
++ msgid "+40%"
++ msgstr ""
++ 
++ #: rc.cpp:35
++ msgid "+50%"
++ msgstr ""
++ 
++ #: rc.cpp:36
++ msgid "Multiplier"
++ msgstr "Mnożnik"
++ 
++ #: rc.cpp:37
++ msgid "Ideal"
++ msgstr "Idealna"
++ 
++ #: rc.cpp:38
++ msgid "Minimum"
++ msgstr "Minimalna"
++ 
++ #: rc.cpp:39
++ msgid "Addition"
++ msgstr "Dodanie"
++ 
++ #: rc.cpp:41
++ msgid "-1%"
++ msgstr ""
++ 
++ #: rc.cpp:42
++ msgid "-2%"
++ msgstr ""
++ 
++ #: rc.cpp:43
++ msgid "-3%"
++ msgstr ""
++ 
++ #: rc.cpp:44
++ msgid "-4%"
++ msgstr ""
++ 
++ #: rc.cpp:45
++ msgid "-5%"
++ msgstr ""
++ 
++ #: rc.cpp:46
++ msgid "-10%"
++ msgstr ""
++ 
++ #: rc.cpp:47
++ msgid "-15%"
++ msgstr ""
++ 
++ #: rc.cpp:48
++ msgid "-20%"
++ msgstr ""
++ 
++ #: rc.cpp:49
++ msgid "-30%"
++ msgstr ""
++ 
++ #: rc.cpp:50
++ msgid "-40%"
++ msgstr ""
++ 
++ #: rc.cpp:51
++ msgid "-50%"
++ msgstr ""
++ 
++ #: rc.cpp:52
++ msgid "Panel"
++ msgstr ""
++ 
++ #: rc.cpp:54 rc.cpp:58 rc.cpp:90
++ msgid "Visible"
++ msgstr "Widoczne"
++ 
++ #: rc.cpp:56
++ msgid "Dock"
++ msgstr "Dokowanie"
++ 
++ #: rc.cpp:60
++ msgid "Alarm"
++ msgstr ""
++ 
++ #: rc.cpp:63
++ msgid "Normal"
++ msgstr "Normalne"
++ 
++ #: rc.cpp:64
++ msgid "Alarms"
++ msgstr "Alarmy"
++ 
++ #: rc.cpp:65
++ msgid "On reach alarm value:"
++ msgstr "Przy osiągnięciu wartości alarmowej:"
++ 
++ #: rc.cpp:66
++ msgid "Apply to all sensors"
++ msgstr "Zatwierdź do wszystkich czujników"
++ 
++ #: rc.cpp:67
++ msgid "Do nothing"
++ msgstr "Nie rób nic"
++ 
++ #: rc.cpp:68
++ msgid "Test"
++ msgstr ""
++ 
++ #: rc.cpp:69
++ msgid "Play alarm sound"
++ msgstr "Odtwarzaj dźwięk"
++ 
++ #: rc.cpp:70
++ msgid "Run command"
++ msgstr "Wykonaj polecenie"
++ 
++ #: rc.cpp:71 rc.cpp:92
++ msgid "Preferences"
++ msgstr "Właściwości"
++ 
++ #: rc.cpp:72
++ msgid "Temperatures scale"
++ msgstr "Skala temperatur"
++ 
++ #: rc.cpp:73
++ msgid "Fahrenheit"
++ msgstr ""
++ 
++ #: rc.cpp:74
++ msgid "Celsius"
++ msgstr "Celciusz"
++ 
++ #: rc.cpp:75
++ msgid "Kelvin"
++ msgstr "Kelwin"
++ 
++ #: rc.cpp:76 rc.cpp:93
++ msgid "Update interval"
++ msgstr "Interwał aktualizacji"
++ 
++ #: rc.cpp:77 rc.cpp:94
++ msgid "s"
++ msgstr ""
++ 
++ #: rc.cpp:78
++ msgid "PaletteCfg"
++ msgstr ""
++ 
++ #: rc.cpp:79 rc.cpp:84
++ msgid "Title"
++ msgstr "Tytuł"
++ 
++ #: rc.cpp:80
++ msgid "+3.5V"
++ msgstr ""
++ 
++ #: rc.cpp:81
++ msgid "Default colors"
++ msgstr "Domyślne kolory"
++ 
++ #: rc.cpp:82
++ msgid "Background"
++ msgstr "Tło"
++ 
++ #: rc.cpp:85
++ msgid "Value"
++ msgstr "Wartość"
++ 
++ #: rc.cpp:87
++ msgid "SystemCfgDesign"
++ msgstr ""
++ 
++ #: rc.cpp:88
++ msgid "System Panels"
++ msgstr "Panele systemowe"
++ 
++ #: systemcfg.cpp:47
++ msgid "CPU Speed"
++ msgstr "Zegar CPU"
++ 
++ #: systemcfg.cpp:48
++ msgid "CPU State"
++ msgstr "Status CPU"
++ 
++ #: systemcfg.cpp:49
++ msgid "RAM Used"
++ msgstr "Użycie RAM"
++ 
++ #: systemcfg.cpp:50
++ msgid "SWAP Used"
++ msgstr "Użycie SWAP"
++ 
++ #: systemcfg.cpp:51
++ msgid "Up Time"
++ msgstr ""
++ 
++ #: _translatorinfo.cpp:1
++ msgid ""
++ "_: NAME OF TRANSLATORS\n"
++ "Your names"
++ msgstr "Tomasz Waleńczak"
++ 
++ #: _translatorinfo.cpp:3
++ msgid ""
++ "_: EMAIL OF TRANSLATORS\n"
++ "Your emails"
++ msgstr "tom@w.pl"
++ 
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/po/sv.po ksensors-0.7.3-jpw1/po/sv.po
+*** ksensors-0.7.3-orig/po/sv.po	1969-12-31 19:00:00.000000000 -0500
+--- ksensors-0.7.3-jpw1/po/sv.po	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 0 ****
+--- 1,423 ----
++ # SOME DESCRIPTIVE TITLE.
++ # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
++ # This file is distributed under the same license as the PACKAGE package.
++ # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
++ #
++ msgid ""
++ msgstr ""
++ "Project-Id-Version: ksensors 0.7.3-7\n"
++ "Report-Msgid-Bugs-To: \n"
++ "POT-Creation-Date: 2004-08-18 23:19+0200\n"
++ "PO-Revision-Date: 2005-11-02 22:34+0100\n"
++ "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
++ "Language-Team: Swedish <sv@li.org>\n"
++ "MIME-Version: 1.0\n"
++ "Content-Type: text/plain; charset=iso-8859-1\n"
++ "Content-Transfer-Encoding: 8bit\n"
++ "X-Poedit-Language: swe\n"
++ "X-Poedit-Country: swe\n"
++ 
++ #: hdsensorslist.cpp:36
++ msgid "Hard Disks"
++ msgstr "H�rddiskar"
++ 
++ #: i8ksensorslist.cpp:29
++ msgid "MainBoard"
++ msgstr "Moderkort"
++ 
++ #: ksensorscfg.cpp:51
++ msgid "KSensors Configuration"
++ msgstr "Konfiguration av KSensors"
++ 
++ #: ksensorscfg.cpp:56
++ msgid "Global settings"
++ msgstr "Globala inst�llningar"
++ 
++ #: ksensorscfg.cpp:68
++ msgid " sensors"
++ msgstr " sensorer"
++ 
++ #: ksensorscfg.cpp:85
++ msgid "System Information"
++ msgstr "Systeminformation"
++ 
++ #: lmsensorscfg.cpp:101
++ msgid "Temperature"
++ msgstr "Temperatur"
++ 
++ #: lmsensorscfg.cpp:107
++ msgid "Fan"
++ msgstr "Fl�kt"
++ 
++ #: lmsensorscfg.cpp:110
++ msgid "Voltage"
++ msgstr "Volttal"
++ 
++ #: lmsensorsdock.cpp:62
++ msgid "&About KSensors"
++ msgstr "&Om KSensors"
++ 
++ #: lmsensorsdock.cpp:64
++ #: lmsensorsdock.cpp:124
++ msgid "&Minimize"
++ msgstr "&Minimera"
++ 
++ #: lmsensorsdock.cpp:64
++ #: lmsensorsdock.cpp:124
++ msgid "&Restore"
++ msgstr "&�terst�ll"
++ 
++ #: lmsensorsdock.cpp:65
++ msgid "&Exit"
++ msgstr "&Avsluta"
++ 
++ #: main.cpp:27
++ msgid "KSensors - A nice lmsensors frontend for KDE"
++ msgstr "KSensors - Ett trevligt gr�nssnitt mot lmsensors f�r KDE"
++ 
++ #: main.cpp:33
++ msgid "Don't dock in KDE system tray."
++ msgstr "Docka inte till KDE's systemraden."
++ 
++ #: main.cpp:34
++ msgid "Show splash screen."
++ msgstr "Visa startbild."
++ 
++ #: main.cpp:43
++ #: rc.cpp:5
++ msgid "KSensors"
++ msgstr "KSensors"
++ 
++ #: rc.cpp:1
++ msgid "C&ustom"
++ msgstr "Egendefinerad"
++ 
++ #: rc.cpp:2
++ msgid "AboutCfgDesign"
++ msgstr "AboutCfgDesign"
++ 
++ #: rc.cpp:3
++ msgid "KSensors configuration"
++ msgstr "KSensors konfiguration"
++ 
++ #: rc.cpp:4
++ msgid "Monitoring your motherboard"
++ msgstr "�vervaka ditt moderkort"
++ 
++ #: rc.cpp:6
++ msgid "Welcome to the KSensors configuration window. Click on the left to select a configuration option."
++ msgstr "V�lkommen till KSenors konfigurationsf�nster. Klicka p� v�nster sida f�r att v�lja en inst�llning."
++ 
++ #: rc.cpp:7
++ msgid "GeneralCfg"
++ msgstr "GeneralCfg"
++ 
++ #: rc.cpp:8
++ msgid "Panels size"
++ msgstr "Panelstorlek"
++ 
++ #: rc.cpp:9
++ msgid "64 x 64"
++ msgstr "64 x 64"
++ 
++ #: rc.cpp:10
++ msgid "56 x 56"
++ msgstr "56 x 56"
++ 
++ #: rc.cpp:11
++ msgid "48 x 48"
++ msgstr "48 x 48"
++ 
++ #: rc.cpp:12
++ #: rc.cpp:55
++ #: rc.cpp:59
++ #: rc.cpp:91
++ msgid "Colors"
++ msgstr "F�rger"
++ 
++ #: rc.cpp:13
++ msgid "Startup"
++ msgstr "Starta upp"
++ 
++ #: rc.cpp:14
++ msgid "Autostart KSensors on KDE startup"
++ msgstr "Autostarta KSensors vid uppstart av KDE"
++ 
++ #: rc.cpp:15
++ msgid "LMSensorsCfgDesign"
++ msgstr "LMSensorsCfgDesign"
++ 
++ #: rc.cpp:16
++ msgid "Sensors"
++ msgstr "Sensorer"
++ 
++ #: rc.cpp:17
++ msgid "General"
++ msgstr "Allm�nt"
++ 
++ #: rc.cpp:19
++ msgid "Description"
++ msgstr "Beskrivning"
++ 
++ #: rc.cpp:21
++ msgid "Values"
++ msgstr "V�rden"
++ 
++ #: rc.cpp:23
++ msgid "Current"
++ msgstr "Nuvarande"
++ 
++ #: rc.cpp:24
++ msgid "Maximum"
++ msgstr "Maximum"
++ 
++ #: rc.cpp:25
++ msgid "+1%"
++ msgstr "+1%"
++ 
++ #: rc.cpp:26
++ msgid "+2%"
++ msgstr "+2%"
++ 
++ #: rc.cpp:27
++ msgid "+3%"
++ msgstr "+3%"
++ 
++ #: rc.cpp:28
++ msgid "+4%"
++ msgstr "+4%"
++ 
++ #: rc.cpp:29
++ msgid "+5%"
++ msgstr "+5%"
++ 
++ #: rc.cpp:30
++ msgid "+10%"
++ msgstr "+10%"
++ 
++ #: rc.cpp:31
++ msgid "+15%"
++ msgstr "+15%"
++ 
++ #: rc.cpp:32
++ msgid "+20%"
++ msgstr "+20%"
++ 
++ #: rc.cpp:33
++ msgid "+30%"
++ msgstr "+30%"
++ 
++ #: rc.cpp:34
++ msgid "+40%"
++ msgstr "+40%"
++ 
++ #: rc.cpp:35
++ msgid "+50%"
++ msgstr "+50%"
++ 
++ #: rc.cpp:36
++ msgid "Multiplier"
++ msgstr "Multiplikator"
++ 
++ #: rc.cpp:37
++ msgid "Ideal"
++ msgstr "Ideal"
++ 
++ #: rc.cpp:38
++ msgid "Minimum"
++ msgstr "Minimum"
++ 
++ #: rc.cpp:39
++ msgid "Addition"
++ msgstr "Till�gg"
++ 
++ #: rc.cpp:41
++ msgid "-1%"
++ msgstr "-1%"
++ 
++ #: rc.cpp:42
++ msgid "-2%"
++ msgstr "-2%"
++ 
++ #: rc.cpp:43
++ msgid "-3%"
++ msgstr "-3%"
++ 
++ #: rc.cpp:44
++ msgid "-4%"
++ msgstr "-4%"
++ 
++ #: rc.cpp:45
++ msgid "-5%"
++ msgstr "-5%"
++ 
++ #: rc.cpp:46
++ msgid "-10%"
++ msgstr "-10%"
++ 
++ #: rc.cpp:47
++ msgid "-15%"
++ msgstr "-15%"
++ 
++ #: rc.cpp:48
++ msgid "-20%"
++ msgstr "-20%"
++ 
++ #: rc.cpp:49
++ msgid "-30%"
++ msgstr "-30%"
++ 
++ #: rc.cpp:50
++ msgid "-40%"
++ msgstr "-40%"
++ 
++ #: rc.cpp:51
++ msgid "-50%"
++ msgstr "-50%"
++ 
++ #: rc.cpp:52
++ msgid "Panel"
++ msgstr "Panel"
++ 
++ #: rc.cpp:54
++ #: rc.cpp:58
++ #: rc.cpp:90
++ msgid "Visible"
++ msgstr "Synlig"
++ 
++ #: rc.cpp:56
++ msgid "Dock"
++ msgstr "Dockning"
++ 
++ #: rc.cpp:60
++ msgid "Alarm"
++ msgstr "Alarm"
++ 
++ #: rc.cpp:63
++ msgid "Normal"
++ msgstr "Normal"
++ 
++ #: rc.cpp:64
++ msgid "Alarms"
++ msgstr "Larm"
++ 
++ #: rc.cpp:65
++ msgid "On reach alarm value:"
++ msgstr "N�r larmv�rdet uppn�s:"
++ 
++ #: rc.cpp:66
++ msgid "Apply to all sensors"
++ msgstr "Till�mpa p� alla sensorer"
++ 
++ #: rc.cpp:67
++ msgid "Do nothing"
++ msgstr "G�r inget"
++ 
++ #: rc.cpp:68
++ msgid "Test"
++ msgstr "Test"
++ 
++ #: rc.cpp:69
++ msgid "Play alarm sound"
++ msgstr "Spela upp larmljud"
++ 
++ #: rc.cpp:70
++ msgid "Run command"
++ msgstr "K�r kommando"
++ 
++ #: rc.cpp:71
++ #: rc.cpp:92
++ msgid "Preferences"
++ msgstr "Egenskaper"
++ 
++ #: rc.cpp:72
++ msgid "Temperatures scale"
++ msgstr "Temperaturskala"
++ 
++ #: rc.cpp:73
++ msgid "Fahrenheit"
++ msgstr "Fahrenheit"
++ 
++ #: rc.cpp:74
++ msgid "Celsius"
++ msgstr "Celsius"
++ 
++ #: rc.cpp:75
++ msgid "Kelvin"
++ msgstr "Kelvin"
++ 
++ #: rc.cpp:76
++ #: rc.cpp:93
++ msgid "Update interval"
++ msgstr "Uppdateringsintervall"
++ 
++ #: rc.cpp:77
++ #: rc.cpp:94
++ msgid "s"
++ msgstr "s"
++ 
++ #: rc.cpp:78
++ msgid "PaletteCfg"
++ msgstr "PaletteCfg"
++ 
++ #: rc.cpp:79
++ #: rc.cpp:84
++ msgid "Title"
++ msgstr "Titel"
++ 
++ #: rc.cpp:80
++ msgid "+3.5V"
++ msgstr "+3.5V"
++ 
++ #: rc.cpp:81
++ msgid "Default colors"
++ msgstr "Standardf�rger"
++ 
++ #: rc.cpp:82
++ msgid "Background"
++ msgstr "Bakgrund"
++ 
++ #: rc.cpp:85
++ msgid "Value"
++ msgstr "V�rde"
++ 
++ #: rc.cpp:87
++ msgid "SystemCfgDesign"
++ msgstr "SystemCfgDesign"
++ 
++ #: rc.cpp:88
++ msgid "System Panels"
++ msgstr "Systempaneler"
++ 
++ #: systemcfg.cpp:47
++ msgid "CPU Speed"
++ msgstr "CPU-hastighet"
++ 
++ #: systemcfg.cpp:48
++ msgid "CPU State"
++ msgstr "CPU Status"
++ 
++ #: systemcfg.cpp:49
++ msgid "RAM Used"
++ msgstr "RAM anv�nt"
++ 
++ #: systemcfg.cpp:50
++ msgid "SWAP Used"
++ msgstr "SWAP anv�nt"
++ 
++ #: systemcfg.cpp:51
++ msgid "Up Time"
++ msgstr "Uppetid"
++ 
++ #: _translatorinfo.cpp:1
++ msgid ""
++ "_: NAME OF TRANSLATORS\n"
++ "Your names"
++ msgstr "Daniel Nylander"
++ 
++ #: _translatorinfo.cpp:3
++ msgid ""
++ "_: EMAIL OF TRANSLATORS\n"
++ "Your emails"
++ msgstr "po@danielnylander.se"
++ 
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/src/cpupanel.cpp ksensors-0.7.3-jpw1/src/cpupanel.cpp
+*** ksensors-0.7.3-orig/src/cpupanel.cpp	2004-08-18 15:57:30.000000000 -0400
+--- ksensors-0.7.3-jpw1/src/cpupanel.cpp	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 60,70 ****
+  
+  CpuPanel::CpuPanel(QWidget *parent, const char *name) : Panel(parent,name)
+  {
+!  sCpu= "Unknow";
+   getCpuInfoValue("model name",sCpu);
+   adjustString(sCpu,16);
+  
+!  sVendor= "Unknow";
+   getCpuInfoValue("vendor_id",sVendor);
+   adjustString(sVendor,16);
+  
+--- 60,70 ----
+  
+  CpuPanel::CpuPanel(QWidget *parent, const char *name) : Panel(parent,name)
+  {
+!  sCpu= "Unknown";
+   getCpuInfoValue("model name",sCpu);
+   adjustString(sCpu,16);
+  
+!  sVendor= "Unknown";
+   getCpuInfoValue("vendor_id",sVendor);
+   adjustString(sVendor,16);
+  
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/src/hdsensorslist.cpp ksensors-0.7.3-jpw1/src/hdsensorslist.cpp
+*** ksensors-0.7.3-orig/src/hdsensorslist.cpp	2004-08-08 14:30:05.000000000 -0400
+--- ksensors-0.7.3-jpw1/src/hdsensorslist.cpp	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 23,29 ****
+  #include <stdlib.h>
+  #include <qstringlist.h>
+  #include <klocale.h>
+! #include <regex.h>
+  
+  #include "sensor.h"
+  #include "hdsensorslist.h"
+--- 23,29 ----
+  #include <stdlib.h>
+  #include <qstringlist.h>
+  #include <klocale.h>
+! #include <qregexp.h>
+  
+  #include "sensor.h"
+  #include "hdsensorslist.h"
+***************
+*** 44,71 ****
+   QStringList disks;
+   if(!getDisks(disks)) return;
+  
+-  ProcessExec proc;
+-  proc << "hddtemp" << "-q";
+   for(QStringList::Iterator it = disks.begin(); it != disks.end(); ++it ) {
+     proc << *it;
+!  }
+! 
+!  if(proc.runAndWait()) {
+!     double value;
+!     QString str;
+!     for(QStringList::Iterator it = disks.begin(); it != disks.end(); ++it ) {
+!       if(getDiskInfo(proc.getStdoutData(),*it,str,value)) {
+!          Sensor *sensor= new Sensor(this);
+!          sensor->setType(Sensor::lmTemp);
+!          sensor->setName(*it);
+!          sensor->setDescription(str);
+!          sensor->setValueMax  (40   , Sensor::dgCelsius);
+!          sensor->setValueMin  ( 0   , Sensor::dgCelsius);
+!          sensor->setValueIdeal(value, Sensor::dgCelsius);
+!          sensor->setValue     (value, Sensor::dgCelsius);
+!          sensor->readConfig();
+!       }
+!     }
+   }
+  }
+  
+--- 44,68 ----
+   QStringList disks;
+   if(!getDisks(disks)) return;
+  
+   for(QStringList::Iterator it = disks.begin(); it != disks.end(); ++it ) {
++    ProcessExec proc;
++    proc << "hddtemp" << "-q";
+     proc << *it;
+!    if(proc.runAndWait()) {
+!      double value;
+!      QString str;
+!      if(getDiskInfo(proc.getStdoutData(),str,value)) {
+!        Sensor *sensor= new Sensor(this);
+!        sensor->setType(Sensor::lmTemp);
+!        sensor->setName(*it);
+!        sensor->setDescription(str);
+!        sensor->setValueMax  (40   , Sensor::dgCelsius);
+!        sensor->setValueMin  ( 0   , Sensor::dgCelsius);
+!        sensor->setValueIdeal(value, Sensor::dgCelsius);
+!        sensor->setValue     (value, Sensor::dgCelsius);
+!        sensor->readConfig();
+!      }
+!    }
+   }
+  }
+  
+***************
+*** 90,139 ****
+  
+   if(params.count()>0) {
+     process= new ProcessExec;
+- #if ( KDE_VERSION_MAJOR >= 3 )
+     *process << "hddtemp" << "-q" << params;
+- #else
+-    *process << "hddtemp" << "-q";
+-    for (QStringList::Iterator it= params.begin(); it!=params.end(); ++it)
+-     *process << *it;
+- #endif
+     connect( process, SIGNAL(processExited(KProcess *)), this, SLOT(slotProcessExited(KProcess *)) );
+     process->run();
+   }
+  }
+  
+- 
+  void HDSensorsList::slotProcessExited(KProcess *)
+  {
+   QObjectList *list= (QObjectList *)children();
+  
+!  if(!list) return;
+! 
+!  char *buf= process->getStdoutData();
+  
+!  if( process->outputErrors() ) {
+!    qWarning("HddTemp Error:\n%s", buf);
+!  }
+  
+!  char *ptr;
+!  regex_t *preg;
+!  regmatch_t pmatch[1];
+!  preg = (regex_t*) malloc(sizeof(regex_t));
+!  regcomp(preg, ": [0-9]\\+.*C$", REG_NEWLINE);
+!  
+!  for(Sensor *obj= (Sensor *)list->first(); obj!=0; obj= (Sensor *)list->next()) {
+!    buf= strstr(buf,obj->name());
+!    if(!buf) break;
+!    if (regexec(preg, buf, 1, pmatch, 0) == 0)
+!    {
+!      ptr = buf + pmatch[0].rm_so + 2;
+!      buf += pmatch[0].rm_eo;
+!      obj->setValue(atof(ptr), Sensor::dgCelsius); 
+     }
+   }
+-  regfree(preg);
+-  free(preg);
+- 
+   delete process;
+   process= 0;
+  }
+--- 87,115 ----
+  
+   if(params.count()>0) {
+     process= new ProcessExec;
+     *process << "hddtemp" << "-q" << params;
+     connect( process, SIGNAL(processExited(KProcess *)), this, SLOT(slotProcessExited(KProcess *)) );
+     process->run();
+   }
+  }
+  
+  void HDSensorsList::slotProcessExited(KProcess *)
+  {
+   QObjectList *list= (QObjectList *)children();
+  
+!  if (!list) return;
+  
+!  if (process->outputErrors())
+!    qWarning("HddTemp Error:\n%s", process->getStdoutData().ascii());
+  
+!  QStringList buf = QStringList::split(QChar('\n'), process->getStdoutData());
+!  for(QStringList::Iterator it = buf.begin(); it != buf.end(); ++it ) {
+!    for(Sensor *obj= (Sensor *)list->first(); obj!=0; obj= (Sensor *)list->next()) {
+!      QRegExp rx(QString(obj->name()) + QString(":\\s+.+:\\s+(\\d+).*C"));
+!      if (rx.search((*it)) > -1)
+!        obj->setValue(rx.cap(1).toDouble(), Sensor::dgCelsius); 
+     }
+   }
+   delete process;
+   process= 0;
+  }
+***************
+*** 141,218 ****
+  // ***************  Static methods
+  
+  
+! bool HDSensorsList::getDiskInfo(const char *buf, QString disk, QString &name, double &value)
+  {
+!  regex_t *preg;
+!  regmatch_t pmatch[1];
+!  preg = (regex_t*) malloc(sizeof(regex_t));
+! 
+!  // Take disk model
+!  char reg_string[30];
+!  snprintf(reg_string, sizeof(reg_string), "%s: .*: [0-9]", disk.latin1());
+!  regcomp(preg, reg_string, REG_NEWLINE);
+!  if (regexec(preg, buf, 1, pmatch, 0) == 0)
+!  {	    
+!    name="";	   
+!    pmatch[0].rm_eo -= 3;
+!    pmatch[0].rm_so += 10;
+!    buf += pmatch[0].rm_so;
+!    while (pmatch[0].rm_so < pmatch[0].rm_eo) 
+!    {	    
+!      name += *buf;
+!      buf++;
+!      pmatch[0].rm_so++;
+!    }
+!    regfree(preg);
+!    name= name.stripWhiteSpace();
+!    if( name.length()>40 ) name= disk;
+!  }
+!  else
+!  {
+!    regfree(preg);
+!    free(preg);
+!    return false;
+   }
+!  
+!  // Take disk temperature
+!  regcomp(preg, ": [0-9]\\+.*C$", REG_NEWLINE);
+!  if (regexec(preg, buf, 1, pmatch, 0) == 0)
+!  {	    
+!    value= atof(buf + pmatch[0].rm_so + 2);
+!    regfree(preg);
+!    free(preg);
+!  } 
+!  else
+!  {	    
+!    regfree(preg);
+!    free(preg);
+     return false;
+-  }
+-  return true;
+  }
+  
+  
+  bool HDSensorsList::isHddTempInstalled()
+  {
+! ProcessExec proc;
+  
+!  proc << "hddtemp" ;
+   if(proc.runAndWait()) {
+!    if(strstr(proc.getStdoutData(),"ERROR")==0) return true;
+!    qWarning("HddTemp Error:\n%s", proc.getStdoutData());
+   }
+   return false;
+  }
+  
+  bool HDSensorsList::getDisks(QStringList &disks )
+  {
+!   DIR *dir= opendir("/proc/ide");
+!   if(!dir) return false;
+    QString str;
+    struct dirent *ptr;
+    while((ptr= readdir(dir))) {
+!     if(ptr->d_name[0]=='h' && ptr->d_name[1]=='d') {
+!        str.sprintf("/dev/hd%c",ptr->d_name[2]);
+         disks << str;
+      }
+    }
+--- 117,165 ----
+  // ***************  Static methods
+  
+  
+! bool HDSensorsList::getDiskInfo(const QString buf, QString &name, double &value)
+  {
+!  QRegExp rx(":\\s+(.+):\\s+(\\d+).*C");
+! 
+!  if (rx.search(buf) > -1) {
+!    bool ok;
+!    name = rx.cap(1);
+!    value = rx.cap(2).toDouble(&ok);
+!    if (ok)
+!      return true;
+!    else
+!      return false;
+   }
+!  else 
+     return false;
+  }
+  
+  
+  bool HDSensorsList::isHddTempInstalled()
+  {
+!  ProcessExec proc;
+  
+!  proc << "hddtemp" << "-v" ;
+   if(proc.runAndWait()) {
+!    if(proc.getStdoutData().contains("ERROR")==0) return true;
+!    qWarning("HddTemp Error:\n%s", proc.getStdoutData().ascii());
+   }
+   return false;
+  }
+  
+  bool HDSensorsList::getDisks(QStringList &disks )
+  {
+!   DIR *dir;
+! 
+!   /* Get a listing of the hard drives looking under sysfs first then falling back to /proc/ide */
+!   if((dir = opendir ("/sys/block")) == NULL)
+!     if ((dir = opendir ("/proc/ide")) == NULL)
+!       return false;
+    QString str;
+    struct dirent *ptr;
+    while((ptr= readdir(dir))) {
+!     if((ptr->d_name[0]=='h' || ptr->d_name[0]=='s') && ptr->d_name[1]=='d') {
+!        str.sprintf("/dev/%s",ptr->d_name);
+         disks << str;
+      }
+    }
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/src/hdsensorslist.h ksensors-0.7.3-jpw1/src/hdsensorslist.h
+*** ksensors-0.7.3-orig/src/hdsensorslist.h	2003-12-27 16:52:12.000000000 -0500
+--- ksensors-0.7.3-jpw1/src/hdsensorslist.h	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 47,53 ****
+  
+    static bool isHddTempInstalled();
+    static bool getDisks(QStringList &disks);
+!   static bool getDiskInfo(const char *buf, QString disk, QString &name, double &value);
+  };
+  
+  #endif
+--- 47,53 ----
+  
+    static bool isHddTempInstalled();
+    static bool getDisks(QStringList &disks);
+!   static bool getDiskInfo(const QString buf, QString &name, double &value);
+  };
+  
+  #endif
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/src/ksensors.desktop ksensors-0.7.3-jpw1/src/ksensors.desktop
+*** ksensors-0.7.3-orig/src/ksensors.desktop	2003-12-27 16:48:03.000000000 -0500
+--- ksensors-0.7.3-jpw1/src/ksensors.desktop	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 1,24 ****
+  [Desktop Entry]
+  Encoding=UTF-8
+! Name=ksensors
+! Name[xx]=xxksensorsxx
+  Exec=ksensors
+  Icon=ksensors
+  Type=Application
+! Comment=A simple KDE Application
+! Comment[ca]=Una simple aplicació KDE
+! Comment[da]=Et simpelt KDE program
+! Comment[de]=Eine einfache KDE-Anwendung
+! Comment[el]=Μια απλή εφαρμογή του KDE
+! Comment[es]=Una aplicación de KDE sencilla
+! Comment[et]=Lihtne KDE rakendus
+! Comment[fr]=Une application simple pour KDE.
+! Comment[hu]=Egyszerű KDE-alkalmazás
+! Comment[it]=Una semplice applicazione KDE
+! Comment[pt]=Uma aplicação KDE simples
+! Comment[pt_BR]=Um simples Aplicativo do KDE
+! Comment[ru]=Простое приложение KDE
+! Comment[sl]=Preprost program za KDE
+! Comment[sr]=Проста KDE-ова апликација
+! Comment[sv]=Ett enkelt KDE-program
+! Comment[xx]=xxA simple KDE Applicationxx
+--- 1,16 ----
+  [Desktop Entry]
+  Encoding=UTF-8
+! Name=KSensors
+  Exec=ksensors
+  Icon=ksensors
+  Type=Application
+! Comment=A nice lmsensors frontend for KDE
+! Comment[cs]=Pěkné rozhraní pro lmsemsors v KDE
+! Comment[de]=Ein benutzerfreundliches lmsensors Frontend für KDE
+! Comment[es]=Un agradable lmsensors frontend para KDE
+! Comment[fr]=Un frontend sympatique pour lm-sensors et KDE
+! Comment[he]=היישום KSensors -תוכנית קידמה יפה של KDE עבור lmsensors
+! Comment[nb]=Ett behagelig lmsensors-grensesnitt for KDE
+! Comment[nl]=Een gebruiksvriendelijke interface voor KDE
+! Comment[pl]=Ładny frondend lmsensors dla KDE
+! Comment[sv]=Ett trevligt gränssnitt mot lmsensors för KDE
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/src/lmsensor.cpp ksensors-0.7.3-jpw1/src/lmsensor.cpp
+*** ksensors-0.7.3-orig/src/lmsensor.cpp	2004-08-08 16:47:16.000000000 -0400
+--- ksensors-0.7.3-jpw1/src/lmsensor.cpp	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 30,54 ****
+  LMSensor::~LMSensor(){
+  }
+  
+! 
+  bool LMSensor::init(const sensors_feature_data **data, int *nr1,int *nr2)
+  {
+! double min,max;
+! 
+   const sensors_chip_name *chip_name= getChipName();
+  
+!  if (strstr((*data)->name, "temp"))
+   {
+      setType(lmTemp);
+      max= 65;
+      min= 0;
+   }
+!  else if (strstr((*data)->name, "fan"))
+   {
+      setType(lmFan);
+      max= 10000;
+      min= 3000;
+   }
+   else
+   {
+      setType(lmVoltage);
+--- 30,99 ----
+  LMSensor::~LMSensor(){
+  }
+  
+! #if SENSORS_API_VERSION < 0x400 /* libsensor 3 code */
+  bool LMSensor::init(const sensors_feature_data **data, int *nr1,int *nr2)
++ #else
++ bool LMSensor::init(const sensors_feature **data, int *nr1, int *nr2)
++ #endif
+  {
+!  double min,max;
+   const sensors_chip_name *chip_name= getChipName();
++  const char* main_name = (*data)->name;
++  feature= (*data)->number;
++  char *label = NULL;
++  QString uniqueSensorName;
++ 
++  uniqueSensorName.sprintf("%s_%d_%d.%s", chip_name->prefix, chip_name->bus.nr, chip_name->addr, main_name);
++  setName(uniqueSensorName.latin1());
++  
++ #if SENSORS_API_VERSION < 0x400 /* libsensor 3 code */
++  bool min_found=false;
++  bool max_found=false;
++  while( (*data= sensors_get_all_features(*chip_name, nr1, nr2)) && (*data)->mapping!=SENSORS_NO_MAPPING) {
++    int len = strlen((*data)->name);
++    const char *postfix = (*data)->name + len - 4;
++ 
++    if (len < 5)
++      continue;
+  
+!    if((!strcmp(postfix, "_min") || !strcmp(postfix, "_low")) &&
+!       !sensors_get_feature(*chip_name, (*data)->number, &valMin))
+!      min_found=true;
+!    
+!    if(!strcmp(postfix, "_max") &&
+!       !sensors_get_feature(*chip_name, (*data)->number, &valMax)) {
+!      max_found=true;
+!      continue;
+!    }
+! 
+!    postfix--;
+! 
+!    if((!strcmp(postfix, "_over") || !strcmp(postfix, "_high")) &&
+!       !sensors_get_feature(*chip_name, (*data)->number, &valMax))
+!      max_found=true;
+!  }
+! 
+!  double newVal;
+!  if ((sensors_get_ignored(*chip_name, feature) != 1) || (sensors_get_feature(*chip_name, feature, &newVal) != 0)) {
+!    return false;
+!  }
+! 
+!  if (strstr(main_name, "temp"))
+   {
+      setType(lmTemp);
+      max= 65;
+      min= 0;
+   }
+!  else if (strstr(main_name, "fan"))
+   {
+      setType(lmFan);
+      max= 10000;
+      min= 3000;
+   }
++  else if (strstr(main_name, "alarm") || strstr(main_name, "sensor") || strstr(main_name, "vrm"))
++  {
++     return false;
++  }
+   else
+   {
+      setType(lmVoltage);
+***************
+*** 56,102 ****
+      min= -16;
+   }
+  
+!  feature= (*data)->number;
+  
+!  QString str;
+!  str.sprintf("%s.%s", chip_name->prefix, (*data)->name );
+!  setName( str.latin1() );
+  
+!  char *label;
+!  sensors_get_label(*chip_name,feature,&label);
+!  setDescription(QString(label));
+  
+!  bool valid= false;
+!  while( (*data= sensors_get_all_features(*chip_name, nr1, nr2)) && (*data)->mapping!=SENSORS_NO_MAPPING) {
+!    str= (*data)->name;
+!    if(str.find("_min")>=0 || str.find("_low")>=0) {
+!        sensors_get_feature(*chip_name, (*data)->number, &valMin);
+!        valid= true;
+!    } else
+!        if(str.find("_max")>=0 || str.find("_over")>=0  || str.find("_high")>=0) {
+!           sensors_get_feature(*chip_name, (*data)->number, &valMax);
+!           valid= true;
+!        }
+!  }
+! 
+!  if(valid) {
+!     double newVal;
+!     valid= (sensors_get_feature(*chip_name, feature, &newVal)==0);
+!     if(valid) {
+!         if(min>max) {
+!           double pivot= valMin;
+!           min= max;
+!           max= pivot;
+!         }
+!         setValueMax(max,dgCelsius);
+!         setValueMin(min,dgCelsius);
+!         setValue((max+min)/2,dgCelsius);
+!         readConfig();
+!         updateValue();
+!         setValueIdeal(getValue());
+!     }
+!  }
+!  return valid;
+  }
+  
+  void LMSensor::updateValue()
+--- 101,229 ----
+      min= -16;
+   }
+  
+!  sensors_get_label(*chip_name,feature,&label);
+!  if (label)
+!  {
+!     setDescription(QString(label));
+!     delete label;
+!     label = NULL;
+!  }
+!  else
+!  {
+!     setDescription(uniqueSensorName.latin1());
+!  }
+!  
+!  if(min_found)
+!    min = valMin;
+!    
+!  if(max_found)
+!    max = valMax;
+! 
+! #else /* libsensors4 code */
+! 
+!   const sensors_subfeature *sub_feature;
+!   const sensors_feature *feature_data = *data;
+!   
+!   /* Move to next feature for the loop in LMSensorsChip::createSensors() */
+!   *data = sensors_get_features(chip_name, nr1);
+!  
+!   switch(feature_data->type)
+!   {
+!     case SENSORS_FEATURE_IN:
+!       sub_feature = sensors_get_subfeature(chip_name, feature_data,
+!         SENSORS_SUBFEATURE_IN_INPUT);
+! 
+!       if (!sub_feature)
+!         return false;
+! 
+!       feature = sub_feature->number;
+! 
+!       if (!(sub_feature = sensors_get_subfeature(chip_name, feature_data,
+!             SENSORS_SUBFEATURE_IN_MIN)) ||
+!           sensors_get_value(chip_name, sub_feature->number, &min))
+!         min = -16;
+! 
+!       if (!(sub_feature = sensors_get_subfeature(chip_name, feature_data,
+!             SENSORS_SUBFEATURE_IN_MAX)) ||
+!           sensors_get_value(chip_name, sub_feature->number, &max))
+!         max = 16;
+!  
+!       setType(lmVoltage);
+!       break;
+! 
+!     case SENSORS_FEATURE_FAN:
+!       sub_feature = sensors_get_subfeature(chip_name, feature_data,
+!         SENSORS_SUBFEATURE_FAN_INPUT);
+! 
+!       if (!sub_feature)
+!         return false;
+! 
+!       feature = sub_feature->number;
+! 
+!       if (!(sub_feature = sensors_get_subfeature(chip_name, feature_data,
+!             SENSORS_SUBFEATURE_FAN_MIN)) ||
+!           sensors_get_value(chip_name, sub_feature->number, &min))
+!         min = 3000;
+! 
+!       max = 10000;
+! 
+!       setType(lmFan);
+!       break;
+! 
+!     case SENSORS_FEATURE_TEMP:
+!       sub_feature = sensors_get_subfeature(chip_name, feature_data,
+!         SENSORS_SUBFEATURE_TEMP_INPUT);
+! 
+!       if (!sub_feature)
+!         return false;
+! 
+!       feature = sub_feature->number;
+! 
+!       if (!(sub_feature = sensors_get_subfeature(chip_name, feature_data,
+!             SENSORS_SUBFEATURE_TEMP_MIN)) ||
+!           sensors_get_value(chip_name, sub_feature->number, &min))
+!         min = 0;
+! 
+!       if ((!(sub_feature = sensors_get_subfeature(chip_name, feature_data,
+!               SENSORS_SUBFEATURE_TEMP_MAX)) &&
+!            !(sub_feature = sensors_get_subfeature(chip_name, feature_data,
+!               SENSORS_SUBFEATURE_TEMP_CRIT))) ||
+!           sensors_get_value(chip_name, sub_feature->number, &max))
+!         max = 65;
+! 
+!       setType(lmTemp);
+!       break;
+!     
+!     default:
+!       return false;
+!   }
+! 
+!   label = sensors_get_label(chip_name, feature_data);
+!   if (label)
+!   {
+!      setDescription(QString(label));
+!      delete label;
+!      label = NULL;
+!   }
+!   else
+!     setDescription( uniqueSensorName.latin1() );
+! 
+! #endif /* libsensors3 / libsensors4 code */
+! 
+!  if(min>max) {
+!    double pivot= min;
+!    min= max;
+!    max= pivot;
+!  }
+  
+!  setValueMax(max,dgCelsius);
+!  setValueMin(min,dgCelsius);
+  
+!  readConfig();
+!  updateValue();
+!  setValueIdeal(getValue());
+  
+!  return true;
+  }
+  
+  void LMSensor::updateValue()
+***************
+*** 108,114 ****
+--- 235,245 ----
+  {
+   double newVal;
+   const sensors_chip_name *chip_name= getChipName();
++ #if SENSORS_API_VERSION < 0x400 /* libsensor 3 code */
+   sensors_get_feature(*chip_name, feature, &newVal);
++ #else
++  sensors_get_value(chip_name, feature, &newVal);
++ #endif
+   return newVal;
+  }
+  
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/src/lmsensor.h ksensors-0.7.3-jpw1/src/lmsensor.h
+*** ksensors-0.7.3-orig/src/lmsensor.h	2003-12-27 16:52:12.000000000 -0500
+--- ksensors-0.7.3-jpw1/src/lmsensor.h	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 51,57 ****
+--- 51,61 ----
+  
+    double calculateIdealValue();
+  
++ #if SENSORS_API_VERSION < 0x400 /* libsensor 3 code */
+    bool init(const sensors_feature_data **data, int *nr1,int *nr2);
++ #else
++   bool init(const sensors_feature **data, int *nr1,int *nr2);
++ #endif
+    const sensors_chip_name *getChipName();
+  
+  private:
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/src/lmsensorscfg.cpp ksensors-0.7.3-jpw1/src/lmsensorscfg.cpp
+*** ksensors-0.7.3-orig/src/lmsensorscfg.cpp	2003-12-27 19:35:20.000000000 -0500
+--- ksensors-0.7.3-jpw1/src/lmsensorscfg.cpp	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 29,35 ****
+  #include <qgroupbox.h>
+  #include <qradiobutton.h>
+  #include <qpushbutton.h>
+! #include <qobjcoll.h>
+  #include <qtabwidget.h>
+  #include <qcombobox.h>
+  #include <qspinbox.h>
+--- 29,35 ----
+  #include <qgroupbox.h>
+  #include <qradiobutton.h>
+  #include <qpushbutton.h>
+! #include <qobjectlist.h>
+  #include <qtabwidget.h>
+  #include <qcombobox.h>
+  #include <qspinbox.h>
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/src/lmsensorscfgdesign.ui ksensors-0.7.3-jpw1/src/lmsensorscfgdesign.ui
+*** ksensors-0.7.3-orig/src/lmsensorscfgdesign.ui	2004-08-11 10:36:54.000000000 -0400
+--- ksensors-0.7.3-jpw1/src/lmsensorscfgdesign.ui	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 748,776 ****
+                                  <property name="name">
+                                      <cstring>unnamed</cstring>
+                                  </property>
+!                                 <widget class="QLabel">
+                                      <property name="name">
+!                                         <cstring>TextLabel1_3_2_2_2_2</cstring>
+                                      </property>
+!                                     <property name="text">
+                                          <string>On reach alarm value:</string>
+                                      </property>
+-                                 </widget>
+-                                 <widget class="QFrame">
+-                                     <property name="name">
+-                                         <cstring>Frame11_2_2_2</cstring>
+-                                     </property>
+-                                     <property name="frameShape">
+-                                         <enum>HLine</enum>
+-                                     </property>
+-                                     <property name="frameShadow">
+-                                         <enum>Sunken</enum>
+-                                     </property>
+-                                 </widget>
+-                                 <widget class="QLayoutWidget">
+-                                     <property name="name">
+-                                         <cstring>layout9</cstring>
+-                                     </property>
+                                      <grid>
+                                          <property name="name">
+                                              <cstring>unnamed</cstring>
+--- 748,760 ----
+                                  <property name="name">
+                                      <cstring>unnamed</cstring>
+                                  </property>
+!                                 <widget class="QButtonGroup">
+                                      <property name="name">
+!                                         <cstring>ButtonGroup9</cstring>
+                                      </property>
+!                                     <property name="title">
+                                          <string>On reach alarm value:</string>
+                                      </property>
+                                      <grid>
+                                          <property name="name">
+                                              <cstring>unnamed</cstring>
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/src/lmsensorschip.cpp ksensors-0.7.3-jpw1/src/lmsensorschip.cpp
+*** ksensors-0.7.3-orig/src/lmsensorschip.cpp	2003-12-27 16:52:12.000000000 -0500
+--- ksensors-0.7.3-jpw1/src/lmsensorschip.cpp	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 50,59 ****
+  void LMSensorsChip::createSensors()
+  {
+   if(!chip_name) return;
+-  const sensors_feature_data *data;
+   int nr1= 0;
+   int nr2= 0;
+   data= sensors_get_all_features(*chip_name, &nr1, &nr2);
+   while(data) {
+     LMSensor *sensor= new LMSensor(this);
+     if( !sensor->init(&data,&nr1,&nr2) )
+--- 50,64 ----
+  void LMSensorsChip::createSensors()
+  {
+   if(!chip_name) return;
+   int nr1= 0;
+   int nr2= 0;
++ #if SENSORS_API_VERSION < 0x400 /* libsensor 3 code */
++  const sensors_feature_data *data;
+   data= sensors_get_all_features(*chip_name, &nr1, &nr2);
++ #else
++  const sensors_feature *data;
++  data= sensors_get_features(chip_name, &nr1);
++ #endif
+   while(data) {
+     LMSensor *sensor= new LMSensor(this);
+     if( !sensor->init(&data,&nr1,&nr2) )
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/src/lmsensors.cpp ksensors-0.7.3-jpw1/src/lmsensors.cpp
+*** ksensors-0.7.3-orig/src/lmsensors.cpp	2003-12-27 16:52:12.000000000 -0500
+--- ksensors-0.7.3-jpw1/src/lmsensors.cpp	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 45,61 ****
+  
+  bool LMSensors::initSensors()
+  {
+!  FILE *fp=fopen("/etc/sensors.conf","r");
+   if(!fp) {
+!    qWarning("KSensors error: /etc/sensors.conf not found !");
+     return false;
+   }
+   int err= sensors_init(fp);
+   if(err) {
+     qWarning("KSensors error: sensors_init fail, error code %d",err);
+     return false;
+   }
+   fclose(fp);
+   return true;
+  }
+  
+--- 45,67 ----
+  
+  bool LMSensors::initSensors()
+  {
+! #if SENSORS_API_VERSION < 0x400 /* libsensor 3 code */
+!  FILE *fp=fopen("/etc/sensors3.conf","r");
+   if(!fp) {
+!    qWarning("KSensors error: /etc/sensors3.conf not found !");
+     return false;
+   }
++ #else
++  FILE *fp=NULL;
++ #endif
+   int err= sensors_init(fp);
+   if(err) {
+     qWarning("KSensors error: sensors_init fail, error code %d",err);
+     return false;
+   }
++ #if SENSORS_API_VERSION < 0x400 /* libsensor 3 code */
+   fclose(fp);
++ #endif
+   return true;
+  }
+  
+***************
+*** 63,74 ****
+--- 69,87 ----
+  {
+   const sensors_chip_name *chip_name;
+   int err= 0;
++ #if SENSORS_API_VERSION < 0x400 /* libsensor 3 code */
+   while( (chip_name= sensors_get_detected_chips(&err)) )
++  {
+     if( existSensor(chip_name,"temp")  ||
+         existSensor(chip_name,"fan")   )
+         {
+            (void)new LMSensorsChip(chip_name,this);
+         }
++  }
++ #else
++  while( (chip_name= sensors_get_detected_chips(NULL, &err)) )
++           (void)new LMSensorsChip(chip_name,this);
++ #endif
+  }
+  
+  void LMSensors::createHDSensors()
+***************
+*** 84,89 ****
+--- 97,103 ----
+  }
+  
+  
++ #if SENSORS_API_VERSION < 0x400 /* libsensor 3 code */
+  int LMSensors::existSensor(const sensors_chip_name *chip_name,const char *sensor_name)
+  {
+  int nr1,nr2;
+***************
+*** 91,100 ****
+--- 105,117 ----
+  
+   nr1=nr2= 0;
+   while( (sensor_data= sensors_get_all_features(*chip_name, &nr1, &nr2)) )
++  {
+     if( strstr(sensor_data->name,sensor_name) )
+       return sensor_data->number;
++  }
+   return 0;
+  }
++ #endif
+  
+  void LMSensors::setMonitorized(bool enable)
+  {
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/src/lmsensors.h ksensors-0.7.3-jpw1/src/lmsensors.h
+*** ksensors-0.7.3-orig/src/lmsensors.h	2003-12-27 16:52:12.000000000 -0500
+--- ksensors-0.7.3-jpw1/src/lmsensors.h	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 19,25 ****
+  #define LMSENSORS_H
+  
+  #include <qobject.h>
+! #include <qobjcoll.h>
+  #include <kconfig.h>
+  #include <qstringlist.h>
+  
+--- 19,25 ----
+  #define LMSENSORS_H
+  
+  #include <qobject.h>
+! #include <qobjectlist.h>
+  #include <kconfig.h>
+  #include <qstringlist.h>
+  
+***************
+*** 65,71 ****
+--- 65,73 ----
+    void createI8KSensors();
+    void childEvent ( QChildEvent *e );
+  
++ #if SENSORS_API_VERSION < 0x400 /* libsensor 3 code */
+    static int existSensor(const sensors_chip_name *chip_name,const char *sensor_name);
++ #endif
+  };
+  
+  #endif
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/src/Makefile.am ksensors-0.7.3-jpw1/src/Makefile.am
+*** ksensors-0.7.3-orig/src/Makefile.am	2004-08-18 16:47:25.000000000 -0400
+--- ksensors-0.7.3-jpw1/src/Makefile.am	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 43,49 ****
+  		   systemcfg.cpp systemcfgdesign.ui uptimepanel.cpp
+  
+  ksensors_LDFLAGS = $(KDE_RPATH) $(all_libraries)
+! ksensors_LDADD = $(LIB_KDEUI) $(LIB_KDECORE) -lsensors -lm
+  
+  # this is where the desktop file will go 
+  shelldesktopdir   = $(kde_appsdir)/Utilities
+--- 43,49 ----
+  		   systemcfg.cpp systemcfgdesign.ui uptimepanel.cpp
+  
+  ksensors_LDFLAGS = $(KDE_RPATH) $(all_libraries)
+! ksensors_LDADD = $(LIB_KDEUI) $(LIB_KDECORE) $(LIB_QT) -lsensors -lm
+  
+  # this is where the desktop file will go 
+  shelldesktopdir   = $(kde_appsdir)/Utilities
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/src/palettecfg.cpp ksensors-0.7.3-jpw1/src/palettecfg.cpp
+*** ksensors-0.7.3-orig/src/palettecfg.cpp	2003-12-27 16:52:14.000000000 -0500
+--- ksensors-0.7.3-jpw1/src/palettecfg.cpp	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 82,94 ****
+  {
+   labelTitle->unsetPalette();
+   framePanel->setPalette(pal);
+- #if ( KDE_VERSION_MAJOR >= 3 )
+   labelTitle->setPaletteForegroundColor(pal.active().text());
+- #else
+-  QPalette p= labelTitle->palette();
+-  p.setColor(QColorGroup::Foreground,pal.active().text());
+-  labelTitle->setPalette(p);
+- #endif
+   if(updateColorButton) slotComboSelected(comboSelect->currentItem());
+  }
+  
+--- 82,88 ----
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/src/processexec.cpp ksensors-0.7.3-jpw1/src/processexec.cpp
+*** ksensors-0.7.3-orig/src/processexec.cpp	2004-08-08 15:21:03.000000000 -0400
+--- ksensors-0.7.3-jpw1/src/processexec.cpp	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 37,53 ****
+  bool ProcessExec::runAndWait()
+  {
+   clearData();
+!  return start(Block,Communication(Stdout|Stderr));
+  }
+  
+  void ProcessExec::slotReceivedStdout(KProcess *proc, char *buf, int len)
+  {
+!  if(bufLen+len>=bufMax) len= bufMax-bufLen;
+!  if(len) {
+!    memcpy(buffer+bufLen,buf,len);
+!    bufLen+= len;
+!    buffer[bufLen]=0;
+!  }
+  }
+  
+  void ProcessExec::slotReceivedStderr(KProcess *proc, char *buf, int len)
+--- 37,48 ----
+  bool ProcessExec::runAndWait()
+  {
+   clearData();
+!  return start(Block,Communication(Stdout | Stderr));
+  }
+  
+  void ProcessExec::slotReceivedStdout(KProcess *proc, char *buf, int len)
+  {
+!   buffer = QString(buf);
+  }
+  
+  void ProcessExec::slotReceivedStderr(KProcess *proc, char *buf, int len)
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/src/processexec.h ksensors-0.7.3-jpw1/src/processexec.h
+*** ksensors-0.7.3-orig/src/processexec.h	2004-08-08 14:53:21.000000000 -0400
+--- ksensors-0.7.3-jpw1/src/processexec.h	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 33,43 ****
+  
+    bool run();
+    bool runAndWait();
+!   bool outputErrors() { return fErrors; };
+  
+!   inline char *getStdoutData()       { return buffer; };
+!   inline int getStdoutDataLen()      { return bufLen; }
+!   inline void clearData()            { bufLen= 0; buffer[0]= 0; fErrors= false; };
+  
+  protected slots:
+  
+--- 33,43 ----
+  
+    bool run();
+    bool runAndWait();
+!   bool outputErrors()				{ return fErrors; };
+  
+!   inline QString getStdoutData()		{ return buffer; };
+!   inline unsigned int getStdoutDataLen()	{ return buffer.length(); }
+!   inline void clearData()			{ buffer.truncate(0); fErrors= false; };
+  
+  protected slots:
+  
+***************
+*** 47,54 ****
+  private:
+  
+    static const int bufMax= 1023;
+!   char buffer[bufMax+1];
+!   int  bufLen;
+    bool fErrors;
+  };
+  
+--- 47,53 ----
+  private:
+  
+    static const int bufMax= 1023;
+!   QString buffer;
+    bool fErrors;
+  };
+  
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/src/sensorslist.h ksensors-0.7.3-jpw1/src/sensorslist.h
+*** ksensors-0.7.3-orig/src/sensorslist.h	2003-12-27 16:52:12.000000000 -0500
+--- ksensors-0.7.3-jpw1/src/sensorslist.h	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 19,25 ****
+  #define SENSORSLIST_H
+  
+  #include <qobject.h>
+! #include <qobjcoll.h>
+  #include <kconfig.h>
+  #include <qstringlist.h>
+  
+--- 19,25 ----
+  #define SENSORSLIST_H
+  
+  #include <qobject.h>
+! #include <qobjectlist.h>
+  #include <kconfig.h>
+  #include <qstringlist.h>
+  
+diff -rcN '--exclude=debian' '--exclude=.pc' ksensors-0.7.3-orig/src/sounds/Makefile.am ksensors-0.7.3-jpw1/src/sounds/Makefile.am
+*** ksensors-0.7.3-orig/src/sounds/Makefile.am	2004-08-18 17:12:32.000000000 -0400
+--- ksensors-0.7.3-jpw1/src/sounds/Makefile.am	2014-05-20 17:19:00.000000000 -0400
+***************
+*** 4,13 ****
+  
+  EXTRA_DIST = ksensors_alert.wav
+  
+  install-data-local:
+! 	$(mkinstalldirs) $(kde_datadir)/sounds
+! 	$(INSTALL_DATA) $(srcdir)/ksensors_alert.wav $(kde_datadir)/sounds/ksensors_alert.wav
+  uninstall-local:
+! 	-rm -f $(kde_datadir)/sounds/ksensors_alert.wav
+  
+  ####### kdevelop will overwrite this part!!! (end)############
+--- 4,15 ----
+  
+  EXTRA_DIST = ksensors_alert.wav
+  
++ # [jpw;20130210]  Added the '$(mkinstalldirs)' line.  'dpk-buildpackage'
++ # 				   was failing without it.
+  install-data-local:
+! 	$(mkinstalldirs) $(kde_sounddir)
+! 	$(INSTALL_DATA) $(srcdir)/ksensors_alert.wav $(kde_sounddir)/ksensors_alert.wav
+  uninstall-local:
+! 	rm -f $(kde_sounddir)/ksensors_alert.wav
+  
+  ####### kdevelop will overwrite this part!!! (end)############

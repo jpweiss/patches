@@ -1,0 +1,33 @@
+Format: 1.8
+Date: Fri, 11 Feb 2013 20:05:00 -0500
+Source: ksensors
+Binary: ksensors
+Architecture: source amd64
+Version: 0.7.3-jpw1
+Distribution: precise
+Urgency: low
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Changed-By: John Weiss <jpwcandide@sourceforge.net>
+Description: 
+ ksensors   - lm-sensors frontend for KDE
+Changes: 
+ ksensors (0.7.3-jpw1) precise; urgency=low
+ .
+   * Rebuilt for Ubuntu 12.04 and Trinity (KDE3) v3.5.13.
+   * Now supports more recent version(s) of automake.
+   * Will now link when building on systems on which both Trinity and KDE4
+     are installed.
+   * Updated the source-dpkg to v3.0(quilt).
+Checksums-Sha1: 
+ 2720717c8dc25b2b150e53951053f35c3560e26b 1129 ksensors_0.7.3-jpw1.dsc
+ d3be608252250b9b9a65703abf297c93c448ef5f 34728 ksensors_0.7.3-jpw1.debian.tar.gz
+ 2201e54744ebfaf6ddaa45c5fa8fb00f1a09d1a4 314432 ksensors_0.7.3-jpw1_amd64.deb
+Checksums-Sha256: 
+ 67546058de237d81ada25176984d4046ad515b8e2bf16bc6696d0378c9461341 1129 ksensors_0.7.3-jpw1.dsc
+ 792dac0f5ffacf3ca76d64f994ea2dd7c669b2a0374784edfd65d5125677b668 34728 ksensors_0.7.3-jpw1.debian.tar.gz
+ 2480bf5928cdf41318d98b31a78bbb2b0f8788e9112a01ef2786bbe4476fddff 314432 ksensors_0.7.3-jpw1_amd64.deb
+Files: 
+ 30f50685a575366ab4e62bb5d9334c0f 1129 kde optional ksensors_0.7.3-jpw1.dsc
+ 533eb41cbcf9947edcd0bed511d10868 34728 kde optional ksensors_0.7.3-jpw1.debian.tar.gz
+ 9a93bdc88b6fde940273f3733077a44d 314432 kde optional ksensors_0.7.3-jpw1_amd64.deb
+Original-Maintainer: Aurelien Jarno <aurel32@debian.org>
