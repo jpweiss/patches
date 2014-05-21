@@ -1,0 +1,41 @@
+export PREFIX=/opt/trinity
+export SYSCONFDIR=/etc/trinity
+export LIBDIR=/opt/trinity/lib
+export MANDIR=/opt/trinity/man
+export QTDIR=/usr/share/qt3
+export PATH=$QTDIR/bin:/opt/trinity/bin:$PATH
+export LD_LIBRARY_PATH=/opt/trinity/lib:/opt/trinity/lib/trinity:$LD_LIBRARY_PATH
+export PKG_CONFIG_PATH=:/opt/trinity/lib/pkgconfig:$QTDIR/lib/pkgconfig:$PKG_CONFIG_PATH
+# Enable only one of the following:
+# export DEBUG_AUTOTOOL_OPT="--disable-debug"
+export DEBUG_CMAKE_OPT=""
+
+TRINITY_INCLUDES="-I/usr/include/dbus-1-tqt"
+
+# To Build:  Trinity forces you to use a separate build directory.  So, do
+# this:
+
+CMAKE_BUILDDIR=${PWD}/../build/${PWD##*/}
+SRCDIR=${PWD}
+#if [ -n "$CMAKE_BUILDDIR" ]; then
+   if [ \! -d $CMAKE_BUILDDIR ]; then
+      mkdir $CMAKE_BUILDDIR
+   fi
+   pushd $CMAKE_BUILDDIR
+#fi
+
+CC_OPTS="${CPUOPTIONS}${CPUOPTIONS:+ }${TRINITY_INCLUDES}"
+CXX_OPTS="${CC_OPTS}${DEBUG_CMAKE_OPT:+ }${DEBUG_CMAKE_OPT}"
+CMAKE_VARS="-DCMAKE_C_FLAGS:STRING='${CC_OPTS}' \
+    -DCMAKE_CXX_FLAGS:STRING='${CXX_OPTS}' \
+    -DCMAKE_INSTALL_PREFIX=${PREFIX} \
+    -DSYSCONF_INSTALL_DIR=${SYSCONFDIR} \
+    -DLIB_SUFFIX=${LIBDIRSUFFIX} \
+    -DMAN_INSTALL_DIR=${MANDIR} \
+    -DBUILD_ALL=ON"
+
+unset CC_OPTS CXX_OPTS
+
+cmake ${CMAKE_VARS} -Wno-dev $SRCDIR
+
+#make VERBOSE=1

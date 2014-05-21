@@ -3,10 +3,15 @@
 
 
 The patch(es) in this directory makes `ksensors` ver. 0.7.3 buildable
-using TDE (the desktop environment based on a fork of KDE3).
+again, using the development packages from TDE (the desktop
+environment based on a fork of KDE3).
+
+To build `ksensors` once you've applied my patches to it, you'll need
+to install the `kdelibs4-trinity-dev` package from
+[TDE](https://www.trinitydesktop.org/).
 
 
-## Instructions ##
+## Patching Instructions ##
 
 
 ### Direct Patch ###
@@ -16,8 +21,8 @@ using TDE (the desktop environment based on a fork of KDE3).
 
 Apply in the usual way:
 
-* `cd` to the directory containing the `ksensors-0.7.3` source code.
-* `patch -p1 ksensors-0.7.3-using_TDE.patch`
+1. `cd` to the directory containing the `ksensors-0.7.3` source code.
+2. `patch -p1 ksensors-0.7.3-using_TDE.patch`
 
 
 ### If Using Debian, Ubuntu, or `dpkg` ###
@@ -38,10 +43,8 @@ Apply in the usual way:
 3. `cd` to the directory where you want to "install" the source code.
 
 4. Run:
-
    ```
    dpkg-source -x $debSrcPkgsDir/ksensors-0.7.3-jpw1.dsc
    ```
-
    This will extract the source and apply all patches, including the
    ones containing my changes.
