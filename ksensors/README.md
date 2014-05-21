@@ -35,16 +35,23 @@ Apply in the usual way:
       matter which.)
 
    2. Or, get the `ksensors-0.7.3` source code tarball and rename it
-      to `ksensors-0.7.3.orig.tar.gz`
+      to `ksensors_0.7.3.orig.tar.gz`
 
 2. `cp using-deb-srcpkg/*` to whatever directory contains the
-   `ksensors-0.7.3.orig.tar.gz` file.
+   `ksensors_0.7.3.orig.tar.gz` file.
 
 3. `cd` to the directory where you want to "install" the source code.
 
 4. Run:
    ```
-   dpkg-source -x $debSrcPkgsDir/ksensors-0.7.3-jpw1.dsc
+   dpkg-source -x ${debSrcPkgsDir}/ksensors_0.7.3-jpw1.dsc
    ```
+   …where `${debSrcPkgsDir}` is the path containing the
+   `ksensors_0.7.3.orig.tar.gz` file.
+
    This will extract the source and apply all patches, including the
    ones containing my changes.
+
+   * You could also directly build the binary package(s) using the
+     `dpkg-source` command.  But that's left as an exercise to the
+     reader.  ;)

@@ -1,0 +1,51 @@
+Format: 1.8
+Date: Wed, 13 Feb 2013 12:38:56 -0500
+Source: celestia
+Binary: celestia-common celestia celestia-kde celestia-gnome celestia-glut
+Architecture: source amd64 all
+Version: 1.6.1-1
+Distribution: unstable
+Urgency: low
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Changed-By: John Weiss <jpwcandide@sourceforge.net>
+Description: 
+ celestia   - real-time visual space simulation
+ celestia-common - datafiles for Celestia, a real-time visual space simulation
+ celestia-glut - real-time visual space simulation (GLUT frontend)
+ celestia-gnome - real-time visual space simulation (GNOME frontend)
+ celestia-kde - A real-time visual space simulation (KDE3/Trinity frontend)
+Changes: 
+ celestia (1.6.1-1) unstable; urgency=low
+ .
+   * New upstream release.
+   * Restored KDE3 support, in the form of the Trinity project.  The frontend
+     will remain named "celestia-kde", but will now be built against the
+     Trinity libs.
+Checksums-Sha1: 
+ fd370ce89e088da3e6eb0c46d849e8f3256c7e66 1354 celestia_1.6.1-1.dsc
+ 1f0fdf4525a8b9d6c708e1f6383babed670d18e7 52600436 celestia_1.6.1.orig.tar.gz
+ 605f5c3ee685c23fd85848260cd1304dade3e712 281010 celestia_1.6.1-1.debian.tar.gz
+ ab294b9c97bfbd3b504acd61090a8b0735c52b3c 1747834 celestia-kde_1.6.1-1_amd64.deb
+ 989c5e2b9f1f8484de088852ac3ca6afbc6b8e57 1131820 celestia-gnome_1.6.1-1_amd64.deb
+ ae98498c83e737801610a09f612cbe321dbcb87f 943930 celestia-glut_1.6.1-1_amd64.deb
+ c2da05e5f79266cf2c86250e130b69cd712e475e 38568660 celestia-common_1.6.1-1_all.deb
+ 6e0b9884f6a65819d5aeb5fc53a91a77c7fc8e91 39940 celestia_1.6.1-1_all.deb
+Checksums-Sha256: 
+ 606f581698f31640fe0caf255232fd995ffa7bd08edd287dc7267dba0b4efbda 1354 celestia_1.6.1-1.dsc
+ d35570ccb9440fc0bd3e73eb9b4c3e8a4c25f3ae444a13d1175053fa16dc34c4 52600436 celestia_1.6.1.orig.tar.gz
+ 577065ec4523b618485b80858179b699992d8b48d0b060d9b8c7bce6ad08650e 281010 celestia_1.6.1-1.debian.tar.gz
+ c235d86fef94ef793b5a7d8ccb5147a651571f9124506bf6cbdcbc8be282c162 1747834 celestia-kde_1.6.1-1_amd64.deb
+ c0da09421ad3366d91678131d07c4d680c6ba82f48c4dc5266008f97365074c4 1131820 celestia-gnome_1.6.1-1_amd64.deb
+ 6a1a6beee2089164db646de56677d22debf25dcf24b85e5556c13bcf256ecae6 943930 celestia-glut_1.6.1-1_amd64.deb
+ a93e00dd3552c5f3bbc93e8b344b6599628fc3d90ccb86545b9691df4cbfb1ed 38568660 celestia-common_1.6.1-1_all.deb
+ 1824c2582b82ff712b6dd8e4efaef4a7f75a0a52746d89b8406c276f25d63428 39940 celestia_1.6.1-1_all.deb
+Files: 
+ 3fe3a68419c53a5e1861690e53e418e8 1354 science optional celestia_1.6.1-1.dsc
+ 02208982a431b984502fac909bf380f4 52600436 science optional celestia_1.6.1.orig.tar.gz
+ 65760c72830bd119747682646a4f3995 281010 science optional celestia_1.6.1-1.debian.tar.gz
+ 906d67fc222fadbf814f560f1457bbf0 1747834 kde optional celestia-kde_1.6.1-1_amd64.deb
+ 6e83cd3c4c843dda649e954c443f558f 1131820 gnome optional celestia-gnome_1.6.1-1_amd64.deb
+ 63fa1a4fb6946bc191f3f73ca3634c67 943930 science optional celestia-glut_1.6.1-1_amd64.deb
+ e9b6a7c71b267173d600b8340536e165 38568660 science optional celestia-common_1.6.1-1_all.deb
+ 6adfb9fdaf29f900febbc3c7d6b4230c 39940 science optional celestia_1.6.1-1_all.deb
+Original-Maintainer: Guus Sliepen <guus@debian.org>
